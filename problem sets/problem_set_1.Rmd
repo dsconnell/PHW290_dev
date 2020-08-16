@@ -1,0 +1,93 @@
+---
+title: "Problem Set 1"
+author: "Your name here"
+date: "date here"
+output: pdf_document
+---
+
+* Due date: 
+* Submission process: Please submit your assignment directly to Gradescope. You can do this by knitting your file and downloading the PDF to your computer. Then navigate to Gradescope.com or via the link on BCourses to submit your assignment. 
+
+Helpful hints:
+
+- Every function you need to use was taught during lecture! So you may need to revisit the lecture code to help you along,
+
+- Knit your file early and often to minimize knitting errors! If you copy and paste code from the slides, you are bound to get an error that is hard to diagnose. Typing out the code is the way to smooth knitting. We recommend knitting your file each time after you write a few sentences/add a new code chunk, so yu can detect the source of the knitting error more easily. This will save you and the teaching team time!
+
+- Please make sure that your code does not run off the page of the knitted PDF. If it does, we can't see your work. To avoid this, have a look at your knitted PDF and ensure all the code fits in the file. When it doesn't, go back to your .Rmd file and add spaces (new lines) using hte return or enter key so that the code runs onto the next line.
+
+--------------------------------------------------------------------------------
+\newpage 
+
+Let's first load the reprex library.
+```{r library}
+library(reprex)
+```
+
+### Question 1
+
+Create five variables with the following type of data types:
+  1. character
+  2. numeric
+  3. integer
+  4. logical
+  5. complex
+  
+```{r}
+a <- # your code here
+b <- # your code here
+c <- # your code here
+d <- # your code here
+e <- # your code here
+```
+
+\newpage
+
+### Question 2
+
+R is a powerful calculator that can help us become more efficient epidemiologist. 
+
+Recall that an odds ratio is calculated by the following: (a / c)/(b / d) OR (a * d)/(b * c). 
+
+Suppose a number of people became ill after exposure to cheesecake. Our two levels of exposure to cheesecake are (1) those who ate cheesecake, and (2) those who did not eat cheesecake. 
+
+```{r 2x2 table}
+# run the following code to view our 2x2 table
+# notice how we used one of R's base function called "matrix"
+# we directly inputted our values in a list format c("","",...) 
+# added the argument ncol = 2 to split the list into two columns
+# added the argument byrow = TRUE to first complete the rows then the columns
+
+cheesecake_exposure <- matrix(c(15, 36, 18, 25), ncol = 2, byrow = TRUE)
+# directly named the two columns
+colnames(cheesecake_exposure) <- c("Cases", "Controls")
+# directly named the two rows
+rownames(cheesecake_exposure) <- c("Exposed", "Not Exposed")
+# executed our variable to view the output
+cheesecake_exposure
+```
+
+Calculate the odds ratio of of becoming ill due to cheesecake.
+
+```{r}
+# your code here
+
+(15*25)/(36*18)
+```
+
+\newpage
+
+\newpage
+
+### Challenge
+
+Create a function that lets you add two numbers together. For example, if I had two arguments, 1 and 2, the output should result in 3.
+
+```{r challenge}
+challengeFunc <- function(a, b) {
+  a + b
+}
+
+challengeFunc(1, 2)
+```
+
