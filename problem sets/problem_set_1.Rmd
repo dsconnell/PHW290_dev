@@ -43,6 +43,7 @@ my_other_variable <- 8
 my_variable + my_other_variable
 ```
 
+\newpage
 
 ### Question 2
 
