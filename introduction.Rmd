@@ -15,6 +15,8 @@ Welcome to PHW290: R for Public Health!
 
 We're excited that you're here and look forward to a semester with you and R. The current file you are looking at is called a "RMarkdown", which has a .Rmd extension. We will use this type of R file for the semester due to its easy readability and capacity for creating *neat* PDF, HTML, and MS Word files. 
   
+\newpage
+
 ### RMarkdown Basics
 
 Below is a R chunk, which is where you type your code. You can run code line by line by holding down Ctrl/Command + Enter. If you want to run the entire chunk, you can click the green arrow on the right-hand side of the chunk. Try both of these methods for the code below!
@@ -29,7 +31,13 @@ print("hello world")
 # comments are not evaluated
 # for example, the following code will not run:
 
-#print("hello world")
+# print("hello world")
+```
+
+```{r}
+# example of code running off the page
+library(ggplot2)
+ggplot(data = ChickWeight, aes(x = Time, y = weight, color = Diet, group = Chick)) + geom_line() + ggtitle("Growth curve for individual chicks")
 ```
 
 Knitting shortcut: Alt + Shift + K
