@@ -14,13 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 Welcome to PHW290: R for Public Health!
 
 We're excited that you're here and look forward to a semester with you and R. The current file you are looking at is called a "RMarkdown", which has a .Rmd extension. We will use this type of R file for the semester due to its easy readability and capacity for creating *neat* PDF, HTML, and MS Word files. 
-
-Today we will cover:
-  1. RMarkdown basics
-  2. R as a calculator
-  3. Variable assignment in R
   
-## RMarkdown Basics
+### RMarkdown Basics
 
 Below is a R chunk, which is where you type your code. You can run code line by line by holding down Ctrl/Command + Enter. If you want to run the entire chunk, you can click the green arrow on the right-hand side of the chunk. Try both of these methods for the code below!
 
@@ -37,35 +32,4 @@ print("hello world")
 #print("hello world")
 ```
 
-Fix the above chunk to print "hello world".
-
-## R as a calculator
-
-R is a powerful calculator. Let's see it in action. 
-
-```{r}
-1 + 1
-
-1 / 0.00000001
-
-
-```
-Incredible.
-
-Let's try
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Knitting shortcut: Alt + Shift + K
