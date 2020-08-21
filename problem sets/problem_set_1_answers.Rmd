@@ -5,7 +5,7 @@ date: "date here"
 output: pdf_document
 ---
 
-* Due date: August 24 at 12:00 AM PST
+* Due date: 
 * Submission process: Please submit your assignment directly to Gradescope. You can do this by knitting your file and downloading the PDF to your computer. Then navigate to Gradescope.com or via the link on BCourses to submit your assignment. 
 
 Helpful hints:
@@ -20,10 +20,7 @@ Helpful hints:
 First, try pressing Alt + Shift + K. You should see that your file has knitted into a pdf. You can also knit by pressing the knit button above next to the magnifiying glass.
 
 Let's load the reprex library.
-
 ```{r library}
-# note: to install packages for the first time you run this function
-# install.packages("reprex")
 library(reprex)
 ```
 
@@ -37,6 +34,11 @@ Un-comment and fix the following code to make it run. Note: You are only using n
 #my_other_variable <- eight
 
 #my_variable_ + my_Other_variable
+
+# answer
+my_variable <- 2
+my_other_variable <- 8
+my_variable + my_other_variable
 ```
 
 \newpage
@@ -52,7 +54,12 @@ Create five variables with the following type of data types:
   5. complex
   
 ```{r question_2}
-# your code here
+# answer
+a <- "donuts"
+b <- 5.5
+c <- 5
+d <- TRUE
+e <- 5 * 5i
 ```
 
 \newpage
@@ -76,6 +83,10 @@ x <- 10; y <- 11
 
 # your code here
 
+# answers
+x == y
+x != y
+x >= y
 ```
 
 
@@ -109,6 +120,9 @@ Calculate the odds ratio of of becoming ill due to cheesecake.
 
 ```{r question_4}
 # your code here
+
+# answer
+(15*25)/(36*18)
 ```
 
 \newpage
@@ -122,7 +136,13 @@ Create four variables to represent the 2x2 table in Question 2. We suggest using
 Using these variables, calculate the odds ratio again and assign it to a new variable.
 
 ```{r question_5}
-# your code here
+# answer
+(a <- 15)
+(b <- 36)
+(c <- 18)
+(d <- 25)
+
+(odds <- (a*d)/(b*c))
 ```
 
 \newpage
@@ -137,7 +157,10 @@ Create two vectors with the following numeric values in the presented order. The
 As a logic check, you should expect an output with one vector: 52, 54, 56, 58, 60
 
 ```{r question_6}
-# your code here
+# answer
+vector_1 <- c(1, 2, 3, 4, 5)
+vector_2 <- 51:55
+vector_1 + vector_2
 ```
 
 \newpage
@@ -173,7 +196,11 @@ Now you try! Create a data frame with three columns and the following values:
   40, NA, 48
 
 ```{r question_7}
-# your code here
+# answer
+df <- data.frame("id" = 1:3, 
+                 "Name" = c("Pam", "Jim", "Dwight"), 
+                 "Age" = c(40, NA, 48))
+df
 ```
 
 \newpage
@@ -187,7 +214,10 @@ With your new data frame, find the following values:
 - class = 
   
 ```{r question_8}
-# your code here
+# answer
+length(df) # 3
+typeof(df) # list
+class(df) # data.frame
 ```
 
 \newpage
@@ -205,7 +235,12 @@ Use is.na() to find the missing data in the data frame created in Question 7. Li
 
 ```{r question_9}
 # your code here
+
+# answer
+is.na(df)
 ```
+
+Answer: id = 2, Name = Jim, Age = NA
 
 \newpage
 
@@ -214,7 +249,10 @@ Use is.na() to find the missing data in the data frame created in Question 7. Li
 Create a function that lets you add two numbers together. For example, if I had two arguments, 1 and 2, the output should result in 3. You can use the ?function help documentation and/or google. 
 
 ```{r challenge}
-# your code here
-```
+# answer
+challengeFunc <- function(a, b) {
+  a + b
+}
 
-You did it! Please knit to a pdf, download, and submit to gradescope. 
+challengeFunc(1, 2)
+```
