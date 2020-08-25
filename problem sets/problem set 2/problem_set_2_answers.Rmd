@@ -24,7 +24,12 @@ Create a data frame and a tibble that matches the image below:
 
 ```{r}
 # by the way, you can load images into rmarkdown! Cool, right?!
+# here we use the knitr library (though there are multiple ways to load images)
 library(knitr)
+
+# notice that we specify the path to look within the current directory
+# by using the period: .
+# followed by a slash: / to pull the image file
 knitr::include_graphics('./table_replicate.png')
 ```
 
@@ -47,6 +52,50 @@ Why are tibbles preferable?
 
 ### Question
 
+We just found out results for COVID testing and want to add it to our data. Using the tibble you just created, add the following test results to a new column called "results".
 
+- 101 = NEGATIVE
+- 102 = POSITIVE
+- 103 = NEGATIVE
+- 104 = NEGATIVE
+- 105 = NEGATIVE
 
+```{r}
+tib$results <- c("NEGATIVE", "POSITIVE", "NEGATIVE", "NEGATIVE", "NEGATIVE")
+```
+
+### Question
+
+Load the "stds-by-disease-county-year-sex.csv" data set. 
+
+You can find more information about this data set from the California Open Data Portal:
+
+https://data.ca.gov/dataset/stds-in-california-by-disease-county-year-and-sex
+
+```{r}
+library(readr)
+stds <- read_csv("stds-by-disease-county-year-sex.csv",
+                 skip = 3)
+```
+You may have noticed that there are empty cells in the first three rows. Modify your code above (if you haven't already) to remove these rows.
+
+### Question
+
+Let's explore this data set. Insert R chunks as needed. Find the following values:
+
+```{r}
+str(stds)
+```
+
+How many rows?
+9558
+
+How many columns? 
+6
+
+What are the column names?
+Disease, County, Year, Sex, Cases, Population
+
+What are the column types?
+chr, chr, num, chr, num, num
 
