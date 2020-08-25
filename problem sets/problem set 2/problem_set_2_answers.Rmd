@@ -66,6 +66,15 @@ tib$results <- c("NEGATIVE", "POSITIVE", "NEGATIVE", "NEGATIVE", "NEGATIVE")
 
 ### Question
 
+You find out there was an error in data collection and subject 102's temperature is actually 98.3. Correct the value in your data frame.
+
+```{r}
+tib[2, 3] <- 98.3
+```
+
+
+### Question
+
 Load the "stds-by-disease-county-year-sex.csv" data set. 
 
 You can find more information about this data set from the California Open Data Portal:
@@ -98,4 +107,45 @@ Disease, County, Year, Sex, Cases, Population
 
 What are the column types?
 chr, chr, num, chr, num, num
+
+### Question
+
+You want to dig deeper into the data and focus on the years 2015 - 2018. Use the which() function to index which rows fit this year range and assign the results to a new data frame. To check whether this was done correctly you should expect the following dimensions: 2124 rows x 6 columns
+
+```{r}
+stds_2008_2015 <- stds[which(stds$Year > 2014), ]
+```
+
+### Question
+
+Your colleague is interested in this data set as well but hasn't setup their git repository. They ask you to help them out by exporting this new data set as a .csv file. Place your output in the /data folder.  
+
+As a test, you can try to read in the .csv you created to make sure everything looks correct.
+
+```{r}
+write_csv(stds_2008_2015, "data/stds_2008_2015.csv")
+```
+
+
+### Challenge 
+
+Look up how to use the unique() function and run it on the County column. You should see a total of 59 counties.
+
+```{r}
+unique(stds$County)
+```
+You decide to focus on one county. Subset your data for one of your choice.
+
+```{r}
+stds_subset <- stds[which(stds$County == "Alameda"), ]
+```
+
+You're very interested in findout the rate of cases per 100,000 population. Create a new column called "rate" with the calculated values.
+
+Hint: R allows you to use manipulate variables within a data frame to calculate new values so long as the rows and data types match up. For example: df$var1 + df$var2 = df$var3
+
+```{r}
+stds_subset$Rate <- (stds_subset$Cases / stds_subset$Population) * 100000
+```
+
 
