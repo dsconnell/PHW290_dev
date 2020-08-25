@@ -165,7 +165,9 @@ You decide to focus on one county. Subset your data for one of your choice.
 stds_subset <- stds[which(stds$County == "Alameda"), ]
 ```
 
-You're very interested in finding the rate of cases per 100,000 population. Create a new column called "rate" with the calculated values.
+You're very interested in finding the rate of cases per 100,000 population. Create a new column called "rate" with the calculated values. 
+
+Rate = (Cases / Population) * 100,000
 
 Hint: R allows you to use manipulate variables within a data frame to calculate new values so long as the rows and data types match up. For example: df$var3 <- df$var1 + df$var2
 
