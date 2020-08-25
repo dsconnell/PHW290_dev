@@ -16,6 +16,12 @@ Helpful hints:
 
 --------------------------------------------------------------------------------
 
+Throughout this problem set please use the reprex function where appropriate.
+
+```{r}
+library(reprex)
+```
+
 \newpage 
 
 ### Question 
@@ -33,22 +39,31 @@ library(knitr)
 knitr::include_graphics('./table_replicate.png')
 ```
 
-Hint: You may need to load the tidyverse library for tibbles!
+Hint: You may need to load a library for tibbles!
+
 ```{r}
-df <- data.frame(
+library(tidyverse)
+
+(df <- data.frame(
   id = 101:105,
   gender = c("female", "male", "non-binary", "male", NA),
   temperature = c(98, 97.3, 101.1, 97.5, 99.6))
-  
-tib <- tibble(
+)
+
+
+
+(tib <- tibble(
   id = 101:105,
   gender = c("female", "male", "non-binary", "male", NA),
   temperature = c(98, 97.3, 101.1, 97.5, 99.6))
+)
 ```
 
 What are the key differences between data frames and tibbles? 
 
 Why are tibbles preferable?
+
+\newpage
 
 ### Question
 
@@ -62,7 +77,10 @@ We just found out results for COVID testing and want to add it to our data. Usin
 
 ```{r}
 tib$results <- c("NEGATIVE", "POSITIVE", "NEGATIVE", "NEGATIVE", "NEGATIVE")
+tib
 ```
+
+\newpage
 
 ### Question
 
@@ -72,6 +90,7 @@ You find out there was an error in data collection and subject 102's temperature
 tib[2, 3] <- 98.3
 ```
 
+\newpage
 
 ### Question
 
@@ -83,10 +102,13 @@ https://data.ca.gov/dataset/stds-in-california-by-disease-county-year-and-sex
 
 ```{r}
 library(readr)
-stds <- read_csv("stds-by-disease-county-year-sex.csv",
+(stds <- read_csv("data/stds-by-disease-county-year-sex.csv",
                  skip = 3)
+)
 ```
 You may have noticed that there are empty cells in the first three rows. Modify your code above (if you haven't already) to remove these rows.
+
+\newpage
 
 ### Question
 
@@ -108,13 +130,16 @@ Disease, County, Year, Sex, Cases, Population
 What are the column types?
 chr, chr, num, chr, num, num
 
+\newpage
+
 ### Question
 
 You want to dig deeper into the data and focus on the years 2015 - 2018. Use the which() function to index which rows fit this year range and assign the results to a new data frame. To check whether this was done correctly you should expect the following dimensions: 2124 rows x 6 columns
 
 ```{r}
-stds_2008_2015 <- stds[which(stds$Year > 2014), ]
+(stds_2008_2015 <- stds[which(stds$Year > 2014), ])
 ```
+\newpage
 
 ### Question
 
@@ -125,7 +150,7 @@ As a test, you can try to read in the .csv you created to make sure everything l
 ```{r}
 write_csv(stds_2008_2015, "data/stds_2008_2015.csv")
 ```
-
+\newpage
 
 ### Challenge 
 
@@ -140,12 +165,12 @@ You decide to focus on one county. Subset your data for one of your choice.
 stds_subset <- stds[which(stds$County == "Alameda"), ]
 ```
 
-You're very interested in findout the rate of cases per 100,000 population. Create a new column called "rate" with the calculated values.
+You're very interested in finding the rate of cases per 100,000 population. Create a new column called "rate" with the calculated values.
 
-Hint: R allows you to use manipulate variables within a data frame to calculate new values so long as the rows and data types match up. For example: df$var1 + df$var2 = df$var3
+Hint: R allows you to use manipulate variables within a data frame to calculate new values so long as the rows and data types match up. For example: df$var3 <- df$var1 + df$var2
 
 ```{r}
 stds_subset$Rate <- (stds_subset$Cases / stds_subset$Population) * 100000
 ```
 
-
+You're done! Please knit to pdf and upload to gradescope. 
