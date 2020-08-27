@@ -39,7 +39,7 @@ library(knitr)
 knitr::include_graphics('./table_replicate.png')
 ```
 
-Hint: You may need to load a library for tibbles!
+Hint: You may need to load a library for tibbles.
 
 ```{r}
 library(tidyverse)
@@ -84,7 +84,7 @@ tib
 
 ### Question
 
-You find out there was an error in data collection and subject 102's temperature is actually 98.3. Correct the value in your data frame.
+You find out there was an error in data collection and subject 102's temperature is actually 98.3, not 97.3. Correct the value in your data frame.
 
 ```{r}
 tib[2, 3] <- 98.3
