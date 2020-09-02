@@ -88,6 +88,7 @@ You find out there was an error in data collection and subject 102's temperature
 
 ```{r}
 tib[2, 3] <- 98.3
+tib
 ```
 
 \newpage
