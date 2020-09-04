@@ -21,7 +21,7 @@ library(reprex)
 
 \newpage 
 
-### Question 
+### Question 1
 
 Create a data frame and a tibble that matches the image below:
 
@@ -62,7 +62,7 @@ Why are tibbles preferable?
 
 \newpage
 
-### Question
+### Question 2
 
 We just found out results for COVID testing and want to add it to our data. Using the tibble you just created, add the following test results to a new column called "results".
 
@@ -79,8 +79,8 @@ tib
 
 \newpage
 
-### Question
-
+### Question 3
+ 
 You find out there was an error in data collection and subject 102's temperature is actually 98.3, not 97.3. Correct the value in your data frame.
 
 ```{r}
@@ -90,9 +90,9 @@ tib
 
 \newpage
 
-### Question
+### Question 4
 
-Load the "stds-by-disease-county-year-sex.csv" data set. 
+Load the "stds-by-disease-county-year-sex.csv" data set, which is in the data folder. 
 
 You can find more information about this data set from the California Open Data Portal:
 
@@ -108,7 +108,7 @@ You may have noticed that there are empty cells in the first three rows. Modify 
 
 \newpage
 
-### Question
+### Question 5
 
 Let's explore this data set. Insert R chunks as needed. Find the following values:
 
@@ -130,7 +130,7 @@ chr, chr, num, chr, num, num
 
 \newpage
 
-### Question
+### Question 6
 
 You want to dig deeper into the data and focus on the years 2015 - 2018. Use the which() function to index which rows fit this year range and assign the results to a new data frame. To check whether this was done correctly you should expect the following dimensions: 2124 rows x 6 columns
 
@@ -139,9 +139,9 @@ You want to dig deeper into the data and focus on the years 2015 - 2018. Use the
 ```
 \newpage
 
-### Question
+### Question 7
 
-Your colleague is interested in this data set as well but hasn't setup their git repository. They ask you to help them out by exporting this new data set as a .csv file. Place your output in the /data folder.  
+Your colleague is interested in this data set but hasn't setup their git repository. They ask you to help them out by exporting this new data set as a .csv file. Place your output in the /data folder.  
 
 As a test, you can try to read in the .csv you created to make sure everything looks correct.
 
