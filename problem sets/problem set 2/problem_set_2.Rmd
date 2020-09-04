@@ -5,7 +5,7 @@ date: "DATE"
 output: pdf_document
 ---
 
-* Due date: !
+* Due date: Monday, September 14
 * Submission process: Please submit your assignment directly to Gradescope. You can do this by knitting your file and downloading the PDF to your computer. Then navigate to Gradescope.com or via the link on BCourses to submit your assignment. 
 
 Helpful hints:
@@ -15,13 +15,9 @@ Helpful hints:
 - Please make sure that your code does not run off the page of the knitted PDF. If it does, we can't see your work. To avoid this, have a look at your knitted PDF and ensure all the code fits in the file. When it doesn't, go back to your .Rmd file and add spaces (new lines) using hte return or enter key so that the code runs onto the next line.
 
 --------------------------------------------------------------------------------
-```{r}
-library(reprex)
-```
-
 \newpage 
 
-### Question 
+### Question 1
 
 Create a data frame and a tibble that matches the image below:
 
@@ -39,30 +35,18 @@ knitr::include_graphics('./table_replicate.png')
 Hint: You may need to load a library for tibbles.
 
 ```{r}
-library(tidyverse)
-
-(df <- data.frame(
-  id = 101:105,
-  gender = c("female", "male", "non-binary", "male", NA),
-  temperature = c(98, 97.3, 101.1, 97.5, 99.6))
-)
-
-
-
-(tib <- tibble(
-  id = 101:105,
-  gender = c("female", "male", "non-binary", "male", NA),
-  temperature = c(98, 97.3, 101.1, 97.5, 99.6))
-)
+# your code here
 ```
 
 What are the key differences between data frames and tibbles? 
 
+
 Why are tibbles preferable?
+
 
 \newpage
 
-### Question
+### Question 2
 
 We just found out results for COVID testing and want to add it to our data. Using the tibble you just created, add the following test results to a new column called "results".
 
@@ -73,24 +57,22 @@ We just found out results for COVID testing and want to add it to our data. Usin
 - 105 = NEGATIVE
 
 ```{r}
-tib$results <- c("NEGATIVE", "POSITIVE", "NEGATIVE", "NEGATIVE", "NEGATIVE")
-tib
+# your code here
 ```
 
 \newpage
 
-### Question
+### Question 3
 
 You find out there was an error in data collection and subject 102's temperature is actually 98.3, not 97.3. Correct the value in your data frame.
 
 ```{r}
-tib[2, 3] <- 98.3
-tib
+# your code here
 ```
 
 \newpage
 
-### Question
+### Question 4
 
 Load the "stds-by-disease-county-year-sex.csv" data set. 
 
@@ -100,16 +82,16 @@ https://data.ca.gov/dataset/stds-in-california-by-disease-county-year-and-sex
 
 ```{r}
 library(readr)
-(stds <- read_csv("data/stds-by-disease-county-year-sex.csv",
-                 skip = 3)
-)
+
+# your code here
 ```
+
 You may have noticed that there are empty cells in the first three rows. Modify your code above (if you haven't already) to remove these rows.
 
 \newpage
 
-### Question
-
+### Question 5
+ 
 Let's explore this data set. Insert R chunks as needed. Find the following values:
 
 ```{r}
