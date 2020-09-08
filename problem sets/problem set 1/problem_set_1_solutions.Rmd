@@ -1,5 +1,5 @@
 ---
-title: "Problem Set 1"
+title: "Problem Set 1 Solutions"
 author: "Your name here"
 date: "date here"
 output: pdf_document
@@ -30,14 +30,12 @@ Un-comment and fix the following code to make it run. Note: You are only using n
 
 ```{r question_1}
 #my_variable -> 2
+my_variable <- 2
 
 #my_other_variable <- eight
+my_other_variable <- 8
 
 #my_variable_ + my_Other_variable
-
-# answer
-my_variable <- 2
-my_other_variable <- 8
 my_variable + my_other_variable
 ```
 
@@ -73,20 +71,16 @@ x <- 10; y <- 11
 
 ### is x equal to y? ###
 
-# your code here
+x == y
 
 ### does x not equal y? ###
 
-# your code here
+x != y
 
 ### is x greater than or equal to y? ###
 
-# your code here
-
-# answers
-x == y
-x != y
 x >= y
+
 ```
 
 
@@ -251,7 +245,7 @@ Create a function that lets you add two numbers together. For example, if I had 
 ```{r challenge}
 # answer
 challengeFunc <- function(a, b) {
-  a + b
+  return(a + b)
 }
 
 challengeFunc(1, 2)
