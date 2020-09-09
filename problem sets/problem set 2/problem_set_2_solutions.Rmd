@@ -100,9 +100,9 @@ https://data.ca.gov/dataset/stds-in-california-by-disease-county-year-and-sex
 
 ```{r}
 library(readr)
-(stds <- read_csv("data/stds-by-disease-county-year-sex.csv",
+stds <- read_csv("data/stds-by-disease-county-year-sex.csv",
                  skip = 3)
-)
+
 ```
 You may have noticed that there are empty cells in the first three rows. Modify your code above (if you haven't already) to remove these rows.
 
