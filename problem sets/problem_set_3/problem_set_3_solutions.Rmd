@@ -34,8 +34,17 @@ In this fictional data we conducted an experiment across two unversity sites to 
 
 Data coding:
 
-- ID: Contains participant ID number and a letter to indicate group. C = Control, P = Placebo,
-N = Non-deceptive
+- ID: Contains participant ID number, a letter to indicate group, and pre or post tags. 
+
+  C = Control
+  P = Placebo
+  N = Non-deceptive
+  
+- LOCATION: Research Site
+
+- PAIN RATING: Self report of pain based on a 0-10 scale
+
+- DATE: Date of observation
 
 ### Question 1
 
