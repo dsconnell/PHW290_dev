@@ -12,13 +12,14 @@ Helpful hints:
 
 - Knit your file early and often to minimize knitting errors! If you copy and paste code from the slides, you are bound to get an error that is hard to diagnose. Typing out the code is the way to smooth knitting. We recommend knitting your file each time after you write a few sentences/add a new code chunk, so you can detect the source of the knitting error more easily. This will save you and the teaching team time!
 
-- Please make sure that your code does not run off the page of the knitted PDF. If it does, we can't see your work. To avoid this, have a look at your knitted PDF and ensure all the code fits in the file. When it doesn't, go back to your .Rmd file and add spaces (new lines) using hte return or enter key so that the code runs onto the next line.
+- Please make sure that your code does not run off the page of the knitted PDF. If it does, we can't see your work. To avoid this, have a look at your knitted PDF and ensure all the code fits in the file. When it doesn't, go back to your .Rmd file and add spaces (new lines) using the return or enter key so that the code runs onto the next line.
 
 --------------------------------------------------------------------------------
 ```{r}
 # insert libraries that you will need
 library(tidyverse)
 library(lubridate)
+library(ggthemes)
 ```
 
 \newpage 
@@ -33,12 +34,12 @@ In this fictional data we conducted an experiment across two unversity sites to 
 
 Data coding:
 
-- ID: Contains participant ID number and a letter to indicate group. C = Control, D = Deceptive,
+- ID: Contains participant ID number and a letter to indicate group. C = Control, P = Placebo,
 N = Non-deceptive
 
 ### Question 1
 
-Read in the data! To make it slightly more challenging we have changed the format from a .csv to .xlsx and "hidden" the data one level deeper in the /data folder. Take a look at the data to get oriented. 
+Read in the data! To make it slightly more challenging we have changed the format from a .csv to .xlsx and "hidden" the data one level deeper in the /data folder. Take a look at the data to get oriented. Please use "df" as the name of your data frame for this problem set.
 
 ```{r}
 # read in data with readr
@@ -47,25 +48,27 @@ df <- readxl::read_xlsx("data/one_level_deeper/non_deceptive_placebo.xlsx")
 
 \newpage
 
-### Question
+### Question 2
 
-It's a bit difficult to tell what group each participant is in with their IDs combined with their grouping. Create a new column called "GROUP" based on the letter assignment for IDs.
+It's a bit difficult to tell what group each participant is in with their IDs combined with their grouping. Create a new column called "GROUP" based on the letter assignment for IDs. Makes ure to following naming convetion above.
 
 ```{r}
 # grab index for each group
 index_c <- str_detect(df$ID, "^C")
-index_d <- str_detect(df$ID, "^D")
+index_d <- str_detect(df$ID, "^P")
 index_n <- str_detect(df$ID, "^N")
 
 # use index for each group to assign group name
 df$GROUP[index_c] <- "Control"
-df$GROUP[index_d] <- "Deceptive"
+df$GROUP[index_d] <- "Placebo"
 df$GROUP[index_n] <- "Non-deceptive"
 
 head(df)
 ```
 
-### Question
+\newpage 
+
+### Question 3
 
 We have a similar issue telling apart the pre- and post- observations. Create a new column called "TEST" that distinguishes whether the observation is a pre- or post-test.
 
@@ -84,7 +87,9 @@ df$TEST[index_pre] <- "Pre"
 df$TEST[index_post] <- "Post"
 ```
 
-### Question
+\newpage 
+
+### Question 4
 
 Again, there were difference in the formatting for dates and times across the two research sites. One university combined date and time whereas the other university separated date and time. Moreover, there is also difference in the format of dates. Create a new column called "DATE_FIX" that grabs only the date. Make sure this new date column takes the following format: yyyy-mm-dd
 
@@ -94,5 +99,59 @@ Hint: Check out ?parse_date_time
 df$DATE_FIX <- parse_date_time(df$DATE, c("mdy", "dmy"))
 ```
 
+\newpage 
+
+### Question 5
+
+You realize there was a strange error in your excel file that pushed the years forward by 1 year. Rather than editing your excel sheet and potentially making a incorrect permanent change to your raw data you decide to fix the error in R. Create a new column called "DATE_FIX_2" that subtracts the year by 1.
+
+```{r}
+df$DATE_FIX2 <- df$DATE_FIX - years(1)
+```
+
+\newpage 
+
+### Question 6
+
+Let's clean up our data frame by removing DATE and DATE_FIX. Afterwards, rename DATE_FIX2 to DATE.
+
+```{r}
+df <- subset(df, select = -c(DATE, DATE_FIX))
+names(df)[6] <- "DATE"
+```
+
+\newpage 
+
+### Question 7
+
+We're interested in plotting our data to begin digging into the results. Below is dplyr and ggplot code that we will go over later in the course. For the time being run the following code.
+
+```{r}
+df_plot <- df %>% 
+  group_by(GROUP, LOCATION) %>%
+  summarize(MEAN_PAIN = mean(PAIN_RATE))
+
+ggplot(df_plot, aes(x = LOCATION, y = MEAN_PAIN, fill = GROUP)) +
+  geom_col(position = "dodge") +
+  theme_few() +
+  scale_fill_few("Medium") +
+  theme(axis.title = element_blank(),
+        axis.title.y = element_text()) +
+  labs(fill = "Group",
+       title = "Non-deceptive placebo study",
+       y = "Pain rating")
+```
+
+For a quick first pass we think this visualization isn't so bad. However, logically, we think that the order of the groups should be: Control, Placebo, Non-deceptive. Make GROUP into a factor that reflects this order. If done correctly when you re-run the above chunk the plot should have the same order.
+
+```{r}
+df$GROUP <- factor(df$GROUP, 
+                   levels = c("Control", "Placebo", "Non-deceptive"), 
+                   ordered = TRUE)
+```
+
+### Challenge
+
+Decode the text file in the /data file. 
 
 You're done! Please knit to pdf and upload to gradescope. 
