@@ -25,6 +25,8 @@ library(ggthemes)
 
 \newpage 
 
+Before you start: [Please make a conscious effort to write clear and readable code](https://jef.works/R-style-guide/) through this problem set (and your future R career). 
+
 For this problem set we will use *fictional* data inspired by research on non-deceptive or open-label placebos. Non-deceptive placebos are placebos but without the deception. Some studies have found suggestions that, despite not being tricked, participants are reporting similar benefits to what they would have with placebos! You can read more here:
 
 [NPR: Is A Placebo A Sham If You Know It's A Fake And It Still Works?](https://www.npr.org/sections/health-shots/2016/10/27/499475288/is-it-still-a-placebo-when-it-works-and-you-know-its-a-placebo)
@@ -60,7 +62,7 @@ df <- readxl::read_xlsx("data/one_level_deeper/non_deceptive_placebo.xlsx")
 
 ### Question 2
 
-It's a bit difficult to tell what group each participant is in with their IDs combined with their grouping. Create a new column called "GROUP" based on the letter assignment for IDs. Makes ure to following naming convetion above.
+It's a bit difficult to tell what group each participant is in with their IDs combined with their grouping. Create a new column called "GROUP" based on the letter assignment for IDs. Makes ure to following naming convention above.
 
 ```{r}
 # grab index for each group
@@ -101,7 +103,7 @@ df$TEST[index_post] <- "Post"
 
 ### Question 4
 
-Again, there were difference in the formatting for dates and times across the two research sites. One university combined date and time whereas the other university separated date and time. Moreover, there is also difference in the format of dates. Create a new column called "DATE_FIX" that grabs only the date. Make sure this new date column takes the following format: yyyy-mm-dd
+Again, there were difference in the formatting for dates across the two research sites. Create a new column called "DATE_FIX" that grabs only the date. Make sure this new date column takes the following format: yyyy-mm-dd
 
 Hint: Check out ?parse_date_time
 
@@ -113,7 +115,7 @@ df$DATE_FIX <- parse_date_time(df$DATE, c("mdy", "dmy"))
 
 ### Question 5
 
-You realize there was a strange error in your excel file that pushed the years forward by 1 year. Rather than editing your excel sheet and potentially making a incorrect permanent change to your raw data you decide to fix the error in R. Create a new column called "DATE_FIX_2" that subtracts the year by 1.
+You realize there was a strange error in your excel file that pushed the years forward by 1 year. Rather than editing your excel sheet and potentially making an incorrect permanent change to your raw data you decide to fix the error in R. Create a new column called "DATE_FIX_2" that subtracts the year by 1.
 
 ```{r}
 df$DATE_FIX2 <- df$DATE_FIX - years(1)
