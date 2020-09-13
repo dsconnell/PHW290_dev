@@ -31,7 +31,7 @@ For this problem set we will use *fictional* data inspired by research on non-de
 
 [Nature Communications: Placebos without deception reduce self-report and neural measures of emotional distress](https://www.nature.com/articles/s41467-020-17654-y)
 
-In this fictional data we conducted an experiment across two unversity sites to investigate whether non-deceptive placebos decreased self-report pain ratings. There were three groups: control, placebo, and non-deceptive placebo. Each participant completed a pre- and post- pain rating. All participants completed the same procedures during the pre-test. Only during the post-test did participants in the intervention arms (placebo, non-deceptive) receive additional instructions prior to the pain rating (i.e., placebo or non-deceptive placebo ratings).
+In this fictional data we conducted an experiment across two university sites to investigate whether non-deceptive placebos decreased self-report pain ratings. There were three groups: control, placebo, and non-deceptive placebo. Each participant completed a pre- and post- pain induction task and provided a pain rating. All participants completed the same procedures during the pre-test. Only during the post-test did participants in the intervention arms (placebo, non-deceptive) receive additional instructions prior to the pain induction task (i.e., placebo or non-deceptive placebo ratings).
 
 Data coding:
 
@@ -186,7 +186,12 @@ table(diff)
 
 Take a look at this [rmarkdown reference guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
 
-On the first page are some very useful syntax to create *awesome* pdfs. Practice a few of them below. The fun part (or frustrating part) is the repeated knitting to see if your intention worked out.
+On the first page are some very useful syntax to create *awesome* pdfs, htmls and, if we must, word documents. Practice a few of them below. The fun part (or frustrating part) is the repeated knitting to see if your intention worked out.
+
+
+
+
+
 
 
 You're done! Please knit to pdf and upload to gradescope. 
