@@ -3,6 +3,7 @@ title: "Problem Set 3"
 author: "YOUR NAME HERE"
 date: "DATE"
 output: pdf_document
+urlcolor: cyan
 ---
 
 * Due date: Monday, September 21
@@ -15,7 +16,7 @@ Helpful hints:
 - Please make sure that your code does not run off the page of the knitted PDF. If it does, we can't see your work. To avoid this, have a look at your knitted PDF and ensure all the code fits in the file. When it doesn't, go back to your .Rmd file and add spaces (new lines) using the return or enter key so that the code runs onto the next line.
 
 --------------------------------------------------------------------------------
-```{r}
+```{r, include=FALSE}
 # insert libraries that you will need
 library(tidyverse)
 library(lubridate)
@@ -26,9 +27,9 @@ library(ggthemes)
 
 For this problem set we will use *fictional* data inspired by research on non-deceptive or open-label placebos. Non-deceptive placebos are placebos but without the deception. Some studies have found suggestions that, despite not being tricked, participants are reporting similar benefits to what they would have with placebos! You can read more here:
 
-https://www.npr.org/sections/health-shots/2016/10/27/499475288/is-it-still-a-placebo-when-it-works-and-you-know-its-a-placebo
+[NPR: Is A Placebo A Sham If You Know It's A Fake And It Still Works?](https://www.npr.org/sections/health-shots/2016/10/27/499475288/is-it-still-a-placebo-when-it-works-and-you-know-its-a-placebo)
 
-https://www.nature.com/articles/s41467-020-17654-y
+[Nature Communications: Placebos without deception reduce self-report and neural measures of emotional distress](https://www.nature.com/articles/s41467-020-17654-y)
 
 In this fictional data we conducted an experiment across two unversity sites to investigate whether non-deceptive placebos decreased self-report pain ratings. There were three groups: control, placebo, and non-deceptive placebo. Each participant completed a pre- and post- pain rating. All participants completed the same procedures during the pre-test. Only during the post-test did participants in the intervention arms (placebo, non-deceptive) receive additional instructions prior to the pain rating (i.e., placebo or non-deceptive placebo ratings).
 
@@ -159,8 +160,33 @@ df$GROUP <- factor(df$GROUP,
                    ordered = TRUE)
 ```
 
+\newpage 
+
+### Question 8
+
+We're interested in seeing whether pain ratings changed from pre to post. 
+
+Create two list of the pain ratings. One list holds all of the pre-test while the other list holds the post-test.
+
+Once you have these list create a third list called "diff" that calculates the difference between post and pre. 
+
+```{r}
+pre <- df$PAIN_RATE[which(df$TEST == "Pre")]
+post <- df$PAIN_RATE[which(df$TEST == "Post")]
+diff <- post - pre
+
+# uncomment after you create diff
+# this code will create a table of counts
+table(diff)
+```
+
+\newpage
+
 ### Challenge
 
-Decode the text file in the /data file. 
+Take a look at this [rmarkdown reference guide](https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf).
+
+On the first page are some very useful syntax to create *awesome* pdfs. Practice a few of them below. The fun part (or frustrating part) is the repeated knitting to see if your intention worked out.
+
 
 You're done! Please knit to pdf and upload to gradescope. 
