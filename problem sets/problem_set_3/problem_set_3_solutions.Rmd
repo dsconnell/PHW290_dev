@@ -145,6 +145,7 @@ df_plot <- df %>%
 
 ggplot(df_plot, aes(x = LOCATION, y = MEAN_PAIN, fill = GROUP)) +
   geom_col(position = "dodge") +
+  ylim(0, 10) +
   theme_few() +
   scale_fill_few("Medium") +
   theme(axis.title = element_blank(),
