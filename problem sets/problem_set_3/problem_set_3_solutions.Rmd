@@ -60,7 +60,7 @@ df <- readxl::read_xlsx("data/one_level_deeper/non_deceptive_placebo.xlsx")
 
 ### Question 2
 
-It's a bit difficult to tell what group each participant is in with their IDs combined with their grouping. Create a new column called "GROUP" based on the letter assignment for IDs. Makes ure to following naming convetion above.
+It's a bit difficult to tell what group each participant is in with their IDs combined with their grouping. Create a new column called "GROUP" based on the letter assignment for IDs. Makes ure to following naming convention above.
 
 ```{r}
 # grab index for each group
