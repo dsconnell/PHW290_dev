@@ -188,12 +188,18 @@ Take a look at this [rmarkdown reference guide](https://rstudio.com/wp-content/u
 
 On the first page are some very useful syntax to create *awesome* pdfs, htmls and, if we must, word documents. Practice a few of them below. The fun part (or frustrating part) is the repeated knitting to see if your intention worked out.
 
+<<<<<<< HEAD
 ~~How often do we get to striketrhough things?!~~
 
 1. list
 2. everybody
   + likes
   + lists!!!
+=======
+
+
+
+>>>>>>> 19457fb99f2592b32ad83a9b0e83ef118c3ae29c
 
 
 
