@@ -24,7 +24,7 @@ library(lubridate)
 
 \newpage 
 
-Before you start: [Please make a conscious effort to write clear and readable code](https://jef.works/R-style-guide/) through this problem set (and your future R career). 
+Before you start: [Please make a conscious effort to write clear and readable code](https://jef.works/R-style-guide/) through this problem set (and your future R career). Adding comments for unclear code is a very good practice!
 
 For this problem set we will use *fictional* data inspired by research on non-deceptive or open-label placebos. Non-deceptive placebos are placebos but without the deception. Some studies have found suggestions that, despite not being tricked, participants are reporting similar benefits to what they would have with placebos! You can read more here:
 
@@ -94,7 +94,7 @@ Hint: Check out ?parse_date_time
 
 ### Question 5
 
-You realize there was a strange error in your excel file that pushed the years forward by 1 year and 7 days. Rather than editing your excel sheet and potentially making an incorrect permanent change to your raw data you decide to fix the error in R. Create a new column called "DATE_FIX_2" that subtracts the year by 1.
+You realize there was a strange error in your excel file that pushed the years forward by 1 year and behind by 7 days. Rather than editing your excel sheet and potentially making an incorrect permanent change to your raw data you decide to fix the error in R. Create a new column called "DATE_FIX_2" that fixes the date.
 
 ```{r}
 
