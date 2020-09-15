@@ -118,7 +118,7 @@ df$DATE_FIX <- parse_date_time(df$DATE, c("mdy", "dmy"))
 You realize there was a strange error in your excel file that pushed the years forward by 1 year and behind by 7 days. Rather than editing your excel sheet and potentially making an incorrect permanent change to your raw data you decide to fix the error in R. Create a new column called "DATE_FIX_2" that fixes the date.
 
 ```{r}
-df$DATE_FIX2 <- df$DATE_FIX - years(1) + days(7)
+df$DATE_FIX2 <- df$DATE_FIX %m-% years(1) %m+% days(7)
 ```
 
 \newpage 
