@@ -58,7 +58,11 @@ library(tidyverse)
 
 What are the key differences between data frames and tibbles? 
 
+Tibbles are a modern re-imaging of the data.frame. The main differences are how tibbles print and subset. 
+
 Why are tibbles preferable?
+
+Tibbles don't change the type of inputs, names of variables, and row.names(). 
 
 \newpage
 
