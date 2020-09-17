@@ -2,8 +2,18 @@
 title: "Problem Set 2"
 author: "YOUR NAME HERE"
 date: "DATE"
-output: pdf_document
+header-includes:
+   - \usepackage[default]{sourcesanspro}
+   - \usepackage[T1]{fontenc}
+mainfont: SourceSansPro
+output:
+  pdf_document
 ---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE, dev="cairo_pdf")
+```
+
 
 * Due date: Monday, September 14
 * Submission process: Please submit your assignment directly to Gradescope. You can do this by knitting your file and downloading the PDF to your computer. Then navigate to Gradescope.com or via the link on BCourses to submit your assignment. 

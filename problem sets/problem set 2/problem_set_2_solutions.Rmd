@@ -62,7 +62,7 @@ Tibbles are a modern re-imaging of the data.frame. The main differences are how 
 
 Why are tibbles preferable?
 
-Tibbles don't change the type of inputs, names of variables, and row.names(). 
+Tibbles don't change the type of inputs, names of variables, and row names. 
 
 \newpage
 
@@ -164,7 +164,7 @@ unique(stds$County)
 You decide to focus on one county. Subset your data for one of your choice.
 
 ```{r}
-stds_subset <- stds[which(stds$County == "Alameda"), ]
+stds_subset <- stds[which(stds$County == "Alameda"), ] 
 ```
 
 You're very interested in finding the rate of cases per 100,000 population. Create a new column called "rate" with the calculated values. 

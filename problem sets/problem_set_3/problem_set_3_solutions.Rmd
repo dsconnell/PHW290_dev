@@ -2,8 +2,20 @@
 title: "Problem Set 3"
 author: "YOUR NAME HERE"
 date: "DATE"
-output: pdf_document
-urlcolor: cyan
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 2
+    number_sections: yes
+    fig_width: 5
+    fig_height: 5
+    df_print: kable
+    highlight: zenburn
+    latex_engine: xelatex
+fontsize: 10pt
+geometry: margin=1cm
+mainfont: Arial
+urlcolor: red
 ---
 
 * Due date: Monday, September 21
