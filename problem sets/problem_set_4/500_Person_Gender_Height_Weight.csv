@@ -1,501 +1,501 @@
-Location information,GENDER,height,weight,,,condition,data
-New York,Male,5.71,211.68,31.69570698,0,,
-United Kingdom,Male,189,87,24.35542118,3,,
-New York,Female,6.07,242.55,32.13784337,1,,
-Taiwan,Female,195,104,27.35042735,1,,
-Taiwan,Male,149,61,27.47623981,1,,
-Taiwan,Male,189,104,29.11452647,1,,
-Colorado,Male,4.82,202.86,42.62802164,1,,
-New York,Male,5.05,244.76,46.85441514,0,,
-United Kingdom,Male,174,90,29.72651605,2,,
-Hawaii,Female,5.54,227.12,36.12673247,1,,
-Taiwan,Male,195,81,21.30177515,3,,
-Colorado,Female,5.22,176.4,31.60460798,0,,
-Taiwan,Female,192,101,27.39800347,2,,
-United Kingdom,Male,155,51,21.22788762,3,,
-United Kingdom,Male,191,79,21.65510814,3,,
-Hawaii,Female,5.02,235.94,45.70744799,0,,
-New York,Female,5.15,242.55,44.64570176,1,,
-Colorado,Male,4.59,284.45,65.91335228,0,,
-Colorado,Male,4.72,319.73,70.06356369,1,,
-New York,Male,5.64,306.5,47.03976071,0,,
-New York,Male,5.15,242.55,44.64570176,0,,
-Hawaii,Female,5.02,328.55,63.64830904,0,,
-Hawaii,Female,5.54,213.89,34.02230895,0,,
-Hawaii,Male,6.07,306.5,40.61121002,0,,
-Taiwan,Female,172,67,22.64737696,3,,
-United Kingdom,Female,151,64,28.06894434,1,,
-Taiwan,Male,190,95,26.31578947,2,,
-Taiwan,Male,187,62,17.72998942,3,,
-New York,Female,5.35,350.6,59.79944876,0,,
-Hawaii,Male,5.87,335.16,47.48635252,1,,
-Colorado,Male,5.02,266.81,51.68773501,0,,
-United Kingdom,Male,178,52,16.41206918,3,,
-Taiwan,Female,195,65,17.09401709,4,,
-Hawaii,Female,5.25,288.86,51.16366339,0,,
-Colorado,Female,5.15,337.37,62.09903279,0,,
-Hawaii,Female,6.2,291.06,36.96510796,0,,
-United Kingdom,Female,197,114,29.3746296,2,,
-New York,Male,4.72,176.4,38.65515477,1,,
-Colorado,Female,5.61,335.16,51.98993712,1,,
-United Kingdom,Female,185,81,23.66691015,3,,
-Hawaii,Female,5.74,264.6,39.20657347,0,,
-Hawaii,Female,4.89,238.14,48.61916143,0,,
-Taiwan,Male,157,56,22.7189744,3,,
-Colorado,Male,5.28,260.19,45.56334384,1,,
-New York,Female,5.97,277.83,38.056015,0,,
-United Kingdom,Male,185,76,22.20598977,2,,
-New York,Female,6.17,269.01,34.49776261,1,,
-Colorado,Male,5.94,244.76,33.86572578,1,,
-United Kingdom,Male,161,72,27.77670615,2,,
-Hawaii,Male,4.59,335.16,77.66398014,1,,
-New York,Female,5.51,297.68,47.86733977,1,,
-United Kingdom,Female,176,54,17.43285124,3,,
-Colorado,Male,5.35,242.55,41.37009783,0,,
-Hawaii,Male,5.64,231.53,35.53381989,1,,
-Colorado,Male,6.43,255.78,30.20212287,0,,
-United Kingdom,Female,187,89,25.45111384,2,,
-Hawaii,Male,5.64,202.86,31.13372221,1,,
-New York,Male,5.84,280.04,40.08549101,1,,
-United Kingdom,Female,164,70,26.0261749,1,,
-Hawaii,Male,4.69,194.04,43.0663845,0,,
-United Kingdom,Female,191,54,14.80222582,4,,
-Hawaii,Female,4.63,315.32,71.80957705,1,,
-United Kingdom,Male,193,54,14.49703348,4,,
-United Kingdom,Male,190,83,22.99168975,2,,
-New York,Male,5.74,297.68,44.10813602,1,,
-Hawaii,Female,5.87,348.39,49.3608138,1,,
-New York,Female,5.64,211.68,32.48736231,1,,
-Taiwan,Female,168,59,20.90419501,2,,
-New York,Female,5.38,180.81,30.49655115,0,,
-Hawaii,Female,6.36,299.88,36.19312676,1,,
-United Kingdom,Female,153,51,21.78649237,3,,
-Hawaii,Male,5.84,257.99,36.92920949,1,,
-Hawaii,Male,4.63,176.4,40.17255293,1,,
-Taiwan,Male,180,75,23.14814815,3,,
-United Kingdom,Female,185,100,29.2184076,2,,
-Hawaii,Female,6.46,339.57,39.72437853,0,,
-Colorado,Male,5.41,229.32,38.25077473,0,,
-Colorado,Female,5.51,198.45,31.91102384,0,,
-Hawaii,Female,5.77,269.01,39.44660498,0,,
-Taiwan,Male,181,51,15.56729038,4,,
-United Kingdom,Male,164,75,27.88518739,1,,
-New York,Female,5.45,308.7,50.73836377,1,,
-United Kingdom,Female,190,105,29.08587258,2,,
-Colorado,Male,6.1,260.19,34.13687517,1,,
-Hawaii,Male,5.51,271.22,43.61253659,0,,
-United Kingdom,Male,198,50,12.75380063,4,,
-Colorado,Female,5.74,310.91,46.06846469,1,,
-Hawaii,Male,4.76,257.99,55.58809615,0,,
-New York,Female,5.22,229.32,41.08599037,0,,
-Hawaii,Female,6.07,308.7,40.90270974,1,,
-Hawaii,Female,5.84,339.57,48.6067354,0,,
-United Kingdom,Female,183,96,28.66612918,1,,
-Taiwan,Female,194,111,29.49303858,1,,
-Taiwan,Male,177,61,19.47077787,3,,
-Hawaii,Male,6.46,262.4,30.6966956,1,,
-Colorado,Female,5.58,343.98,53.93337862,1,,
-New York,Male,4.66,152.15,34.20526475,1,,
-Hawaii,Male,5.25,306.5,54.28810784,0,,
-United Kingdom,Male,195,69,18.14595661,4,,
-United Kingdom,Female,190,50,13.85041551,3,,
-New York,Male,6.53,343.98,39.38217181,1,,
-Colorado,Male,5.05,231.53,44.32179579,0,,
-Colorado,Male,5.28,341.78,59.85103063,1,,
-New York,Female,6.5,319.73,36.94447567,0,,
-New York,Female,6.3,308.7,37.97067901,1,,
-New York,Male,6.4,277.83,33.11402893,0,,
-Colorado,Male,5.45,352.8,57.98670146,0,,
-New York,Male,5.22,339.57,60.83887036,1,,
-Colorado,Female,5.94,233.73,32.33958199,1,,
-Taiwan,Male,149,66,29.72839061,1,,
-Colorado,Female,4.92,154.35,31.12929329,1,,
-New York,Female,4.79,346.19,73.66078195,0,,
-New York,Male,6.23,297.68,37.44263434,1,,
-United Kingdom,Female,192,90,24.4140625,3,,
-Hawaii,Female,5.81,211.68,30.61402235,0,,
-Taiwan,Male,148,60,27.39225712,2,,
-United Kingdom,Female,165,57,20.93663912,2,,
-New York,Female,4.79,229.32,48.7936986,0,,
-New York,Male,4.72,238.14,52.18445894,0,,
-Hawaii,Female,5.77,343.98,50.43992112,1,,
-Hawaii,Female,5.51,191.84,30.84812706,0,,
-Hawaii,Male,6.14,269.01,34.83569786,1,,
-Colorado,Male,6.14,304.29,39.40431397,1,,
-Hawaii,Female,6.04,352.8,47.21147099,1,,
-Colorado,Female,5.18,328.55,59.77709214,1,,
-Colorado,Male,5.18,211.68,38.51351351,0,,
-Colorado,Male,6.36,253.58,30.60508564,0,,
-Hawaii,Female,4.76,174.2,37.5341926,1,,
-New York,Male,5.97,332.96,45.60749651,0,,
-United Kingdom,Male,154,54,22.76943835,3,,
-New York,Female,5.51,306.5,49.2856075,0,,
-United Kingdom,Female,187,70,20.01772999,2,,
-Colorado,Female,5.18,337.37,61.38182187,0,,
-Colorado,Female,5.48,242.55,39.43056453,1,,
-New York,Female,5.61,341.78,53.0168299,1,,
-New York,Female,6,330.75,44.85286458,1,,
-Hawaii,Female,6.23,343.98,43.26631738,0,,
-United Kingdom,Male,194,108,28.69592943,2,,
-Hawaii,Male,5.61,324.14,50.28051742,0,,
-New York,Male,5.22,273.42,48.98714236,1,,
-United Kingdom,Female,169,54,18.90690102,3,,
-New York,Female,5.48,187.43,30.46988542,1,,
-New York,Male,5.91,328.55,45.92184651,1,,
-Colorado,Male,5.35,271.22,46.26014402,1,,
-New York,Male,4.59,174.2,40.36599039,0,,
-New York,Male,6.46,275.63,32.24439866,1,,
-Taiwan,Male,194,106,28.16452333,2,,
-Colorado,Female,4.59,321.93,74.59829671,1,,
-United Kingdom,Male,195,98,25.77251808,1,,
-United Kingdom,Female,168,115,40.74546485,1,,
-Taiwan,Female,196,50,13.01541025,3,,
-Taiwan,Male,140,52,26.53061224,1,,
-Taiwan,Female,150,60,26.66666667,1,,
-Hawaii,Female,5.51,308.7,49.63937042,0,,
-Hawaii,Female,5.09,244.76,46.12089355,1,,
-Hawaii,Female,5.87,227.12,32.17896045,1,,
-Taiwan,Female,182,84,25.35925613,1,,
-Hawaii,Male,5.51,352.8,56.73070906,0,,
-Taiwan,Female,187,102,29.16869227,1,,
-New York,Male,5.94,231.53,32.03518341,1,,
-United Kingdom,Male,199,99,24.9993687,3,,
-United Kingdom,Female,184,76,22.44801512,2,,
-United Kingdom,Male,192,101,27.39800347,2,,
-Hawaii,Female,5.97,315.32,43.19124159,1,,
-Colorado,Female,5.64,244.76,37.56428004,0,,
-Taiwan,Male,181,78,23.80879705,3,,
-Hawaii,Male,5.77,240.35,35.2440114,1,,
-New York,Female,5.12,233.73,43.52786541,1,,
-Taiwan,Female,151,67,29.38467611,2,,
-United Kingdom,Female,188,80,22.63467632,2,,
-Colorado,Male,6.14,299.88,38.83323696,0,,
-New York,Male,5.71,304.29,45.56257879,1,,
-Colorado,Male,5.48,332.96,54.12822414,1,,
-Hawaii,Female,6.43,288.86,34.10816019,0,,
-Colorado,Male,6.46,328.55,38.4352109,1,,
-New York,Female,6.07,262.4,34.76796578,1,,
-New York,Female,5.58,224.91,35.26413217,0,,
-United Kingdom,Female,181,94,28.69265285,2,,
-Colorado,Female,5.45,277.83,45.6645274,0,,
-United Kingdom,Male,188,100,28.29334541,2,,
-Taiwan,Female,162,74,28.1969212,1,,
-New York,Male,5.81,257.99,37.31156286,1,,
-Hawaii,Male,5.31,213.89,37.03345843,0,,
-United Kingdom,Male,180,73,22.5308642,2,,
-Taiwan,Female,192,108,29.296875,1,,
-United Kingdom,Male,165,80,29.38475666,2,,
-Colorado,Female,5.48,297.68,48.3928693,0,,
-Taiwan,Female,182,84,25.35925613,2,,
-Colorado,Female,5.28,295.47,51.74142436,0,,
-Hawaii,Male,5.18,209.48,38.11324079,0,,
-Colorado,Male,4.63,187.43,42.68447617,0,,
-Hawaii,Male,5.05,220.5,42.21032252,0,,
-Hawaii,Male,5.41,231.53,38.61940465,0,,
-Colorado,Female,4.66,302.09,67.91369325,0,,
-Colorado,Male,4.63,207.27,47.2027497,0,,
-Hawaii,Male,4.76,238.14,51.31109429,1,,
-New York,Male,5.15,163.17,30.03438119,1,,
-Hawaii,Female,5.81,257.99,37.31156286,0,,
-Colorado,Female,5.45,317.52,52.18803131,1,,
-New York,Male,6.33,332.96,40.56742816,1,,
-Taiwan,Male,184,57,16.83601134,3,,
-United Kingdom,Male,179,93,29.02531132,2,,
-Colorado,Female,5.12,196.25,36.54791249,0,,
-Colorado,Male,5.97,229.32,31.41131397,1,,
-Hawaii,Male,4.76,352.8,76.01643599,0,,
-New York,Female,4.92,191.84,38.69027291,0,,
-Colorado,Male,4.76,218.3,47.0362471,1,,
-Hawaii,Female,6.43,269.01,31.76430164,1,,
-Taiwan,Male,191,96,26.31506812,1,,
-Colorado,Female,4.86,147.74,30.5364389,1,,
-Colorado,Female,4.92,185.22,37.35515194,1,,
-Hawaii,Male,4.86,341.78,70.64264307,1,,
-Colorado,Female,5.02,321.93,62.36585034,1,,
-New York,Female,6.43,350.6,41.39832778,1,,
-United Kingdom,Female,185,52,15.19357195,4,,
-Hawaii,Female,5.61,288.86,44.80789246,0,,
-Colorado,Female,4.69,260.19,57.74810648,1,,
-Colorado,Female,4.66,189.63,42.63124781,0,,
-Colorado,Female,4.63,277.83,63.27177087,1,,
-Colorado,Male,5.22,240.35,43.06217419,1,,
-Taiwan,Female,173,82,27.39817568,2,,
-New York,Male,6,304.29,41.26463542,1,,
-New York,Female,4.99,198.45,38.90835278,1,,
-Hawaii,Male,5.84,308.7,44.18794128,1,,
-United Kingdom,Male,188,54,15.27840652,3,,
-Colorado,Female,5.09,317.52,59.83128828,0,,
-Taiwan,Male,166,70,25.40281608,1,,
-New York,Male,6.17,271.22,34.78117235,1,,
-Hawaii,Female,5.61,264.6,41.0446872,1,,
-Colorado,Male,5.87,286.65,40.61332781,1,,
-New York,Female,6.1,302.09,39.63414666,0,,
-United Kingdom,Female,153,78,33.32051775,0,,
-Taiwan,Female,184,86,25.40170132,2,,
-Taiwan,Female,177,81,25.85463947,2,,
-New York,Male,4.76,171.99,37.05801254,1,,
-Taiwan,Male,170,81,28.02768166,1,,
-Colorado,Male,5.94,310.91,43.01843767,1,,
-Colorado,Male,5.41,341.78,57.00920019,1,,
-Taiwan,Female,174,65,21.46915048,3,,
-Colorado,Female,4.79,242.55,51.60871967,1,,
-Taiwan,Male,178,85,26.82742078,2,,
-United Kingdom,Male,166,61,22.13673973,3,,
-Taiwan,Male,191,62,16.99514816,4,,
-Colorado,Female,5.81,341.78,49.42961338,0,,
-Taiwan,Female,183,50,14.93027561,4,,
-Hawaii,Male,4.95,251.37,50.08363942,0,,
-United Kingdom,Male,182,98,29.58579882,1,,
-Colorado,Female,4.66,350.6,78.8193613,1,,
-Taiwan,Female,188,90,25.46401086,1,,
-New York,Male,5.28,196.25,34.36644848,0,,
-Taiwan,Male,153,70,29.90302875,1,,
-Hawaii,Male,4.59,315.32,73.06661361,1,,
-Hawaii,Male,5.54,310.91,49.45474811,0,,
-New York,Female,5.31,350.6,60.70377542,0,,
-Colorado,Male,6,324.14,43.95648534,0,,
-United Kingdom,Female,162,58,22.10028959,3,,
-Hawaii,Female,5.64,240.35,36.88745999,0,,
-New York,Female,4.92,262.4,52.92080699,0,,
-New York,Female,5.54,319.73,50.85769713,1,,
-New York,Female,6.04,291.06,38.94946357,0,,
-New York,Male,5.22,229.32,41.08599037,0,,
-Colorado,Male,5.35,288.86,49.26887841,0,,
-Colorado,Male,5.12,302.09,56.258644,1,,
-United Kingdom,Female,157,52,21.09619051,3,,
-Colorado,Male,4.82,185.22,38.92123715,1,,
-New York,Male,4.63,189.63,43.1854944,1,,
-Hawaii,Male,5.68,306.5,46.37956173,0,,
-New York,Male,5.05,319.73,61.2059248,0,,
-New York,Male,5.51,326.34,52.47590588,1,,
-United Kingdom,Male,168,50,17.7154195,4,,
-Hawaii,Male,4.76,286.65,61.76335424,1,,
-Colorado,Male,4.99,227.12,44.52942849,1,,
-Colorado,Female,6.14,266.81,34.55080683,1,,
-Taiwan,Female,163,57,21.45357371,2,,
-United Kingdom,Male,178,83,26.19618735,1,,
-United Kingdom,Female,187,94,26.8809517,2,,
-Colorado,Female,5.87,251.37,35.61476439,1,,
-Taiwan,Male,190,80,22.16066482,3,,
-United Kingdom,Male,172,75,25.35154137,2,,
-United Kingdom,Male,188,57,16.12720688,4,,
-United Kingdom,Male,193,65,17.45013289,3,,
-New York,Female,4.82,277.83,58.38185573,0,,
-New York,Female,4.82,207.27,43.55471776,1,,
-New York,Male,5.45,235.94,38.77942841,0,,
-Colorado,Female,6.3,306.5,37.70007489,0,,
-New York,Male,5.94,306.5,42.40825687,0,,
-Colorado,Male,4.92,163.17,32.90811005,0,,
-New York,Male,5.84,352.8,50.50050432,1,,
-Taiwan,Female,156,52,21.36752137,2,,
-Hawaii,Male,4.89,220.5,45.01774206,1,,
-New York,Male,5.12,163.17,30.38737774,0,,
-Taiwan,Male,183,105,31.35357879,0,,
-Taiwan,Female,162,68,25.91068435,2,,
-Hawaii,Female,5.41,183.02,30.52789461,1,,
-Colorado,Female,5.51,315.32,50.70387523,1,,
-Colorado,Male,5.25,343.98,60.92666667,0,,
-Taiwan,Female,169,88,30.8112461,0,,
-New York,Female,4.59,167.58,38.83199007,0,,
-United Kingdom,Female,187,92,26.30901656,2,,
-Hawaii,Male,4.95,180.81,36.02507397,0,,
-Colorado,Female,6.1,308.7,40.50137732,1,,
-New York,Male,5.97,238.14,32.61944143,1,,
-United Kingdom,Male,188,81,22.91760978,3,,
-New York,Male,5.87,242.55,34.36512353,1,,
-Colorado,Female,5.12,277.83,51.7406702,1,,
-Colorado,Male,6.17,251.37,32.23561424,1,,
-New York,Male,6,337.37,45.75059992,0,,
-New York,Male,4.72,194.04,42.52067025,1,,
-Taiwan,Male,196,69,17.96126614,4,,
-New York,Male,5.61,310.91,48.22828306,1,,
-Colorado,Male,5.61,324.14,50.28051742,1,,
-Hawaii,Female,5.91,343.98,48.07851701,0,,
-Hawaii,Male,6.27,321.93,39.97782852,1,,
-United Kingdom,Female,179,67,20.91070816,3,,
-United Kingdom,Female,180,60,18.51851852,2,,
-Hawaii,Female,5.05,291.06,55.71762572,0,,
-United Kingdom,Male,188,99,28.01041195,1,,
-Hawaii,Male,4.66,297.68,66.92226889,1,,
-Colorado,Male,5.58,209.48,32.84482863,0,,
-New York,Male,4.99,310.91,60.95739966,1,,
-Colorado,Female,6.23,260.19,32.72708623,1,,
-Colorado,Female,5.94,244.76,33.86572578,0,,
-New York,Male,5.02,229.32,44.42498929,1,,
-Colorado,Male,6.14,308.7,39.97539099,0,,
-Hawaii,Female,4.72,145.53,31.89050268,1,,
-United Kingdom,Female,148,54,24.65303141,3,,
-Taiwan,Female,199,92,23.23173657,3,,
-Colorado,Female,5.48,187.43,30.46988542,1,,
-Taiwan,Female,164,71,26.39797739,1,,
-Taiwan,Female,185,102,29.80277575,1,,
-Colorado,Female,5.38,352.8,59.50546565,0,,
-New York,Male,4.66,156.56,35.19668912,1,,
-United Kingdom,Male,165,68,24.97704316,3,,
-United Kingdom,Female,172,62,20.9572742,3,,
-United Kingdom,Female,157,56,22.7189744,3,,
-Taiwan,Male,155,57,23.72528616,3,,
-Hawaii,Female,5.48,337.37,54.8451435,1,,
-Colorado,Female,5.38,277.83,46.8605542,0,,
-New York,Female,6.2,275.63,35.00547209,0,,
-Colorado,Female,5.28,319.73,55.9897303,1,,
-United Kingdom,Female,155,71,29.55254943,1,,
-New York,Female,5.61,260.19,40.36060908,1,,
-New York,Female,5.05,202.86,38.83349672,0,,
-United Kingdom,Male,179,83,25.9043101,2,,
-Hawaii,Male,5.58,253.58,39.75936435,1,,
-Colorado,Female,6.04,233.73,31.27759953,0,,
-United Kingdom,Female,191,68,18.63983992,3,,
-United Kingdom,Male,162,58,22.10028959,3,,
-Hawaii,Male,5.84,304.29,43.55668497,1,,
-United Kingdom,Female,157,60,24.34175829,2,,
-Taiwan,Male,184,83,24.51559546,3,,
-United Kingdom,Male,197,88,22.67515267,2,,
-United Kingdom,Female,160,51,19.921875,3,,
-New York,Male,6.04,337.37,45.14663823,0,,
-United Kingdom,Male,190,50,13.85041551,4,,
-Taiwan,Male,174,90,29.72651605,1,,
-Colorado,Female,6.2,273.42,34.72479839,1,,
-New York,Female,6.1,315.32,41.36991997,1,,
-Taiwan,Female,180,58,17.90123457,3,,
-Hawaii,Female,6.1,326.34,42.81574174,0,,
-United Kingdom,Female,193,61,16.37627856,4,,
-New York,Male,5.28,227.12,39.77226893,1,,
-Colorado,Female,4.95,348.39,69.41416692,0,,
-New York,Female,6.4,324.14,38.63362969,1,,
-Colorado,Female,6.04,335.16,44.85089744,1,,
-New York,Male,4.63,176.4,40.17255293,0,,
-Taiwan,Female,185,94,27.46530314,1,,
-Colorado,Female,6.1,280.04,36.74119114,0,,
-Colorado,Male,4.66,288.86,64.93942015,1,,
-Hawaii,Female,4.82,147.74,31.04537078,1,,
-Taiwan,Male,151,62,27.19178983,2,,
-New York,Female,5.25,273.42,48.42888889,0,,
-Taiwan,Male,185,60,17.53104456,4,,
-United Kingdom,Female,163,63,23.71184463,3,,
-Colorado,Male,5.71,209.48,31.36629204,0,,
-New York,Female,4.92,317.52,64.03740333,1,,
-Colorado,Male,4.66,200.66,45.1109328,1,,
-Colorado,Male,5.84,313.11,44.81919758,1,,
-Colorado,Female,5.05,211.68,40.52190962,0,,
-United Kingdom,Male,176,87,28.08626033,2,,
-Colorado,Male,5.22,264.6,47.40691197,1,,
-Taiwan,Male,191,62,16.99514816,4,,
-Colorado,Male,5.81,257.99,37.31156286,1,,
-Colorado,Male,4.95,339.57,67.65684624,0,,
-New York,Female,5.97,328.55,45.00343278,0,,
-Taiwan,Female,197,72,18.55239764,3,,
-Hawaii,Male,4.79,304.29,64.74548468,1,,
-Colorado,Female,5.25,183.02,32.41699672,0,,
-Taiwan,Female,157,66,26.77593411,1,,
-Taiwan,Female,150,50,22.22222222,3,,
-United Kingdom,Female,167,58,20.79672989,2,,
-United Kingdom,Female,180,70,21.60493827,3,,
-Taiwan,Female,183,76,22.69401893,2,,
-United Kingdom,Female,183,87,25.97867957,1,,
-Hawaii,Female,4.99,339.57,66.57651475,0,,
-United Kingdom,Female,164,71,26.39797739,1,,
-United Kingdom,Male,187,96,27.45288684,2,,
-Colorado,Male,5.54,299.88,47.70026652,1,,
-Taiwan,Female,149,61,27.47623981,1,,
-Hawaii,Male,5.35,302.09,51.5254292,1,,
-United Kingdom,Female,195,104,27.35042735,1,,
-Hawaii,Male,5.71,235.94,35.32825541,1,,
-United Kingdom,Male,182,70,21.13271344,3,,
-New York,Male,5.54,242.55,38.58109792,1,,
-New York,Male,6.33,286.65,34.92507593,0,,
-Hawaii,Male,4.86,310.91,64.26211059,1,,
-United Kingdom,Male,186,68,19.6554515,2,,
-Colorado,Male,5.41,315.32,52.59564926,0,,
-Hawaii,Female,4.79,271.22,57.70899587,1,,
-Hawaii,Female,5.45,293.27,48.20226739,0,,
-Taiwan,Male,179,56,17.47760682,4,,
-Hawaii,Female,5.81,222.71,32.20922581,0,,
-Hawaii,Male,5.94,339.57,46.983921,0,,
-New York,Female,5.28,339.57,59.46402502,1,,
-New York,Female,5.15,227.12,41.80553199,0,,
-Colorado,Female,5.54,216.09,34.37225088,1,,
-New York,Female,4.99,251.37,49.28391352,1,,
-Taiwan,Female,162,64,24.38652644,3,,
-Colorado,Male,5.31,286.65,49.63130983,0,,
-United Kingdom,Female,177,61,19.47077787,2,,
-Taiwan,Female,195,61,16.04207758,3,,
-New York,Male,4.59,321.93,74.59829671,0,,
-Colorado,Female,6.1,321.93,42.23715063,1,,
-Colorado,Female,5.84,235.94,33.77292797,0,,
-Taiwan,Male,174,54,17.83590963,3,,
-Taiwan,Female,180,59,18.20987654,3,,
-Hawaii,Male,6.17,310.91,39.87100618,0,,
-New York,Female,6.14,286.65,37.12000592,1,,
-New York,Female,5.02,169.79,32.89254723,0,,
-Colorado,Female,5.41,209.48,34.94144554,1,,
-United Kingdom,Female,178,79,24.93372049,3,,
-New York,Female,5.35,339.57,57.91813696,1,,
-Hawaii,Female,4.92,213.89,43.13731481,0,,
-Hawaii,Male,5.87,280.04,39.67680558,0,,
-United Kingdom,Male,165,62,22.77318641,3,,
-Colorado,Male,5.51,348.39,56.02157519,0,,
-Colorado,Female,5.02,293.27,56.81369531,0,,
-Colorado,Male,6.04,346.19,46.326925,1,,
-United Kingdom,Male,188,65,18.39067451,3,,
-Colorado,Female,5.45,337.37,55.45060507,0,,
-Hawaii,Female,5.64,255.78,39.25556279,1,,
-United Kingdom,Male,182,73,22.03840116,2,,
-Hawaii,Male,4.69,328.55,72.92032893,1,,
-New York,Male,4.99,321.93,63.11799451,0,,
-Hawaii,Female,6.1,282.24,37.02983069,0,,
-Colorado,Male,5.22,308.7,55.30806396,1,,
-New York,Male,4.79,154.35,32.84191252,0,,
-Colorado,Female,5.77,266.81,39.12400534,1,,
-Colorado,Female,4.79,222.71,47.38725194,0,,
-Hawaii,Male,5.22,319.73,57.28424778,1,,
-Colorado,Male,5.31,346.19,59.94021681,1,,
-Hawaii,Female,5.64,198.45,30.45690216,1,,
-New York,Female,5.54,266.81,42.44000304,0,,
-Taiwan,Male,182,50,15.09479531,4,,
-United Kingdom,Female,183,79,23.58983547,3,,
-Taiwan,Male,176,77,24.85795455,3,,
-Hawaii,Female,6.17,282.24,36.19437389,1,,
-United Kingdom,Female,175,83,27.10204082,1,,
-Colorado,Male,5.05,178.61,34.19131839,1,,
-Hawaii,Female,6.04,324.14,43.37620807,1,,
-Colorado,Male,5.87,271.22,38.42716473,1,,
-New York,Male,4.99,291.06,57.06558407,1,,
-United Kingdom,Male,179,56,17.47760682,3,,
-New York,Female,4.76,310.91,66.99056154,1,,
-Taiwan,Female,181,80,24.41927902,2,,
-Colorado,Male,5.18,280.04,50.95107863,0,,
-United Kingdom,Female,188,99,28.01041195,2,,
-Colorado,Male,4.76,313.11,67.46458694,0,,
-Colorado,Male,5.28,253.58,44.40582932,1,,
-Taiwan,Male,198,109,27.80328538,2,,
-New York,Male,4.82,313.11,65.79542471,0,,
-New York,Male,5.05,246.96,47.27556122,1,,
-Taiwan,Female,178,65,20.51508648,2,,
-New York,Male,6.4,337.37,40.21048821,0,,
-United Kingdom,Female,167,79,28.32658037,2,,
-New York,Male,6,288.86,39.17217978,1,,
-New York,Female,5.38,313.11,52.81110077,1,,
-Taiwan,Male,167,64,22.94811574,3,,
-United Kingdom,Female,151,55,24.12174905,2,,
-Colorado,Female,4.82,235.94,49.57929324,1,,
-Hawaii,Female,5.09,253.58,47.78287378,0,,
-Colorado,Female,5.64,238.14,36.54828259,1,,
-Colorado,Female,4.66,189.63,42.63124781,0,,
-New York,Male,4.79,187.43,39.88052908,0,,
-Colorado,Female,6.17,253.58,32.51902399,1,,
-New York,Male,5.68,244.76,37.03706861,0,,
-Hawaii,Female,5.25,240.35,42.57144117,1,,
-United Kingdom,Male,187,80,22.8774057,3,,
-Colorado,Male,6.5,299.88,34.6508284,1,,
-Hawaii,Female,5.87,330.75,46.86153209,1,,
-Taiwan,Female,164,59,21.93634741,3,,
-Hawaii,Female,4.79,324.14,68.96908017,1,,
-United Kingdom,Female,198,50,12.75380063,4,,
-United Kingdom,Female,170,53,18.33910035,4,,
-New York,Male,4.99,216.09,42.36687302,1,,
-Hawaii,Female,4.92,337.37,68.04074944,1,,
-Colorado,Female,6.04,266.81,35.70434403,1,,
-Hawaii,Female,4.63,299.88,68.29333999,0,,
-Hawaii,Male,4.92,209.48,42.24790643,0,,
-Hawaii,Male,5.68,288.86,43.71027798,0,,
+Location information,GENDER,height,weight
+New York,Male,5.71,211.68
+United Kingdom,Male,189,87
+New York,Female,6.07,242.55
+Taiwan,Female,195,104
+Taiwan,Male,149,61
+Taiwan,Male,189,104
+Colorado,Male,4.82,202.86
+New York,Male,5.05,244.76
+United Kingdom,Male,174,90
+Hawaii,Female,5.54,227.12
+Taiwan,Male,195,81
+Colorado,Female,5.22,176.4
+Taiwan,Female,192,101
+United Kingdom,Male,155,51
+United Kingdom,Male,191,79
+Hawaii,Female,5.02,235.94
+New York,Female,5.15,242.55
+Colorado,Male,4.59,284.45
+Colorado,Male,4.72,319.73
+New York,Male,5.64,306.5
+New York,Male,5.15,242.55
+Hawaii,Female,5.02,328.55
+Hawaii,Female,5.54,213.89
+Hawaii,Male,6.07,306.5
+Taiwan,Female,172,67
+United Kingdom,Female,151,64
+Taiwan,Male,190,95
+Taiwan,Male,187,62
+New York,Female,5.35,350.6
+Hawaii,Male,5.87,335.16
+Colorado,Male,5.02,266.81
+United Kingdom,Male,178,52
+Taiwan,Female,195,65
+Hawaii,Female,5.25,288.86
+Colorado,Female,5.15,337.37
+Hawaii,Female,6.2,291.06
+United Kingdom,Female,197,114
+New York,Male,4.72,176.4
+Colorado,Female,5.61,335.16
+United Kingdom,Female,185,81
+Hawaii,Female,5.74,264.6
+Hawaii,Female,4.89,238.14
+Taiwan,Male,157,56
+Colorado,Male,5.28,260.19
+New York,Female,5.97,277.83
+United Kingdom,Male,185,76
+New York,Female,6.17,269.01
+Colorado,Male,5.94,244.76
+United Kingdom,Male,161,72
+Hawaii,Male,4.59,335.16
+New York,Female,5.51,297.68
+United Kingdom,Female,176,54
+Colorado,Male,5.35,242.55
+Hawaii,Male,5.64,231.53
+Colorado,Male,6.43,255.78
+United Kingdom,Female,187,89
+Hawaii,Male,5.64,202.86
+New York,Male,5.84,280.04
+United Kingdom,Female,164,70
+Hawaii,Male,4.69,194.04
+United Kingdom,Female,191,54
+Hawaii,Female,4.63,315.32
+United Kingdom,Male,193,54
+United Kingdom,Male,190,83
+New York,Male,5.74,297.68
+Hawaii,Female,5.87,348.39
+New York,Female,5.64,211.68
+Taiwan,Female,168,59
+New York,Female,5.38,180.81
+Hawaii,Female,6.36,299.88
+United Kingdom,Female,153,51
+Hawaii,Male,5.84,257.99
+Hawaii,Male,4.63,176.4
+Taiwan,Male,180,75
+United Kingdom,Female,185,100
+Hawaii,Female,6.46,339.57
+Colorado,Male,5.41,229.32
+Colorado,Female,5.51,198.45
+Hawaii,Female,5.77,269.01
+Taiwan,Male,181,51
+United Kingdom,Male,164,75
+New York,Female,5.45,308.7
+United Kingdom,Female,190,105
+Colorado,Male,6.1,260.19
+Hawaii,Male,5.51,271.22
+United Kingdom,Male,198,50
+Colorado,Female,5.74,310.91
+Hawaii,Male,4.76,257.99
+New York,Female,5.22,229.32
+Hawaii,Female,6.07,308.7
+Hawaii,Female,5.84,339.57
+United Kingdom,Female,183,96
+Taiwan,Female,194,111
+Taiwan,Male,177,61
+Hawaii,Male,6.46,262.4
+Colorado,Female,5.58,343.98
+New York,Male,4.66,152.15
+Hawaii,Male,5.25,306.5
+United Kingdom,Male,195,69
+United Kingdom,Female,190,50
+New York,Male,6.53,343.98
+Colorado,Male,5.05,231.53
+Colorado,Male,5.28,341.78
+New York,Female,6.5,319.73
+New York,Female,6.3,308.7
+New York,Male,6.4,277.83
+Colorado,Male,5.45,352.8
+New York,Male,5.22,339.57
+Colorado,Female,5.94,233.73
+Taiwan,Male,149,66
+Colorado,Female,4.92,154.35
+New York,Female,4.79,346.19
+New York,Male,6.23,297.68
+United Kingdom,Female,192,90
+Hawaii,Female,5.81,211.68
+Taiwan,Male,148,60
+United Kingdom,Female,165,57
+New York,Female,4.79,229.32
+New York,Male,4.72,238.14
+Hawaii,Female,5.77,343.98
+Hawaii,Female,5.51,191.84
+Hawaii,Male,6.14,269.01
+Colorado,Male,6.14,304.29
+Hawaii,Female,6.04,352.8
+Colorado,Female,5.18,328.55
+Colorado,Male,5.18,211.68
+Colorado,Male,6.36,253.58
+Hawaii,Female,4.76,174.2
+New York,Male,5.97,332.96
+United Kingdom,Male,154,54
+New York,Female,5.51,306.5
+United Kingdom,Female,187,70
+Colorado,Female,5.18,337.37
+Colorado,Female,5.48,242.55
+New York,Female,5.61,341.78
+New York,Female,6,330.75
+Hawaii,Female,6.23,343.98
+United Kingdom,Male,194,108
+Hawaii,Male,5.61,324.14
+New York,Male,5.22,273.42
+United Kingdom,Female,169,54
+New York,Female,5.48,187.43
+New York,Male,5.91,328.55
+Colorado,Male,5.35,271.22
+New York,Male,4.59,174.2
+New York,Male,6.46,275.63
+Taiwan,Male,194,106
+Colorado,Female,4.59,321.93
+United Kingdom,Male,195,98
+United Kingdom,Female,168,115
+Taiwan,Female,196,50
+Taiwan,Male,140,52
+Taiwan,Female,150,60
+Hawaii,Female,5.51,308.7
+Hawaii,Female,5.09,244.76
+Hawaii,Female,5.87,227.12
+Taiwan,Female,182,84
+Hawaii,Male,5.51,352.8
+Taiwan,Female,187,102
+New York,Male,5.94,231.53
+United Kingdom,Male,199,99
+United Kingdom,Female,184,76
+United Kingdom,Male,192,101
+Hawaii,Female,5.97,315.32
+Colorado,Female,5.64,244.76
+Taiwan,Male,181,78
+Hawaii,Male,5.77,240.35
+New York,Female,5.12,233.73
+Taiwan,Female,151,67
+United Kingdom,Female,188,80
+Colorado,Male,6.14,299.88
+New York,Male,5.71,304.29
+Colorado,Male,5.48,332.96
+Hawaii,Female,6.43,288.86
+Colorado,Male,6.46,328.55
+New York,Female,6.07,262.4
+New York,Female,5.58,224.91
+United Kingdom,Female,181,94
+Colorado,Female,5.45,277.83
+United Kingdom,Male,188,100
+Taiwan,Female,162,74
+New York,Male,5.81,257.99
+Hawaii,Male,5.31,213.89
+United Kingdom,Male,180,73
+Taiwan,Female,192,108
+United Kingdom,Male,165,80
+Colorado,Female,5.48,297.68
+Taiwan,Female,182,84
+Colorado,Female,5.28,295.47
+Hawaii,Male,5.18,209.48
+Colorado,Male,4.63,187.43
+Hawaii,Male,5.05,220.5
+Hawaii,Male,5.41,231.53
+Colorado,Female,4.66,302.09
+Colorado,Male,4.63,207.27
+Hawaii,Male,4.76,238.14
+New York,Male,5.15,163.17
+Hawaii,Female,5.81,257.99
+Colorado,Female,5.45,317.52
+New York,Male,6.33,332.96
+Taiwan,Male,184,57
+United Kingdom,Male,179,93
+Colorado,Female,5.12,196.25
+Colorado,Male,5.97,229.32
+Hawaii,Male,4.76,352.8
+New York,Female,4.92,191.84
+Colorado,Male,4.76,218.3
+Hawaii,Female,6.43,269.01
+Taiwan,Male,191,96
+Colorado,Female,4.86,147.74
+Colorado,Female,4.92,185.22
+Hawaii,Male,4.86,341.78
+Colorado,Female,5.02,321.93
+New York,Female,6.43,350.6
+United Kingdom,Female,185,52
+Hawaii,Female,5.61,288.86
+Colorado,Female,4.69,260.19
+Colorado,Female,4.66,189.63
+Colorado,Female,4.63,277.83
+Colorado,Male,5.22,240.35
+Taiwan,Female,173,82
+New York,Male,6,304.29
+New York,Female,4.99,198.45
+Hawaii,Male,5.84,308.7
+United Kingdom,Male,188,54
+Colorado,Female,5.09,317.52
+Taiwan,Male,166,70
+New York,Male,6.17,271.22
+Hawaii,Female,5.61,264.6
+Colorado,Male,5.87,286.65
+New York,Female,6.1,302.09
+United Kingdom,Female,153,78
+Taiwan,Female,184,86
+Taiwan,Female,177,81
+New York,Male,4.76,171.99
+Taiwan,Male,170,81
+Colorado,Male,5.94,310.91
+Colorado,Male,5.41,341.78
+Taiwan,Female,174,65
+Colorado,Female,4.79,242.55
+Taiwan,Male,178,85
+United Kingdom,Male,166,61
+Taiwan,Male,191,62
+Colorado,Female,5.81,341.78
+Taiwan,Female,183,50
+Hawaii,Male,4.95,251.37
+United Kingdom,Male,182,98
+Colorado,Female,4.66,350.6
+Taiwan,Female,188,90
+New York,Male,5.28,196.25
+Taiwan,Male,153,70
+Hawaii,Male,4.59,315.32
+Hawaii,Male,5.54,310.91
+New York,Female,5.31,350.6
+Colorado,Male,6,324.14
+United Kingdom,Female,162,58
+Hawaii,Female,5.64,240.35
+New York,Female,4.92,262.4
+New York,Female,5.54,319.73
+New York,Female,6.04,291.06
+New York,Male,5.22,229.32
+Colorado,Male,5.35,288.86
+Colorado,Male,5.12,302.09
+United Kingdom,Female,157,52
+Colorado,Male,4.82,185.22
+New York,Male,4.63,189.63
+Hawaii,Male,5.68,306.5
+New York,Male,5.05,319.73
+New York,Male,5.51,326.34
+United Kingdom,Male,168,50
+Hawaii,Male,4.76,286.65
+Colorado,Male,4.99,227.12
+Colorado,Female,6.14,266.81
+Taiwan,Female,163,57
+United Kingdom,Male,178,83
+United Kingdom,Female,187,94
+Colorado,Female,5.87,251.37
+Taiwan,Male,190,80
+United Kingdom,Male,172,75
+United Kingdom,Male,188,57
+United Kingdom,Male,193,65
+New York,Female,4.82,277.83
+New York,Female,4.82,207.27
+New York,Male,5.45,235.94
+Colorado,Female,6.3,306.5
+New York,Male,5.94,306.5
+Colorado,Male,4.92,163.17
+New York,Male,5.84,352.8
+Taiwan,Female,156,52
+Hawaii,Male,4.89,220.5
+New York,Male,5.12,163.17
+Taiwan,Male,183,105
+Taiwan,Female,162,68
+Hawaii,Female,5.41,183.02
+Colorado,Female,5.51,315.32
+Colorado,Male,5.25,343.98
+Taiwan,Female,169,88
+New York,Female,4.59,167.58
+United Kingdom,Female,187,92
+Hawaii,Male,4.95,180.81
+Colorado,Female,6.1,308.7
+New York,Male,5.97,238.14
+United Kingdom,Male,188,81
+New York,Male,5.87,242.55
+Colorado,Female,5.12,277.83
+Colorado,Male,6.17,251.37
+New York,Male,6,337.37
+New York,Male,4.72,194.04
+Taiwan,Male,196,69
+New York,Male,5.61,310.91
+Colorado,Male,5.61,324.14
+Hawaii,Female,5.91,343.98
+Hawaii,Male,6.27,321.93
+United Kingdom,Female,179,67
+United Kingdom,Female,180,60
+Hawaii,Female,5.05,291.06
+United Kingdom,Male,188,99
+Hawaii,Male,4.66,297.68
+Colorado,Male,5.58,209.48
+New York,Male,4.99,310.91
+Colorado,Female,6.23,260.19
+Colorado,Female,5.94,244.76
+New York,Male,5.02,229.32
+Colorado,Male,6.14,308.7
+Hawaii,Female,4.72,145.53
+United Kingdom,Female,148,54
+Taiwan,Female,199,92
+Colorado,Female,5.48,187.43
+Taiwan,Female,164,71
+Taiwan,Female,185,102
+Colorado,Female,5.38,352.8
+New York,Male,4.66,156.56
+United Kingdom,Male,165,68
+United Kingdom,Female,172,62
+United Kingdom,Female,157,56
+Taiwan,Male,155,57
+Hawaii,Female,5.48,337.37
+Colorado,Female,5.38,277.83
+New York,Female,6.2,275.63
+Colorado,Female,5.28,319.73
+United Kingdom,Female,155,71
+New York,Female,5.61,260.19
+New York,Female,5.05,202.86
+United Kingdom,Male,179,83
+Hawaii,Male,5.58,253.58
+Colorado,Female,6.04,233.73
+United Kingdom,Female,191,68
+United Kingdom,Male,162,58
+Hawaii,Male,5.84,304.29
+United Kingdom,Female,157,60
+Taiwan,Male,184,83
+United Kingdom,Male,197,88
+United Kingdom,Female,160,51
+New York,Male,6.04,337.37
+United Kingdom,Male,190,50
+Taiwan,Male,174,90
+Colorado,Female,6.2,273.42
+New York,Female,6.1,315.32
+Taiwan,Female,180,58
+Hawaii,Female,6.1,326.34
+United Kingdom,Female,193,61
+New York,Male,5.28,227.12
+Colorado,Female,4.95,348.39
+New York,Female,6.4,324.14
+Colorado,Female,6.04,335.16
+New York,Male,4.63,176.4
+Taiwan,Female,185,94
+Colorado,Female,6.1,280.04
+Colorado,Male,4.66,288.86
+Hawaii,Female,4.82,147.74
+Taiwan,Male,151,62
+New York,Female,5.25,273.42
+Taiwan,Male,185,60
+United Kingdom,Female,163,63
+Colorado,Male,5.71,209.48
+New York,Female,4.92,317.52
+Colorado,Male,4.66,200.66
+Colorado,Male,5.84,313.11
+Colorado,Female,5.05,211.68
+United Kingdom,Male,176,87
+Colorado,Male,5.22,264.6
+Taiwan,Male,191,62
+Colorado,Male,5.81,257.99
+Colorado,Male,4.95,339.57
+New York,Female,5.97,328.55
+Taiwan,Female,197,72
+Hawaii,Male,4.79,304.29
+Colorado,Female,5.25,183.02
+Taiwan,Female,157,66
+Taiwan,Female,150,50
+United Kingdom,Female,167,58
+United Kingdom,Female,180,70
+Taiwan,Female,183,76
+United Kingdom,Female,183,87
+Hawaii,Female,4.99,339.57
+United Kingdom,Female,164,71
+United Kingdom,Male,187,96
+Colorado,Male,5.54,299.88
+Taiwan,Female,149,61
+Hawaii,Male,5.35,302.09
+United Kingdom,Female,195,104
+Hawaii,Male,5.71,235.94
+United Kingdom,Male,182,70
+New York,Male,5.54,242.55
+New York,Male,6.33,286.65
+Hawaii,Male,4.86,310.91
+United Kingdom,Male,186,68
+Colorado,Male,5.41,315.32
+Hawaii,Female,4.79,271.22
+Hawaii,Female,5.45,293.27
+Taiwan,Male,179,56
+Hawaii,Female,5.81,222.71
+Hawaii,Male,5.94,339.57
+New York,Female,5.28,339.57
+New York,Female,5.15,227.12
+Colorado,Female,5.54,216.09
+New York,Female,4.99,251.37
+Taiwan,Female,162,64
+Colorado,Male,5.31,286.65
+United Kingdom,Female,177,61
+Taiwan,Female,195,61
+New York,Male,4.59,321.93
+Colorado,Female,6.1,321.93
+Colorado,Female,5.84,235.94
+Taiwan,Male,174,54
+Taiwan,Female,180,59
+Hawaii,Male,6.17,310.91
+New York,Female,6.14,286.65
+New York,Female,5.02,169.79
+Colorado,Female,5.41,209.48
+United Kingdom,Female,178,79
+New York,Female,5.35,339.57
+Hawaii,Female,4.92,213.89
+Hawaii,Male,5.87,280.04
+United Kingdom,Male,165,62
+Colorado,Male,5.51,348.39
+Colorado,Female,5.02,293.27
+Colorado,Male,6.04,346.19
+United Kingdom,Male,188,65
+Colorado,Female,5.45,337.37
+Hawaii,Female,5.64,255.78
+United Kingdom,Male,182,73
+Hawaii,Male,4.69,328.55
+New York,Male,4.99,321.93
+Hawaii,Female,6.1,282.24
+Colorado,Male,5.22,308.7
+New York,Male,4.79,154.35
+Colorado,Female,5.77,266.81
+Colorado,Female,4.79,222.71
+Hawaii,Male,5.22,319.73
+Colorado,Male,5.31,346.19
+Hawaii,Female,5.64,198.45
+New York,Female,5.54,266.81
+Taiwan,Male,182,50
+United Kingdom,Female,183,79
+Taiwan,Male,176,77
+Hawaii,Female,6.17,282.24
+United Kingdom,Female,175,83
+Colorado,Male,5.05,178.61
+Hawaii,Female,6.04,324.14
+Colorado,Male,5.87,271.22
+New York,Male,4.99,291.06
+United Kingdom,Male,179,56
+New York,Female,4.76,310.91
+Taiwan,Female,181,80
+Colorado,Male,5.18,280.04
+United Kingdom,Female,188,99
+Colorado,Male,4.76,313.11
+Colorado,Male,5.28,253.58
+Taiwan,Male,198,109
+New York,Male,4.82,313.11
+New York,Male,5.05,246.96
+Taiwan,Female,178,65
+New York,Male,6.4,337.37
+United Kingdom,Female,167,79
+New York,Male,6,288.86
+New York,Female,5.38,313.11
+Taiwan,Male,167,64
+United Kingdom,Female,151,55
+Colorado,Female,4.82,235.94
+Hawaii,Female,5.09,253.58
+Colorado,Female,5.64,238.14
+Colorado,Female,4.66,189.63
+New York,Male,4.79,187.43
+Colorado,Female,6.17,253.58
+New York,Male,5.68,244.76
+Hawaii,Female,5.25,240.35
+United Kingdom,Male,187,80
+Colorado,Male,6.5,299.88
+Hawaii,Female,5.87,330.75
+Taiwan,Female,164,59
+Hawaii,Female,4.79,324.14
+United Kingdom,Female,198,50
+United Kingdom,Female,170,53
+New York,Male,4.99,216.09
+Hawaii,Female,4.92,337.37
+Colorado,Female,6.04,266.81
+Hawaii,Female,4.63,299.88
+Hawaii,Male,4.92,209.48
+Hawaii,Male,5.68,288.86
