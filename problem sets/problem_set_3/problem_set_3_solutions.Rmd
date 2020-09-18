@@ -185,7 +185,15 @@ Create two list of the pain ratings. One list holds all of the pre-test while th
 
 Once you have these list create a third list called "diff" that calculates the difference between post and pre. 
 
+In this question we had asked you to create a list -- but performing this action in a vector is easier. We have included the solution either route.
+
 ```{r}
+# list solution
+pre <- list(df$PAIN_RATE[which(df$TEST == "Pre")])
+post <- list(df$PAIN_RATE[which(df$TEST == "Post")])
+diff <- mapply('-', post, pre, SIMPLIFY = FALSE)
+
+# vector solution
 pre <- df$PAIN_RATE[which(df$TEST == "Pre")]
 post <- df$PAIN_RATE[which(df$TEST == "Post")]
 diff <- post - pre
