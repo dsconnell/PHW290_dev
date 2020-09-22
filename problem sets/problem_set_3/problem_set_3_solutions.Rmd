@@ -221,5 +221,4 @@ Some suggestions: create bullet list, italics, bold, change the url colors, chan
   + lists!!!
 
 
-
 You're done! Please knit to pdf and upload to gradescope. 
