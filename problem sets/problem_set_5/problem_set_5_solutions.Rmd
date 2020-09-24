@@ -1,0 +1,117 @@
+---
+title: 'Problem Set #5'
+author: "NAME HERE"
+date: "9/23/2020"
+output: pdf_document
+---
+
+Due date: Monday, October 5th
+
+At this point in the course we have introduced a fair amount of code, which can be a lot to hold in our memory at once! Thankfully we we have search engines and these [helpful cheatsheets](https://rstudio.com/resources/cheatsheets/). You may find the Base R and Data Tranformation Cheatsheet helpful.
+
+### Question 1
+
+Below is a function that ought to return TRUE if x is an even number. However, we're having trouble receiving a value despite x == 4, which we know is an even number. Debug and explain why this error is occurring. 
+
+```{r}
+# note: %% is the "moduluo" operator, which returns the remainder of an operation
+# try: 2 %% 2 (should equal 0 as 2/2 has no remainder)
+# try: 5 %% 2 (should equal 1 as 5/2 has a remainder of 1)
+
+return_even <- function(x){
+  if (x %% 2 == 0) {
+    return("I'm an even number!")
+  }
+}
+
+x <- 4
+return_even()
+```
+
+### Question 
+
+Below is a function that calculates BMI and assumes the weight and height inputs are from the imperial system. Can you write a function that calculates BMI based on the metric system? You can test your function with the Taiwan data set. Please look at only the first row for the Taiwan data.
+
+```{r}
+df_colorado <- read_csv("data/colorado_data.csv")
+
+bmi_imperial <- function(height, weight){
+  bmi = (703 * weight)/(height * 12)^2
+  return(bmi)
+}
+
+imperial_bmi(df_colorado$height[1], df_colorado$weight[1])
+```
+
+```{r}
+# your code here
+df_taiwan <- readxl::read_xlsx("data/taiwan_date.xlsx")
+
+bmi_metric <- function(height, weight){
+  bmi = weight/(height/100)^2
+  return(bmi)
+}
+
+bmi_metric(df_taiwan$height[1], df_taiwan$weight[1])
+```
+
+### Question
+
+Can you write a function that combines both of the BMI functions? You will need to determine a way to evaluate which calculation to perform. Use the first row for the Colorado and Taiwan data to test.
+
+```{r}
+calculate_bmi <- function(height, weight){
+  # the tallest person was 8 ft 11.1 in tall, which we can use as a crude cutoff
+  if_else(height > 9, # condtional statement
+          (weight/(height/100)^2), # if true, metric
+          (703 * weight)/(height * 12)^2) # if false, imperial 
+}
+
+calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
+calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
+```
+
+### Question
+
+It's possible to nest functions within another function. Let's try this idea by first writing a function called lbs_to_kg() that converts height from feet to centimeters and another function called lbs_to_kg() that converts weight from pounds to kg. Once you've written these functions, modify our calculate_bmi() to utilize the function you created. We can use the first rows of Colorado and Taiwan to confirm results. 
+
+1 lbs == 0.453 kilogram
+1 foot == 30.48 centimeter
+
+```{r}
+feet_to_centimeter <- function(feet){
+  return(feet * 30.48)
+}
+
+feet_to_centimeter(1)
+
+lbs_to_kg <- function(lbs){
+  return(lbs/2.205 )
+}
+
+lbs_to_kg(1)
+
+calculate_bmi <- function(height, weight){
+  # the tallest person was 8 ft 11.1 in tall, which we can use as a crude cutoff
+  if_else(height > 9, # condtional statement
+          (weight/(height/100)^2), # if true, metric
+          (lbs_to_kg(weight))/(feet_to_centimeter(height)/100)^2) # if false, imperial 
+}
+
+calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
+calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
+```
+
+### Question
+
+Just how we use other functions, we can also use our new calculate_bmi() function during a dplyr action. That is, we can *pipe* information into our function. Create a new column called **bmi** with a dplyr call and our new function. 
+
+```{r}
+df_colorado %>%
+  mutate(bmi = calculate_bmi(height, weight))
+
+
+```
+
+
+Below is a function that examines the date format and uses the appropriate date conversion function. However, among the three data sets we are working with today, there's an additional date format that is not included in this function. Add that functionality to the function.
