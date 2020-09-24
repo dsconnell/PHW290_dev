@@ -7,7 +7,7 @@ output: pdf_document
 
 Due date: Monday, October 5th
 
-At this point in the course we have introduced a fair amount of code, which can be a lot to hold in our memory at once! Thankfully we we have search engines and these [helpful cheatsheets](https://rstudio.com/resources/cheatsheets/). You may find the Base R and Data Tranformation Cheatsheet helpful.
+At this point in the course we have introduced a fair amount of code, which can be a lot to hold in our memory at once! Thankfully we we have search engines and these [helpful cheatsheets](https://rstudio.com/resources/cheatsheets/). You may find the Base R and Data Transformation Cheatsheet helpful.
 
 ### Question 1
 
@@ -40,6 +40,7 @@ bmi_imperial <- function(height, weight){
   return(bmi)
 }
 
+# calcualte bmi for the first observation
 imperial_bmi(df_colorado$height[1], df_colorado$weight[1])
 ```
 
@@ -62,7 +63,7 @@ Can you write a function that combines both of the BMI functions? You will need 
 ```{r}
 calculate_bmi <- function(height, weight){
   # the tallest person was 8 ft 11.1 in tall, which we can use as a crude cutoff
-  if_else(height > 9, # condtional statement
+  if_else(height > 9, # conditional statement
           (weight/(height/100)^2), # if true, metric
           (703 * weight)/(height * 12)^2) # if false, imperial 
 }
@@ -73,45 +74,58 @@ calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
 
 ### Question
 
-It's possible to nest functions within another function. Let's try this idea by first writing a function called lbs_to_kg() that converts height from feet to centimeters and another function called lbs_to_kg() that converts weight from pounds to kg. Once you've written these functions, modify our calculate_bmi() to utilize the function you created. We can use the first rows of Colorado and Taiwan to confirm results. 
+It's possible to nest functions within another function. Let's try this idea by first writing a function called feet_to_centimeter() that converts height from feet to centimeters. We created another function for you called lbs_to_kg() that converts weight from pounds to kg. 
+
+Once you've created lbs_to_kg(), modify our calculate_bmi() to utilize the the two new functions. We can use the first rows of Colorado and Taiwan to confirm results. 
 
 1 lbs == 0.453 kilogram
 1 foot == 30.48 centimeter
 
 ```{r}
+# created for you
+lbs_to_kg <- function(lbs){
+  return(lbs/2.205)
+}
+
+lbs_to_kg(1) # test
+
+# create feet_to_centimeter
 feet_to_centimeter <- function(feet){
   return(feet * 30.48)
 }
 
-feet_to_centimeter(1)
+feet_to_centimeter(1) # test
 
-lbs_to_kg <- function(lbs){
-  return(lbs/2.205 )
-}
-
-lbs_to_kg(1)
-
+# modify calculate_bmi()
 calculate_bmi <- function(height, weight){
   # the tallest person was 8 ft 11.1 in tall, which we can use as a crude cutoff
-  if_else(height > 9, # condtional statement
+  if_else(height > 9, # conditional statement
           (weight/(height/100)^2), # if true, metric
           (lbs_to_kg(weight))/(feet_to_centimeter(height)/100)^2) # if false, imperial 
 }
 
+# values should match above
 calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
 calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
 ```
 
 ### Question
 
-Just how we use other functions, we can also use our new calculate_bmi() function during a dplyr action. That is, we can *pipe* information into our function. Create a new column called **bmi** with a dplyr call and our new function. 
-
 ```{r}
-df_colorado %>%
-  mutate(bmi = calculate_bmi(height, weight))
-
-
+calc
 ```
 
+### Question
 
-Below is a function that examines the date format and uses the appropriate date conversion function. However, among the three data sets we are working with today, there's an additional date format that is not included in this function. Add that functionality to the function.
+Just how we use other functions, we can also use our new calculate_bmi() function during a dplyr action. That is, we can *pipe* information into our function. Create a new column called **bmi** with a dplyr call and our new function. Perform this action on both the Colorado data and Taiwan data.
+
+```{r}
+df_colorado <- df_colorado %>%
+  mutate(bmi = calculate_bmi(height, weight))
+
+df_taiwan <- df_taiwan %>%
+  mutate(bmi = calculate_bmi(height, weight))
+```
+
+### Challenge
+
