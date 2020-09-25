@@ -14,6 +14,7 @@ Load your data:
 ```{r, include=FALSE}
 library(tidyverse)
 bmi <- read_csv("500_Person_Gender_Height_Weight.csv")
+str(bmi)
 ```
 
 ### Question 1
@@ -65,8 +66,8 @@ Create a new variable that categorizes BMI with case_when():
 ```{r}
 bmi_3 <- bmi_2 %>%
   mutate(bmi_cat = case_when(
-    bmi > 30    ~ "Obese",
-    bmi > 25    ~ "Overweight",
+    bmi > 29.9    ~ "Obese",
+    bmi > 24.9    ~ "Overweight",
     bmi > 18.4  ~ "Normal",
     TRUE            ~ "Underweight"))
 ```
