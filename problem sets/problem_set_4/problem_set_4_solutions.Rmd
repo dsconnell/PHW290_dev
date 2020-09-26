@@ -45,9 +45,9 @@ Although there's many ways you can accomplish this task, we want you to use an i
 ```{r}
 bmi_2 <- bmi_1 %>%
   mutate(bmi = if_else(
-    location %in% c("New York", "Colorado", "Hawaii"),
-    (703 * weight)/(height * 12)^2, 
-    (weight/(height/100)^2)))
+    location %in% c("New York", "Colorado", "Hawaii"), # conditional statement
+    (703 * weight)/(height * 12)^2, # if true, calculate imperial 
+    (weight/(height/100)^2))) # if false, calculate metric 
 
 head(bmi_2$bmi)
 ```
