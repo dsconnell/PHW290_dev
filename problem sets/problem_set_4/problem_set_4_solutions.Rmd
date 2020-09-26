@@ -66,9 +66,9 @@ Create a new variable that categorizes BMI with case_when():
 ```{r}
 bmi_3 <- bmi_2 %>%
   mutate(bmi_cat = case_when(
-    bmi > 29.9    ~ "Obese",
-    bmi > 24.9    ~ "Overweight",
-    bmi > 18.4  ~ "Normal",
+    bmi >= 30.0    ~ "Obese",
+    bmi >= 25    ~ "Overweight",
+    bmi >= 18.5  ~ "Normal",
     TRUE            ~ "Underweight"))
 ```
 
