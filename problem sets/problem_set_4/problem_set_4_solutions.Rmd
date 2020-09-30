@@ -66,12 +66,24 @@ Create a new variable that categorizes BMI with case_when():
 * Obese: 30.0 and Above
 
 ```{r}
+# need to be careful with how we separate these values
+# for example: bmi > 30 would leave out 30
+
 bmi_3 <- bmi_2 %>%
   mutate(bmi_cat = case_when(
     bmi >= 30.0    ~ "Obese", # starting from largest value
     bmi >= 25    ~ "Overweight", # step down
     bmi >= 18.5  ~ "Normal", # step again
     TRUE            ~ "Underweight")) # default to underweight, otherwise
+
+# we could also have performed this operation in the reverse
+
+bmi_3 <- bmi_2 %>%
+  mutate(bmi_cat = case_when(
+    bmi < 18.5 ~ "Underweight",
+    bmi <= 25 ~ "Normal",
+    bmi <= 30 ~ "Overweight",
+    TRUE ~ "Obese"))
 ```
 
 Could we have used if_else()?  
