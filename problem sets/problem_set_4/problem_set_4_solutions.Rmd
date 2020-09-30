@@ -22,7 +22,9 @@ str(bmi)
 Clean the column headers to have all lower case and no spaces and rename location_information to location.
 
 ```{r}
+# find spaces and replace with -
 bmi_1 <- rename_with(bmi, ~ tolower(gsub(" ","_", .x, fixed=TRUE)))
+# lower case all column names
 bmi_1 <- rename(bmi_1, location = location_information)
 ```
 
@@ -66,15 +68,15 @@ Create a new variable that categorizes BMI with case_when():
 ```{r}
 bmi_3 <- bmi_2 %>%
   mutate(bmi_cat = case_when(
-    bmi >= 30.0    ~ "Obese",
-    bmi >= 25    ~ "Overweight",
-    bmi >= 18.5  ~ "Normal",
-    TRUE            ~ "Underweight"))
+    bmi >= 30.0    ~ "Obese", # starting from largest value
+    bmi >= 25    ~ "Overweight", # step down
+    bmi >= 18.5  ~ "Normal", # step again
+    TRUE            ~ "Underweight")) # default to underweight, otherwise
 ```
 
 Could we have used if_else()?  
 
-Yup, we could have! It's a matter of preference and how you are approach the problem.
+Yup, we could have! It's a matter of preference and how you are approach the problem. With an if_else() statement we would have to nest many of them, which could become cumbersome. 
 
 \newpage
 
@@ -84,6 +86,7 @@ Arrange your data by location and descending order of bmi.
 
 ```{r}
 bmi_4 <- bmi_3 %>%
+  # first arrange by location and then by bmi, descending
   arrange(location, desc(bmi))
 ```
 
@@ -92,7 +95,7 @@ bmi_4 <- bmi_3 %>%
 Filter your data to remove the height, weight, and bmi column.
 
 ```{r}
-bmi_5 <- bmi_4 %>% select(-c(height, weight, bmi))
+bmi_5 <- bmi_4 %>% select(-c(height, weight, bmi)) 
 ```
 
 \newpage
@@ -102,6 +105,8 @@ bmi_5 <- bmi_4 %>% select(-c(height, weight, bmi))
 Perform all the actions in this problem set with one dpylr call. 
 
 ```{r}
+# although you can do this, you will want to test each step out individually
+# to ensure you aren't making any errors!
 bmi_all <- bmi %>% 
   rename_with(~ tolower(gsub(" ","_", .x, fixed=TRUE))) %>%
   rename(location = location_information) %>%
