@@ -136,7 +136,7 @@ Just how we use other functions, we can also use our new calculate_bmi() functio
 1. Create a [github account](https://github.com/).  
 2. Consider setting up two-factor.
 
-Please also submit your pdf to gradescope for extra credit. 
+Please also submit your pdf to gradescope for extra credit!
 
 ```{r, comment=NA}
 # functions within functions:
