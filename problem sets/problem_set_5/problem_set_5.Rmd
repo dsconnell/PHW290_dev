@@ -32,18 +32,6 @@ x <- 4
 return_even()
 ```
 
-```{r}
-# answer
-return_even <- function(x){
-  if (x %% 2 == 0) {
-    return("I'm an even number!")
-  }
-}
-
-x <- 4
-return_even(x)
-```
-
 \newpage
 
 ### Question 2
@@ -62,19 +50,6 @@ return_odd <- function(y){
 
 return_odd(3)
 odd_add_1
-```
-
-```{r}
-# answer
-return_odd <- function(y){
-  if (y %% 2 != 0) {
-    odd_add_1 = y + 1
-  }
-  return(odd_add_1)
-}
-
-return_odd(3)
-#odd_add_1
 ```
 
 Although we created a variable within our function, these new variables do not transfer to the global environment. Calling odd_add_1 after running the function does not make sense. If we wanted to utilize the odd_add_1 we would need to assign it to another variable or use it in a calculation. 
@@ -101,14 +76,10 @@ bmi_imperial(df_colorado$height[1], df_colorado$weight[1])
 
 ```{r}
 # your code here
-df_taiwan <- readxl::read_xlsx("data/taiwan_date.xlsx")
 
-bmi_metric <- function(height, weight){
-  bmi = weight/(height/100)^2
-  return(bmi)
-}
 
-bmi_metric(df_taiwan$height[1], df_taiwan$weight[1])
+# test
+#bmi_metric(df_taiwan$height[1], df_taiwan$weight[1])
 ```
 
 \newpage
@@ -118,15 +89,10 @@ bmi_metric(df_taiwan$height[1], df_taiwan$weight[1])
 Can you write a function called calculate_bmi() that combines both of the BMI functions? You will need to determine a way to evaluate which calculation to perform. Use the first row for the Colorado and Taiwan data to test.
 
 ```{r}
-calculate_bmi <- function(height, weight){
-  # the tallest person was 8 ft 11.1 in tall, which we can use as a crude cutoff
-  if_else(height > 9, # conditional statement
-          (weight/(height/100)^2), # if true, metric
-          (703 * weight)/(height * 12)^2) # if false, imperial 
-}
 
-calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
-calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
+# test
+#calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
+#calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
 ```
 
 \newpage
@@ -148,24 +114,9 @@ lbs_to_kg <- function(lbs){
 
 lbs_to_kg(1) # test
 
-# create feet_to_centimeter
-feet_to_centimeter <- function(feet){
-  return(feet * 30.48)
-}
-
-feet_to_centimeter(1) # test
-
-# modify calculate_bmi()
-calculate_bmi <- function(height, weight){
-  # the tallest person was 8 ft 11.1 in tall, which we can use as a crude cutoff
-  if_else(height > 9, # conditional statement
-          (weight/(height/100)^2), # if true, metric
-          (lbs_to_kg(weight))/(feet_to_centimeter(height)/100)^2) # if false, imperial 
-}
-
 # values should match above
-calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
-calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
+#calculate_bmi(df_colorado$height[1], df_colorado$weight[1])
+#calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
 ```
 
 \newpage
@@ -175,11 +126,7 @@ calculate_bmi(df_taiwan$height[1], df_taiwan$weight[1])
 Just how we use other functions, we can also use our new calculate_bmi() function during a dplyr action. That is, we can *pipe* information into our function. Create a new column called **bmi** with a dplyr call and our new function. Perform this action on both the Colorado data and Taiwan data.
 
 ```{r}
-df_colorado <- df_colorado %>%
-  mutate(bmi = calculate_bmi(height, weight))
 
-df_taiwan <- df_taiwan %>%
-  mutate(bmi = calculate_bmi(height, weight))
 ```
 
 \newpage
