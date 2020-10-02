@@ -1,0 +1,80 @@
+---
+title: "Problem Set 6"
+author: "NAME HERE"
+date: "10/1/2020"
+output: pdf_document
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+
+df <- read_csv("missingness_interventions.csv")
+df <- readxl::read_xlsx("missingness_interventions.xlsx")
+```
+
+### Question 
+
+There's a few inconsistencies with how NAs have been recorded in the gender and orienation column. We have blanks, -999, -1, and NA. Fix these inconsistencies by changing the value to NA.
+
+How many NAs do we have in the entire data set?
+
+```{r}
+# check unique gender & orientation entries
+unique(df$gender)
+unique(df$orientation)
+
+df <- df %>%
+  mutate(gender = if_else(gender %in% c("female", "male"), # if female/male 
+                          gender, # keep same
+                          NA_character_), # otherwise, NA
+         orientation = if_else(orientation %in% # check for:
+                                 c("heterosexual", "lesbian/gay woman", "gay", "other"),
+                              orientation, # keep same 
+                              NA_character_)) # otherwise NA
+
+# 25 NAs
+sum(is.na(df))
+```
+
+\newpage
+
+### Question
+
+At a glance, we can already see errors with city and state names. Let's first fix these entries to have uniform naming where cities are properly capitalized and states are capitalized. For example, we want to see "San Antonio" and "TX" rather than "san Antonio" and "tx". We want you to use distinct(), pull(), and case_when() for this question.
+
+```{r}
+ # pull/look at unique city names
+df %>%
+  select(city) %>%
+  distinct() %>%
+  pull()
+
+# pull/look at unique states 
+df %>% 
+  select(state) %>%
+  distinct() %>%
+  pull()
+
+df <- df %>%
+  mutate(
+    city = case_when(
+      city %in% c("atlanta", "atlAnTa") ~ "Atlanta",
+      city %in% c("austin") ~ "Austin",
+      city %in% c("oakland", "iakland") ~ "Oakland",
+      city %in% c("hayward", "Haywarf") ~ "Hayward"),
+    state = case_when(
+      state %in% c("gA", "ga", "G A") ~ "GA",
+      state = state %in% c("tX", "tx") ~ "TX",
+      state = state %in% c("ca", "C A", "CA_") ~ "CA"))
+```
+
+\newpage
+
+### Question
+
+
+
+
+How many observations do we have in each state?
+
