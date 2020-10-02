@@ -5,15 +5,15 @@ date: "10/1/2020"
 output: pdf_document
 ---
 
-```{r}
+```{r, include=F, echo=F}
 library(tidyverse)
+library(lubridate)
 library(readr)
 
-df <- read_csv("missingness_interventions.csv")
-df <- readxl::read_xlsx("missingness_interventions.xlsx")
+df <- read_csv("data/missing_interventions.csv")
 ```
 
-### Question 
+### Question 1
 
 There's a few inconsistencies with how NAs have been recorded in the gender and orienation column. We have blanks, -999, -1, and NA. Fix these inconsistencies by changing the value to NA.
 
@@ -39,7 +39,7 @@ sum(is.na(df))
 
 \newpage
 
-### Question
+### Question 2
 
 At a glance, we can already see errors with city and state names. Let's first fix these entries to have uniform naming where cities are properly capitalized and states are capitalized. For example, we want to see "San Antonio" and "TX" rather than "san Antonio" and "tx". We want you to use distinct(), pull(), and case_when() for this question.
 
@@ -73,7 +73,7 @@ df <- df %>%
 
 \newpage
 
-### Question
+### Question 3
 
 Format the date column into a date format. Ominously, these interventions all occurred on the 25th day of the month.
 
@@ -82,7 +82,7 @@ df$date <- dmy(df$date)
 ```
 
 
-### Question
+### Question 4
 
 More errors! We see that some cities and states do not match appropriately. We can assume there were no errors with the date data. Use the following information to fix the state information. We know the interventions occurred in these cities during the following dates:
 
@@ -99,23 +99,57 @@ df <- df %>%
     date == as.Date("2018-05-25") ~ "GA",
     date == as.Date("2019-02-25") ~ "TX"
   ))
-
-# now fix city
-df2 <- df %>%
-  mutate(city = case_when(
-    city 
-  ))
 ```
 
-### Question
+\newpage
 
-Now we want to fix the city information, but you may realize that we have two cities in California during the same date. We can't, at least from our data, distinguish the difference. Let's drop those rows with this inconsitency. 
+### Question 5
+
+Now we want to fix the city information, but you may realize that we have two cities in California during the same date. We can't, at least from our data, distinguish the difference. Let's drop those rows with this inconsistency. One suggestion is to create a variable indicating whether to drop the row. If you performed this step correctly you should have 45 rows.
 
 ```{r}
-df2 <- df %>%
-  
+df <- df %>%
+  # create drop variable to indicate which rows to drop
+  mutate(drop = case_when(
+    state == "CA" & city %in% c("Oakland", "Hayward") ~ "keep",
+    state == "GA" & city == "Atlanta" ~ "keep",
+    state == "TX" & city %in% c("San Antonio", "Austin") ~ "keep",
+    TRUE ~ NA_character_)) %>%
+  drop_na(drop)
 ```
 
+\newpage
 
-How many observations do we have in each state?
+### Question 6
 
+We have one last issue: our interventions column has missing data. We have two interventions that occurred in these locations:
+
+* Intervention 1: Hayward, Atlanta, San Antonio
+* Intervention 2: Oakland, Atlanta, Austin
+
+For all of the cities except Atlanta it's clear what intervention took place. Fix these clear instances. As for Atlanta, we are forced to throw out these observations since we cannot reliably determine which intervention occurred. If you performed this step correctly you should have 44 rows.
+
+```{r}
+df <- df %>%
+  mutate(intervention = case_when(
+    city %in% c("Hayward", "San Antonio") ~ 1,
+    city %in% c("Oakland", "Austin") ~ 2,
+    TRUE ~ intervention)) %>%
+  drop_na(intervention)
+```
+
+\newpage
+
+### Challenge
+
+Create a box plot comparing the two interventions and their outcome. The outcome is a continuous variable from 0 to 10. 
+
+```{r}
+# make intervention a factor
+df <- df %>% mutate(intervention = as.factor(intervention))
+
+ggplot(df, aes(x=intervention, y=outcome)) +
+  geom_boxplot() +
+  labs(title = "Box Plot of Intervention Outcomes") +
+  theme_minimal()
+```
