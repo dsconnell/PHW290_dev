@@ -56,24 +56,65 @@ df %>%
   distinct() %>%
   pull()
 
+# fix city and state using case_when()
 df <- df %>%
   mutate(
     city = case_when(
-      city %in% c("atlanta", "atlAnTa") ~ "Atlanta",
-      city %in% c("austin") ~ "Austin",
-      city %in% c("oakland", "iakland") ~ "Oakland",
-      city %in% c("hayward", "Haywarf") ~ "Hayward"),
+      city %in% c("Atlanta", "atlanta", "atlAnTa") ~ "Atlanta",
+      city %in% c("Austin", "austin") ~ "Austin",
+      city %in% c("San Antonio", "san Antonio") ~ "San Antonio",
+      city %in% c("Oakland", "oakland", "iakland") ~ "Oakland",
+      city %in% c("Hayward", "hayward", "Haywarf") ~ "Hayward"),
     state = case_when(
-      state %in% c("gA", "ga", "G A") ~ "GA",
-      state = state %in% c("tX", "tx") ~ "TX",
-      state = state %in% c("ca", "C A", "CA_") ~ "CA"))
+      state %in% c("GA", "gA", "ga", "G A") ~ "GA",
+      state %in% c("TX", "tX", "tx") ~ "TX",
+      state %in% c("CA", "ca", "C A", "CA_") ~ "CA"))
 ```
 
 \newpage
 
 ### Question
 
+Format the date column into a date format. Ominously, these interventions all occurred on the 25th day of the month.
 
+```{r}
+df$date <- dmy(df$date)
+```
+
+
+### Question
+
+More errors! We see that some cities and states do not match appropriately. We can assume there were no errors with the date data. Use the following information to fix the state information. We know the interventions occurred in these cities during the following dates:
+
+* 03/2018 - Oakland
+* 03/2018 - Hayward
+* 05/2018 - Atlanta
+* 02/2019 - San Antonio
+* 02/2019 - Austin
+
+```{r}
+df <- df %>% 
+  mutate(state = case_when(
+    date == as.Date("2018-03-25") ~ "CA",
+    date == as.Date("2018-05-25") ~ "GA",
+    date == as.Date("2019-02-25") ~ "TX"
+  ))
+
+# now fix city
+df2 <- df %>%
+  mutate(city = case_when(
+    city 
+  ))
+```
+
+### Question
+
+Now we want to fix the city information, but you may realize that we have two cities in California during the same date. We can't, at least from our data, distinguish the difference. Let's drop those rows with this inconsitency. 
+
+```{r}
+df2 <- df %>%
+  
+```
 
 
 How many observations do we have in each state?
