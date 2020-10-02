@@ -5,6 +5,8 @@ date: "10/1/2020"
 output: pdf_document
 ---
 
+For this problem set we will work with fictional data comparing the efficacy of two interventions. The interventions took place across several states and cities, with slight variations in dates. The outcome is a continuous variable.
+
 ```{r, include=F, echo=F}
 library(tidyverse)
 library(lubridate)
