@@ -10,22 +10,41 @@ For this problem set we will work with fictional data comparing the efficacy of 
 ```{r, include=F, echo=F}
 library(tidyverse)
 library(lubridate)
-library(readr)
 
 df <- read_csv("data/missing_interventions.csv")
 ```
 
 ### Question 1
 
-There's a few inconsistencies with how NAs have been recorded in the gender and orienation column. We have blanks, -999, -1, and NA. Fix these inconsistencies by changing the value to NA.
-
-How many NAs do we have in the entire data set?
+There's missing data in this data set. Can you identify them? In the next question you will re=code these values to NA.
 
 ```{r}
-# check unique gender & orientation entries
-unique(df$gender)
-unique(df$orientation)
+head(df) # I see some strange values in gender already
 
+# first see how many NAs in the dataset 
+sum(is.na(df)) # 25 NAs
+
+# take a look at the gender unique values
+unique(df$gender) # -999, -1 are most likely NA values
+
+# take a look at orientatin unique values
+unique(df$orientation) # -999, -1 are most likely NA values
+```
+
+How many NAs did you find? 
+
+* 25 NAs
+
+Are there other values you think may count as NA?
+
+* -999, -1 
+
+\newpage
+
+### Question 2
+
+For the other values you believe may also be NAs, re-code them as NA. 
+```{r}
 df <- df %>%
   mutate(gender = if_else(gender %in% c("female", "male"), # if female/male 
                           gender, # keep same
@@ -34,14 +53,11 @@ df <- df %>%
                                  c("heterosexual", "lesbian/gay woman", "gay", "other"),
                               orientation, # keep same 
                               NA_character_)) # otherwise NA
-
-# 25 NAs
-sum(is.na(df))
 ```
 
 \newpage
 
-### Question 2
+### Question 3
 
 At a glance, we can already see errors with city and state names. Let's first fix these entries to have uniform naming where cities are properly capitalized and states are capitalized. For example, we want to see "San Antonio" and "TX" rather than "san Antonio" and "tx". We want you to use distinct(), pull(), and case_when() for this question.
 
@@ -75,7 +91,7 @@ df <- df %>%
 
 \newpage
 
-### Question 3
+### Question 4
 
 Format the date column into a date format. Ominously, these interventions all occurred on the 25th day of the month.
 
@@ -83,31 +99,11 @@ Format the date column into a date format. Ominously, these interventions all oc
 df$date <- dmy(df$date)
 ```
 
-
-### Question 4
-
-More errors! We see that some cities and states do not match appropriately. We can assume there were no errors with the date data. Use the following information to fix the state information. We know the interventions occurred in these cities during the following dates:
-
-* 03/2018 - Oakland
-* 03/2018 - Hayward
-* 05/2018 - Atlanta
-* 02/2019 - San Antonio
-* 02/2019 - Austin
-
-```{r}
-df <- df %>% 
-  mutate(state = case_when(
-    date == as.Date("2018-03-25") ~ "CA",
-    date == as.Date("2018-05-25") ~ "GA",
-    date == as.Date("2019-02-25") ~ "TX"
-  ))
-```
-
 \newpage
 
 ### Question 5
 
-Now we want to fix the city information, but you may realize that we have two cities in California during the same date. We can't, at least from our data, distinguish the difference. Let's drop those rows with this inconsistency. One suggestion is to create a variable indicating whether to drop the row. If you performed this step correctly you should have 45 rows.
+Now we want to fix the city information, but you may realize that we have two cities in California during the same date. We can't, at least from our data, distinguish the difference. Let's drop those rows with this inconsistency. One suggestion is to create a variable indicating whether to drop the row. If you performed this step correctly you should have 33 rows.
 
 ```{r}
 df <- df %>%
@@ -129,7 +125,7 @@ We have one last issue: our interventions column has missing data. We have two i
 * Intervention 1: Hayward, Atlanta, San Antonio
 * Intervention 2: Oakland, Atlanta, Austin
 
-For all of the cities except Atlanta it's clear what intervention took place. Fix these clear instances. As for Atlanta, we are forced to throw out these observations since we cannot reliably determine which intervention occurred. If you performed this step correctly you should have 44 rows.
+For all of the cities except Atlanta it's clear what intervention took place. Fix these clear instances. As for Atlanta, we are forced to throw out these observations since we cannot reliably determine which intervention occurred. 
 
 ```{r}
 df <- df %>%
@@ -140,11 +136,29 @@ df <- df %>%
   drop_na(intervention)
 ```
 
+How many observations did you drop?
+
+2
+
 \newpage
+
+### Question 7
+
+We have a few NAs in the outcomes column. Our on-site researchers informed us that when a score of "0" was provided, the data collection team left the cell blank. Re-code the NAs to 0. 
+
+```{r}
+df <- df %>%
+  mutate(outcome = if_else(
+    is.na(outcome), # if outcome is 0
+    0, # re-code to 0
+    outcome # otherwise keep the same value
+  ))
+```
+
 
 ### Challenge
 
-Create a box plot comparing the two interventions and their outcome. The outcome is a continuous variable from 0 to 10. 
+Create a box plot comparing the two interventions and their outcome. The outcome is a continuous variable from 0 to 10. You may need to factor one of your variables.
 
 ```{r}
 # make intervention a factor
