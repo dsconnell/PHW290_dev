@@ -13,7 +13,8 @@ For this problem set we will work with fictional data comparing the efficacy of 
 library(tidyverse)
 library(lubridate)
 
-df <- read_csv("data/missing_interventions.csv")
+# read your data
+
 ```
 
 ### Question 1
