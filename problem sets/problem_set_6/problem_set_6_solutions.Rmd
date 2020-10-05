@@ -5,6 +5,8 @@ date: "10/1/2020"
 output: pdf_document
 ---
 
+Due: October 12th
+
 For this problem set we will work with fictional data comparing the efficacy of two interventions. The interventions took place across several states and cities, with slight variations in dates. The outcome is a continuous variable.
 
 ```{r, include=F, echo=F}
@@ -16,7 +18,7 @@ df <- read_csv("data/missing_interventions.csv")
 
 ### Question 1
 
-There's missing data in this data set. Can you identify them? In the next question you will re=code these values to NA.
+There's missing data in this data set. Can you identify them? In the next question you will re-code these values to NA.
 
 ```{r}
 head(df) # I see some strange values in gender already
@@ -27,7 +29,7 @@ sum(is.na(df)) # 25 NAs
 # take a look at the gender unique values
 unique(df$gender) # -999, -1 are most likely NA values
 
-# take a look at orientatin unique values
+# take a look at orientation unique values
 unique(df$orientation) # -999, -1 are most likely NA values
 ```
 
