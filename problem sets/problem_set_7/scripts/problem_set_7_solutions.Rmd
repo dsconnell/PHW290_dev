@@ -1,0 +1,49 @@
+---
+title: "Problem Set 7"
+author: "NAME HERE"
+date: "10/8/2020"
+output: pdf_document
+---
+bmi_1 <- rename_with(bmi, ~ tolower(gsub(" ","_", .x, fixed=TRUE)))
+# lower case all column names
+bmi_1 <- rename(bmi_1, location = location_information)
+https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95
+
+```{r, include=F}
+library(tidyverse)
+df_motor <- read_csv("../data/Motor_Vehicle_Collisions_Crashes.csv")
+
+df_motor <- df_motor %>%
+  rename_with(~ tolower(gsub(" ","_", .x, fixed=TRUE))) %>%
+  select(crash_date, crash_time, 
+         number_of_persons_injured, number_of_pedestrians_injured, 
+         number_of_cyclist_injured, number_of_motorist_injured, 
+         contributing_factor_vehicle_1, 
+         vehicle_type_code_1) %>% 
+  drop_na()
+
+df_motor %>%
+  group_by(number_of_persons_injured) %>%
+  summarize(count = n())
+
+examine <- df_motor %>%
+  group_by(vehicle_type_code_1) %>%
+  summarize(count = n())
+
+unique(df_motor$vehicle_type_code_1)
+
+# lower casing vehicles
+df_motor <- df_motor %>%
+  mutate(vehicle_type_code_1 = gsub(" ", "-", ignore.case=T, tolower(vehicle_type_code_1)))
+```
+
+
+
+group_by()
+
+aggregate data
+  + mean
+  + sd
+  + percent
+
+flip from long to wide or vice versa
