@@ -32,9 +32,24 @@ examine <- df_motor %>%
 
 unique(df_motor$vehicle_type_code_1)
 
-# lower casing vehicles
+# lower case vehicles and add dash between spaces
 df_motor <- df_motor %>%
   mutate(vehicle_type_code_1 = gsub(" ", "-", ignore.case=T, tolower(vehicle_type_code_1)))
+
+# grab counts > 500
+df_motor <- df_motor %>%
+  group_by(vehicle_type_code_1) %>%
+  mutate(count = n()) %>%
+  filter(count > 500)
+
+# calculate percentage by vehicle
+viz <- df_motor %>%
+  group_by(vehicle_type_code_1) %>%
+  summarize(count = n(),
+            perc = count/nrow(df_motor))
+
+ggplot(viz, aes(x = vehicle_type_code_1, y = perc)) +
+  geom_col()
 ```
 
 
