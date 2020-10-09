@@ -35,7 +35,7 @@ unique(df$orientation) # -999, -1 are most likely NA values
 
 How many NAs did you find? 
 
-* 25 NAs
+* 32 NAs
 
 Are there other values you think may count as NA?
 

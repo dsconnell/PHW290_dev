@@ -38,7 +38,7 @@ We have grouped the questions below to push you to perform commands with less co
 
 ### Questions 1-3
 
-```{r, results="markup"}
+```{r, include=F}
 # load your data
 df_motor <- read_csv("../data/Motor_Vehicle_Collisions_Crashes.csv")
 ```

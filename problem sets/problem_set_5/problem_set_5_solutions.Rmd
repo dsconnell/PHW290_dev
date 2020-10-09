@@ -44,11 +44,11 @@ x <- 4
 return_even(x)
 ```
 
+The function is missing an input. 
+
 \newpage
 
 ### Question 2
-
-R functions are not able to access global variables unless we provide them as inputs. 
 
 Below is a function that determines if a number is odd and adds 1 to that number. The function ought to return that value, but we can't seem to access the value. Debug the code and explain why this error is occurring. Does it make sense to try and call odd_add_1 after running the function? 
 
