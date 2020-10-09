@@ -5,73 +5,153 @@ date: "10/8/2020"
 output: pdf_document
 ---
 
-https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95
-
 ```{r, include=F}
+# load libraries and suppress output w/ include=F
 library(tidyverse)
+library(lubridate)
+library(readxl)
+```
+
+For the first part of this problem set we will work with motor vehicle crash data from New York City. You can read more about this [publicly available data set on their website](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
+
+## Part 1
+
+### Questions 1 - 5 
+
+The data is called "Motor_Vehicle_Collisions_Crashes". We want you to perform the following:
+
+1. Rename the column names to lower-case and replace spaces with an underscore.
+2. Select only:
+  + crash_date
+  + number_of_persons_injured
+  + contributing_factor_vehicle_1
+  + vehicle_type_code_1
+3. Drop all rows with an NA value
+4. Lower case the vehicle_type_code_1 variable and replace spacess with a dash.
+5. Filter the data for vehicles that have a count/appear in the data set 500 times or more
+  + Hints: group_by(), mutate(), n(), filter()
+6. Calculate the percentage by vehicle
+
+We have grouped the questions below to push you to perform commands with less code.
+
+\newpage
+
+### Questions 1-3
+
+```{r}
 df_motor <- read_csv("../data/Motor_Vehicle_Collisions_Crashes.csv")
 
 df_motor <- df_motor %>%
+  # lower case and remove spaces
   rename_with(~ tolower(gsub(" ","_", .x, fixed=TRUE))) %>%
+  # select certain columns
   select(crash_date, crash_time, 
-         number_of_persons_injured, number_of_pedestrians_injured, 
-         number_of_cyclist_injured, number_of_motorist_injured, 
+         number_of_persons_injured, 
          contributing_factor_vehicle_1, 
          vehicle_type_code_1) %>% 
+  # drop NA rows
   drop_na()
+```
 
-df_motor %>%
-  group_by(number_of_persons_injured) %>%
-  summarize(count = n())
+\newpage
 
-examine <- df_motor %>%
-  group_by(vehicle_type_code_1) %>%
-  summarize(count = n())
+### Questions 4-5
 
-unique(df_motor$vehicle_type_code_1)
-
+```{r}
 # lower case vehicles and add dash between spaces
 df_motor <- df_motor %>%
-  mutate(vehicle_type_code_1 = gsub(" ", "-", ignore.case=T, tolower(vehicle_type_code_1)))
-
-# grab counts > 500
-df_motor <- df_motor %>%
+  mutate(vehicle_type_code_1 = 
+           gsub(" ", "-", ignore.case=T, tolower(vehicle_type_code_1))) %>%
+  # organize by vehicles
   group_by(vehicle_type_code_1) %>%
+  # create a variable for counts
   mutate(count = n()) %>%
+  # filter counts > 500
   filter(count > 500)
+```
 
+\newpage
+
+### Question 6
+
+```{r}
 # calculate percentage by vehicle
-viz <- df_motor %>%
+df_motor %>%
   group_by(vehicle_type_code_1) %>%
   summarize(count = n(),
             perc = count/nrow(df_motor))
-
-ggplot(viz, aes(x = vehicle_type_code_1, y = perc)) +
-  geom_col()
-
-
 ```
+
+\newpage
+
+## Part 2
+
+### Question 7 / Challenge
+
+Use the readxl library and load two data sets from the "two_data_sheets" file. There's a parameter that you can specify which sheet to load. In this case, we have data about rat reaction time in sheet 1 and home visits in sheet 2.
 
 ```{r}
-rat_reaction <- readxl::read_xlsx("../data/rat_reaction_time.xlsx")
-
-# convert from wide to long
-rat_reaction$subject <- factor(rat_reaction$subject)
-rat_reaction_long <- re
-
-# comparing order effects...maze 1 first leads to slower maze 2
-rat_reaction %>%
-  group_by(cond) %>%
-  summarize(mean_1 = mean(maze_1),
-            mean_2 = mean(maze_2))
+library(readxl)
+df_rats <- read_excel("../data/two_data_sheets.xlsx", 1)
+df_home <- read_excel("../data/two_data_sheets.xlsx", 2)
 ```
 
+\newpage
 
-group_by()
+### Question 8
 
-aggregate data
-  + mean
-  + sd
-  + percent
+For the rats data, pivtot the data frame from wide to long format. We want the 1, 2, 3 columns, which represent the amount of cheese placed in a maze, to transform into a column called "cheese". The values in the cheese column will be the time, which represents the amount of time the rat took to complete the maze. Please use the head() function to print your data frame.
 
-flip from long to wide or vice versa
+```{r}
+# convert from wide to long
+df_rats$subject <- factor(df_rats$subject)
+df_rats_long <- df_rats %>% 
+  pivot_longer(c(`1`, `2`, `3`), names_to = "cheese", values_to = "time")
+
+head(df_rats_long)
+```
+
+\newpage 
+
+### Question 9
+
+Compute the mean and standard deviation of the maze time.
+
+```{r}
+df_rats_long %>%
+  # organize by amount of cheese
+  group_by(cheese) %>%
+  # summarize
+  summarize(mean = mean(time), # mean function
+            sd = sd(time))     # standard deviation function
+```
+
+\newpage
+
+### Question 10 
+
+Last one (we promise). With the home visits data, pivot the data frame from long to wide. We want the names from the action column to become unique columns and the values to represent the counts. Please use the head() function to print your data frame.
+
+```{r}
+# pivot from long to wide
+df_home_wide <- df_home %>%
+  pivot_wider(names_from = action, values_from = count)
+
+head(df_home_wide)
+```
+
+##### not including
+
+
+```{r}
+# visualize crashes by date
+df_motor %>%
+  mutate(crash_date = mdy(crash_date)) %>%
+  group_by(crash_date) %>%
+  summarize(count = n()) %>%
+  ggplot(aes(x = crash_date, y = count)) + 
+  geom_col() + 
+  scale_x_date(date_breaks = "1 month", date_labels="%b/%y") +
+  theme(axis.text.x = element_text(angle=60))
+```
+
