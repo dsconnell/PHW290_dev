@@ -4,9 +4,7 @@ author: "NAME HERE"
 date: "10/8/2020"
 output: pdf_document
 ---
-bmi_1 <- rename_with(bmi, ~ tolower(gsub(" ","_", .x, fixed=TRUE)))
-# lower case all column names
-bmi_1 <- rename(bmi_1, location = location_information)
+
 https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95
 
 ```{r, include=F}
@@ -50,8 +48,23 @@ viz <- df_motor %>%
 
 ggplot(viz, aes(x = vehicle_type_code_1, y = perc)) +
   geom_col()
+
+
 ```
 
+```{r}
+rat_reaction <- readxl::read_xlsx("../data/rat_reaction_time.xlsx")
+
+# convert from wide to long
+rat_reaction$subject <- factor(rat_reaction$subject)
+rat_reaction_long <- re
+
+# comparing order effects...maze 1 first leads to slower maze 2
+rat_reaction %>%
+  group_by(cond) %>%
+  summarize(mean_1 = mean(maze_1),
+            mean_2 = mean(maze_2))
+```
 
 
 group_by()
