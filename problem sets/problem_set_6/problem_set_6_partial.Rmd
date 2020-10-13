@@ -31,14 +31,6 @@ unique(df$gender) # -999, -1 are most likely NA values
 
 # take a look at orientation unique values
 unique(df$orientation) # -999, -1 are most likely NA values
-
-# we haven't learned this, but you can also use the following code
-# to find columns with missing values:
-# sapply taks a list, vector, or data frame and outputs a vector or matrix
-# we supply the data frame and use the function anyNA()
-# all of this occurs when accessing names(df)
-# note that this code won't help us find -999, -1
-names(df)[sapply(df, anyNA)]
 ```
 
 How many NAs did you find? 
@@ -138,17 +130,12 @@ We have one last issue: our interventions column has missing data. We have two i
 For all of the cities except Atlanta it's clear what intervention took place. Fix these clear instances. As for Atlanta, we are forced to throw out these observations since we cannot reliably determine which intervention occurred. 
 
 ```{r}
-df <- df %>%
-  mutate(intervention = case_when(
-    city %in% c("Hayward", "San Antonio") ~ 1,
-    city %in% c("Oakland", "Austin") ~ 2,
-    TRUE ~ intervention)) %>%
-  drop_na(intervention)
+
 ```
 
 How many observations did you drop?
 
-2
+
 
 \newpage
 
@@ -157,12 +144,7 @@ How many observations did you drop?
 We have a few NAs in the outcomes column. Our on-site researchers informed us that when a score of "0" was provided, the data collection team left the cell blank. Re-code the NAs to 0. 
 
 ```{r}
-df <- df %>%
-  mutate(outcome = if_else(
-    is.na(outcome), # if outcome is 0
-    0, # re-code to 0
-    outcome # otherwise keep the same value
-  ))
+
 ```
 
 
@@ -171,11 +153,5 @@ df <- df %>%
 Create a box plot comparing the two interventions and their outcome. The outcome is a continuous variable from 0 to 10. You may need to factor one of your variables.
 
 ```{r}
-# make intervention a factor
-df <- df %>% mutate(intervention = as.factor(intervention))
 
-ggplot(df, aes(x=intervention, y=outcome)) +
-  geom_boxplot() +
-  labs(title = "Box Plot of Intervention Outcomes") +
-  theme_minimal()
 ```
