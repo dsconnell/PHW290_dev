@@ -56,6 +56,7 @@ Are there other values you think may count as NA?
 For the other values you believe may also be NAs, re-code them as NA. 
 ```{r}
 df <- df %>%
+  # notice how we can manipulate multiple variables in one mutate call
   mutate(gender = if_else(gender %in% c("female", "male"), # if female/male 
                           gender, # keep same
                           NA_character_), # otherwise, NA
@@ -97,6 +98,9 @@ df <- df %>%
       state %in% c("GA", "gA", "ga", "G A") ~ "GA",
       state %in% c("TX", "tX", "tx") ~ "TX",
       state %in% c("CA", "ca", "C A", "CA_") ~ "CA"))
+
+# the above solution was somewhat laborious; we could have changed all of the 
+# city names to the same case to reduce some of the coding
 ```
 
 \newpage
