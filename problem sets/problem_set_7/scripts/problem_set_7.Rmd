@@ -9,7 +9,6 @@ output: pdf_document
 # load libraries and suppress output w/ include=F
 library(tidyverse)
 library(lubridate)
-library(readxl)
 ```
 
 For this problem set we will work with motor vehicle crash data from New York City. You can read more about this [publicly available data set on their website](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
@@ -42,19 +41,7 @@ df_motor <- read_csv("../data/Motor_Vehicle_Collisions_Crashes.csv")
 
 
 ```{r}
-df_motor <- df_motor %>%
-  # lower case and remove spaces
-  rename_with(~ tolower(gsub(" ","_", .x, fixed=TRUE))) %>%
-  # select certain columns
-  select(crash_date, crash_time, 
-         number_of_persons_injured, 
-         contributing_factor_vehicle_1, 
-         vehicle_type_code_1) %>% 
-  # drop NA rows
-  drop_na()
 
-dim(df_motor)
-head(df_motor)
 ```
 
 \newpage
@@ -62,16 +49,7 @@ head(df_motor)
 ### Questions 4-5
 
 ```{r}
-# lower case vehicles and add dash between spaces
-df_motor <- df_motor %>%
-  mutate(vehicle_type_code_1 = 
-           gsub(" ", "-", ignore.case=T, tolower(vehicle_type_code_1))) %>%
-  # organize by vehicles
-  group_by(vehicle_type_code_1) %>%
-  # create a variable for counts
-  mutate(count = n()) %>%
-  # filter counts > 500
-  filter(count > 500)
+
 ```
 
 \newpage
@@ -79,19 +57,10 @@ df_motor <- df_motor %>%
 ### Question 6
 
 ```{r}
-# calculate percentage by vehicle
-df_motor %>%
-  group_by(vehicle_type_code_1) %>%
-  summarize(count = n(),
-            perc = count/nrow(df_motor)) %>%
-  arrange(perc)
+
 ```
 
 \newpage
 
 ### Question 7
 
-buses
-
-* count: 2862
-* perc: 0.0155
