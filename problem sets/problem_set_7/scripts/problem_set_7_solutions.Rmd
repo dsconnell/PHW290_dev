@@ -12,11 +12,7 @@ library(lubridate)
 library(readxl)
 ```
 
-For the first part of this problem set we will work with motor vehicle crash data from New York City. You can read more about this [publicly available data set on their website](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
-
-## Part 1
-
-### Questions 1 - 5 
+For this problem set we will work with motor vehicle crash data from New York City. You can read more about this [publicly available data set on their website](https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95).
 
 The data is called "Motor_Vehicle_Collisions_Crashes". We want you to perform the following:
 
@@ -27,12 +23,13 @@ The data is called "Motor_Vehicle_Collisions_Crashes". We want you to perform th
    + contributing_factor_vehicle_1
    + vehicle_type_code_1
 3. Drop all rows with an NA value
-4. Lower case the vehicle_type_code_1 variable and replace spacess with a dash.
+4. Lower case the vehicle_type_code_1 variable and replace spaces with a dash.
 5. Filter the data for vehicles that have a count/appear in the data set 500 times or more
    + Hints: group_by(), mutate(), n(), filter()
 6. Calculate the percentage by vehicle
+7. Which vehicle group accounted for 0.3% (0.00374) of the accidents?
 
-We have grouped the questions below to push you to perform commands with less code.
+We have grouped the questions below to push you to perform commands with less code. As you're building your code we recommend going line by line to test, then combining.
 
 \newpage
 
@@ -86,76 +83,8 @@ df_motor %>%
             perc = count/nrow(df_motor))
 ```
 
-\newpage
+### Question 7
 
-## Part 2
-
-### Question 7 / Challenge
-
-Use the readxl library and load two data sets from the "two_data_sheets" file. There's a parameter that you can specify which sheet to load. In this case, we have data about rat reaction time in sheet 1 and home visits in sheet 2.
-
-```{r, echo=T, results="markup"}
-library(readxl)
-df_rats <- read_excel("../data/two_data_sheets.xlsx", 1)
-df_home <- read_excel("../data/two_data_sheets.xlsx", 2)
-```
-
-\newpage
-
-### Question 8
-
-For the rats data, pivot the data frame from wide to long format. We want the 1, 2, 3 columns, which represent the amount of cheese placed in a maze, to transform into a column called "cheese". The values in the cheese column will be the time, which represents the amount of time the rat took to complete the maze. Please use the head() function to print your data frame.
-
-```{r}
-# convert from wide to long
-df_rats$subject <- factor(df_rats$subject)
-df_rats_long <- df_rats %>% 
-  pivot_longer(c(`1`, `2`, `3`), names_to = "cheese", values_to = "time")
-
-head(df_rats_long)
-```
-
-\newpage 
-
-### Question 9
-
-Compute the mean and standard deviation of the maze time.
-
-```{r}
-df_rats_long %>%
-  # organize by amount of cheese
-  group_by(cheese) %>%
-  # summarize
-  summarize(mean = mean(time), # mean function
-            sd = sd(time))     # standard deviation function
-```
-
-\newpage
-
-### Question 10 
-
-Last one (we promise). With the home visits data, pivot the data frame from long to wide. We want the names from the action column to become unique columns and the values to represent the counts. Please use the head() function to print your data frame.
-
-```{r}
-# pivot from long to wide
-df_home_wide <- df_home %>%
-  pivot_wider(names_from = action, values_from = count)
-
-head(df_home_wide)
-```
-
-##### not including
-
-
-```{r}
-# visualize crashes by date
-df_motor %>%
-  mutate(crash_date = mdy(crash_date)) %>%
-  group_by(crash_date) %>%
-  summarize(count = n()) %>%
-  ggplot(aes(x = crash_date, y = count)) + 
-  geom_col() + 
-  scale_x_date(date_breaks = "1 month", date_labels="%b/%y") +
-  theme(axis.text.x = element_text(angle=60))
-```
-
+ambulances
+* count: 692
+* perc: 0.003
