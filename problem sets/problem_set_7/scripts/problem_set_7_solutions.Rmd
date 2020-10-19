@@ -91,6 +91,8 @@ df_motor %>%
   arrange(perc)
 ```
 
+Busses account for 1.5% of the accidents.
+
 \newpage
 
 ### Question 7
