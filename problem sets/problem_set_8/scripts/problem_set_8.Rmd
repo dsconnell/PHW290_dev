@@ -24,8 +24,7 @@ reaction time in sheet 1 and home visits in sheet 2.
 ```{r, echo=T, results="markup"}
 library(tidyverse)
 library(readxl)
-df_rats <- read_excel("../data/two_data_sheets.xlsx", 1)
-df_home <- read_excel("../data/two_data_sheets.xlsx", 2)
+
 ```
 
 \newpage
@@ -40,12 +39,7 @@ rat took to complete the maze. Please use the head() function to print
 your data frame.
 
 ```{r}
-# convert from wide to long
-df_rats$subject <- factor(df_rats$subject)
-df_rats_long <- df_rats %>% 
-  pivot_longer(c(`1`, `2`, `3`), names_to = "cheese", values_to = "time")
 
-head(df_rats_long)
 ```
 
 \newpage
@@ -55,12 +49,7 @@ head(df_rats_long)
 Compute the mean and standard deviation of the maze time.
 
 ```{r}
-df_rats_long %>%
-  # organize by amount of cheese
-  group_by(cheese) %>%
-  # summarize
-  summarize(mean = mean(time), # mean function
-            sd = sd(time))     # standard deviation function
+
 ```
 
 \newpage
@@ -73,11 +62,7 @@ unique columns and the values to represent the counts. Please use the
 head() function to print your data frame.
 
 ```{r}
-# pivot from long to wide
-df_home_wide <- df_home %>%
-  pivot_wider(names_from = action, values_from = count)
 
-head(df_home_wide)
 ```
 
 \newpage
@@ -107,19 +92,13 @@ present in the patient data AND the schedule data.
 
 Which kind of join do you use?
 
-**inner join**
 
 How many observations do you see? Note: Some patients have multiple
 visits.
 
-**124 observations**
 
 ```{r}
-# inner join by patient_id
-inner.join.patient <- patients %>% 
-  inner_join(schedule, by = "patient_id")
 
-#str(inner.join.patient)
 ```
 
 \newpage
@@ -133,19 +112,12 @@ and then subset. Use the data frame created from the previous question.
 
 Which join did you use?
 
-**left join**
 
 How many patients need a follow-up?
 
-**27**
 
 ```{r}
-left.follow.up <- inner.join.patient %>%
-  left_join(visits, by = "visit_id")
 
-# two ways we can filter:
-follow.up <- left.follow.up %>% filter(follow_up == "Y")
-follow.up <- left.follow.up[which(left.follow.up$follow_up == "Y"), ]
 ```
 
 \newpage
@@ -157,13 +129,9 @@ doctors. You can use unique(). Call this data frame **doctors.contact**.
 
 Which join did you use?
 
-**left join**
 
 ```{r}
-doctors.contact <- follow.up %>%
-  left_join(doctors, by = "doctor_id")
 
-unique(doctors.contact$doctor)
 ```
 
 \newpage
@@ -177,11 +145,5 @@ Create a unique list of these patients with their demographic
 information from the patients data.
 
 ```{r}
-not.in.contact <- schedule %>%
-  anti_join(doctors.contact, by = "patient_id") %>% # drop observations in schedule
-  left_join(patients, by = "patient_id") %>% # join demographic information
-  select(-c(visit_id, date)) %>%  # drop variables that prevent us from using distinct() properly
-  distinct() # grab distinct rows
 
-head(not.in.contact)
 ```
