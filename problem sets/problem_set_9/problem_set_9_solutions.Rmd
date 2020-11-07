@@ -6,7 +6,7 @@ output: pdf_document
 urlcolor: purple
 ---
 
-Due date: Wednesday, November 
+Due date: Monday, November 16th
 
 For this problem set we will use data from [New York City](https://data.cityofnewyork.us/Health/Children-Under-6-yrs-with-Elevated-Blood-Lead-Leve/tnry-kwh5) that tested children under 6 years old for elevated blood lead levels (BLL). [You can read more about the data on their website]).
 
@@ -75,7 +75,10 @@ kable(bll_nyc_table,
 
 ### Question 2
 
-Replicate the following bar chart. Since we want the graph to have an ascending order, we will need to factor borough_id. 
+Replicate the following bar chart. Since we want the graph to have an ascending order, we will need to factor borough_id. [https://colorswall.com/palette/454/](Here are the HEX codes used for the colors):
+
+* #ff6600: orange
+* #003884: blue
 
 ```{r, include=F, eval=F}
 knitr::include_graphics('data/question_2_bar.png')
@@ -93,7 +96,7 @@ bll_nyc_1$borough_id <- factor(bll_nyc_1$borough_id,
                                           ordered=TRUE)
 
 ggplot(bll_nyc_1, aes(x = borough_id, y = bll_all)) +
-  geom_col(fill = "orange") +
+  geom_col(fill = "#ff6600", color = "#003884") +
   labs(x = "boroughs",
        y = "counts of BLL > 5 µg/dL",
        title = "New York City: Elevated Blood Lead Levels 2006-2016 by Borough") +
@@ -106,7 +109,7 @@ ggplot(bll_nyc_1, aes(x = borough_id, y = bll_all)) +
 
 ### Question 3
 
-Create the following line graph. 
+Recreate the following line graph. You will need to combine the three measures of BLL to calculate a rate per borough per year. Your data frame, at it's smallest, will have 60 observations (12 years x 5 boroughs). 
 
 ```{r, include=F, eval=F}
 knitr::include_graphics('data/question_3_line.png')
@@ -118,15 +121,12 @@ bll_nyc_viz <- bll_nyc %>%
          borough_id = as.factor(borough_id)) %>%
   group_by(borough_id, time_period) %>%
   summarize(bll = sum(bll_5, bll_10, bll_15), # get total bll
-            total_tested = sum(total_tested),  # sum of total tested per row
-            bll_5_1k  = round(bll_5/total_tested * 1000, 1),
-            bll_10_1k = round(bll_10/total_tested * 1000, 1),
-            bll_15_1k = round(bll_15/total_tested * 1000, 1),
+            total_tested = sum(total_tested), # sum of total tested per row
             bll_5plus_1k = round(bll/total_tested * 1000, 1)) %>%
   mutate(borough_id = factor(borough_id,
                                levels = c(1:5), 
-                               labels = c("Bronx","Brooklyn",
-                                             "Manhattan", "Queens", "Staten Island"),
+                               labels = c("Bronx","Brooklyn", "Manhattan",
+                                          "Queens", "Staten Island"),
                                           ordered=TRUE))
 
 ggplot(bll_nyc_viz, aes(x = time_period, y = bll_5plus_1k, group = borough_id)) +
