@@ -107,6 +107,8 @@ ggplot(bll_nyc_1, aes(x = borough_id, y = bll_all)) +
 #ggsave("data/question_2_bar.png")
 ```
 
+\newpage
+
 ### Question 3
 
 Recreate the following line graph. You will need to combine the three measures of BLL to calculate a rate per borough per year. Your data frame, at it's smallest, will have 60 observations (12 years x 5 boroughs). 
