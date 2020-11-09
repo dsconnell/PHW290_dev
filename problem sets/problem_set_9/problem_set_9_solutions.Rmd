@@ -99,7 +99,7 @@ ggplot(bll_nyc_1, aes(x = borough_id, y = bll_all)) +
   geom_col(fill = "#ff6600", color = "#003884") +
   labs(x = "boroughs",
        y = "counts of BLL > 5 µg/dL",
-       title = "New York City: Elevated Blood Lead Levels 2006-2016 by Borough") +
+       title = "New York City: Elevated Blood Lead Levels 2005-2016 by Borough") +
   #scale_x_discrete(labels=c("Bronx", "Brooklyn", "Manhattan", 
                            # "Queens", "Staten Island")) +
   theme_bw()
@@ -135,7 +135,7 @@ ggplot(bll_nyc_viz, aes(x = time_period, y = bll_5plus_1k, group = borough_id)) 
   facet_wrap(~ borough_id, ncol=1) +
   geom_line(aes(color = borough_id)) +
   theme_minimal() +
-  labs(y = "BLL > 15 µg/dL",
+  labs(y = "BLL > 5 µg/dL per 1,000 tested",
        title = "New York City: Elevated Blood Levels > 5 µg/dL",
        subtitle = "2005-2016") +
   theme(legend.position="none", axis.title.x = element_blank())
