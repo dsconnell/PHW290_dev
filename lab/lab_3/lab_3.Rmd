@@ -1,0 +1,66 @@
+---
+title: "lab 3"
+author: "Lawrence Y. Tello"
+date: "11/11/2020"
+output: pdf_document
+---
+
+text labels
+paste
+calculating proportions
+scaling x and y axis
+functions to mass produce graphs
+
+0 = no symptom
+1 = symptom
+
+```{r, include=F, echo=F}
+library(tidyverse)
+library(lubridate)
+library(ggthemes)
+
+covid_data <- read_csv("data/daily_symptoms.csv") %>% mutate(ts_daily = mdy(ts_daily))
+```
+
+```{r runny_nose}
+covid_symp1 <- covid_data %>%
+  mutate(Blocked_runny_nose = ifelse(Blocked_runny_nose < 0, NA, Blocked_runny_nose)) %>%
+  # filter out NAs to remove from denominator
+  filter(!is.na( Blocked_runny_nose ) ) %>%
+  # keep only time and symptom of interest
+  select(ts_daily, Blocked_runny_nose) %>%
+  # group by date to get proportions
+  group_by(ts_daily) %>%
+  summarize(num = sum(Blocked_runny_nose),
+            total = n(),
+            prop = num / total) 
+
+ggplot( covid_symp1, aes(x = ts_daily, y = prop) ) +
+  # creating bars
+  geom_col() +
+  # change x axis to show month/day, separated by 14 days
+  scale_x_date( date_labels = "%b/%d", date_breaks = "14 day" ) +
+  # change y axis into percent and limit between 0, 0.03
+  scale_y_continuous( limits = c(0, 0.03), labels = scales::percent ) +
+  # remove x and y titles, and add overall title
+  labs(x = element_blank(),
+       y = element_blank(),
+       title = "Students: Blocked runny nose") +
+  # take advantage of available themes!
+  theme_fivethirtyeight()
+```
+
+That was one symptom! If we wanted to plot each symptom we'd have to run this code 9 times. Yikes. Whenever we need to re-do something several times we want to consider making a function.
+
+However, functions and dplyr can be a little tricky with the syntax.
+
+```{r}
+symptoms_covid <- function ( data, var ) {
+  # create string of variable to later to create column marker
+  var.name <- gsub( "_", " ", as.character(substitute( var ) ))
+  data %>%
+    mutate( var = ifelse( {{ var }} < 0, NA {{ var }} )) %>%
+    # filter out NAs to remove from denominator
+}
+```
+
