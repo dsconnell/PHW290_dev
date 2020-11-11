@@ -19,8 +19,35 @@ library(tidyverse)
 library(lubridate)
 library(ggthemes)
 
+sample <- read_csv("data/sample_plot.csv")
 df_covid <- read_csv("data/daily_symptoms.csv") %>% mutate(ts_daily = mdy(ts_daily))
 ```
+
+```{r}
+sample_plot <- sample %>%
+  mutate( count = 1 ) %>% # add a variable to count
+  select( gender_identity, count ) %>%
+  drop_na() %>%
+  group_by( gender_identity ) %>%
+  summarize( num = n() ) # sum up count
+
+sample_plot$total <- sum( sample_plot$num )
+sample_plot$prop <- sample_plot$num / sample_plot$total
+sum( sample_plot$prop ) # verify proportion adds up to 1
+sample_plot$perc <- as.character( round( sample_plot$prop, 3 ) * 100 )
+sample_plot$lab <- paste( sample_plot$num, paste( " (", sample_plot$perc, "%", sep = ""), 
+                          sep = "", ") " )
+
+
+ggplot(sample_plot, aes( x = gender_identity, y = prop ) ) + 
+  geom_bar( stat = "identity", width = 0.3) +
+  coord_flip() +
+  geom_text( aes(x = gender_identity, y = prop, label = lab),
+             size = 3.5, vjust = .5, hjust = -0.3) + 
+  ylim(0, 1)
+  
+```
+
 
 ```{r runny_nose}
 symp_1 <- df_covid %>%
@@ -73,6 +100,22 @@ symptoms_covid <- function ( data, var ) {
     mutate(var.name = var.name)
 }
 
+symp_2 <- symptoms_covid(df_covid, Cough)
+ggplot( symp_2, aes(x = ts_daily, y = prop) ) +
+  # creating bars
+  geom_col() +
+  # change x axis to show month/day, separated by 14 days
+  scale_x_date( date_labels = "%b/%d", date_breaks = "14 day" ) +
+  # change y axis into percent and limit between 0, 0.03
+  scale_y_continuous( limits = c(0, 0.03), labels = scales::percent ) +
+  # remove x and y titles, and add overall title
+  labs(x = element_blank(),
+       y = element_blank(),
+       title = "Students: Cough") +
+  # take advantage of available themes!
+  theme_fivethirtyeight()
+
+
 temp_a <- symptoms_covid(df_covid, Blocked_runny_nose)
 temp_b <- symptoms_covid(df_covid, Cough)
 temp_c <- symptoms_covid(df_covid, Fatigue)
@@ -86,10 +129,10 @@ temp_i <- symptoms_covid(df_covid, Sore_throat)
 symp_plot <- dplyr::bind_rows( temp_a, temp_b, temp_c, temp_d, temp_e,
                                temp_f, temp_g, temp_h, temp_i )
 
+
+
 ggplot(symp_plot, aes(x = ts_daily, y = prop, fill = var.name)) +
   geom_col() +
-  # geom_point() +
-  # geom_line(linetype = "dashed", alpha = 0.7, size = 1) +
   facet_wrap(~ var.name) +
   scale_x_date(date_labels = "%b/%d", date_breaks = "14 day") +
   scale_y_continuous(limits = c(0, 0.03), labels = scales::percent) +
