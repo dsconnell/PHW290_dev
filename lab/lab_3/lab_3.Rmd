@@ -14,6 +14,10 @@ functions to mass produce graphs
 0 = no symptom
 1 = symptom
 
+https://www.r-graph-gallery.com/index.html
+https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/
+https://publichealth.berkeley.edu/covid-19/safe-campus-initiative/charts-and-graphs/
+
 ```{r, include=F, echo=F}
 library(tidyverse)
 library(lubridate)
