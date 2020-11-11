@@ -19,11 +19,11 @@ library(tidyverse)
 library(lubridate)
 library(ggthemes)
 
-covid_data <- read_csv("data/daily_symptoms.csv") %>% mutate(ts_daily = mdy(ts_daily))
+df_covid <- read_csv("data/daily_symptoms.csv") %>% mutate(ts_daily = mdy(ts_daily))
 ```
 
 ```{r runny_nose}
-covid_symp1 <- covid_data %>%
+symp_1 <- df_covid %>%
   mutate(Blocked_runny_nose = ifelse(Blocked_runny_nose < 0, NA, Blocked_runny_nose)) %>%
   # filter out NAs to remove from denominator
   filter(!is.na( Blocked_runny_nose ) ) %>%
@@ -35,7 +35,7 @@ covid_symp1 <- covid_data %>%
             total = n(),
             prop = num / total) 
 
-ggplot( covid_symp1, aes(x = ts_daily, y = prop) ) +
+ggplot( symp_1, aes(x = ts_daily, y = prop) ) +
   # creating bars
   geom_col() +
   # change x axis to show month/day, separated by 14 days
@@ -59,8 +59,54 @@ symptoms_covid <- function ( data, var ) {
   # create string of variable to later to create column marker
   var.name <- gsub( "_", " ", as.character(substitute( var ) ))
   data %>%
-    mutate( var = ifelse( {{ var }} < 0, NA {{ var }} )) %>%
+    mutate( var = ifelse( {{ var }} < 0, NA, {{ var }} )) %>%
     # filter out NAs to remove from denominator
+    filter( !is.na( var ) ) %>%
+    # pair down to variables of interest
+    select( ts_daily, var ) %>%
+    # group by time
+    group_by( ts_daily ) %>%
+    summarize( num = sum( var ),         # numerator
+               total = n(),              # get total
+               prop = num / total ) %>%  # calculate
+    # add variable column marker
+    mutate(var.name = var.name)
 }
+
+temp_a <- symptoms_covid(df_covid, Blocked_runny_nose)
+temp_b <- symptoms_covid(df_covid, Cough)
+temp_c <- symptoms_covid(df_covid, Fatigue)
+temp_d <- symptoms_covid(df_covid, Feverish)
+temp_e <- symptoms_covid(df_covid, Gastrointestinal_symptoms)
+temp_f <- symptoms_covid(df_covid, Loss_of_sense_of_taste_or_smell)
+temp_g <- symptoms_covid(df_covid, Muscle_pain_or_body_aches)
+temp_h <- symptoms_covid(df_covid, Respiratory_symptoms)
+temp_i <- symptoms_covid(df_covid, Sore_throat)
+
+symp_plot <- dplyr::bind_rows( temp_a, temp_b, temp_c, temp_d, temp_e,
+                               temp_f, temp_g, temp_h, temp_i )
+
+ggplot(symp_plot, aes(x = ts_daily, y = prop, fill = var.name)) +
+  geom_col() +
+  # geom_point() +
+  # geom_line(linetype = "dashed", alpha = 0.7, size = 1) +
+  facet_wrap(~ var.name) +
+  scale_x_date(date_labels = "%b/%d", date_breaks = "14 day") +
+  scale_y_continuous(limits = c(0, 0.03), labels = scales::percent) +
+  labs(x = element_blank(), 
+       y = element_blank(), 
+       title = "Students: Symptom Percent",
+       color = element_blank()) +
+  theme_fivethirtyeight() +
+  theme(plot.title = element_text(color = "#003262"),
+        plot.subtitle = element_text(color = "#FDB515"),
+        panel.grid.major.x = element_blank(),
+        plot.background = element_rect(fill = "white", colour = "white"),
+        panel.background = element_rect(fill = "white", color = "white"),
+        strip.background = element_rect(colour = "white", fill = "white"),
+        legend.position = "none",
+        axis.text.x = element_text(angle= 45, hjust = 1),
+        axis.text.y = element_text()) +
+  guides(colour = guide_legend(nrow = 3)) 
 ```
 
