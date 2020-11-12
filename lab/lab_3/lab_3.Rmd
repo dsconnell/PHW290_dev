@@ -6,11 +6,13 @@ output: pdf_document
 ---
 
 Goals:
-text labels
-paste
+text labels (using paste)
+factoring by order, easy way
 calculating proportions
 scaling x and y axis
 functions to mass produce graphs
+
+data visualization is where all of the skills you've been building start to click together
 
 0 = no symptom
 1 = symptom
