@@ -5,6 +5,7 @@ date: "11/11/2020"
 output: pdf_document
 ---
 
+Goals:
 text labels
 paste
 calculating proportions
@@ -17,6 +18,8 @@ functions to mass produce graphs
 https://www.r-graph-gallery.com/index.html
 https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/
 https://publichealth.berkeley.edu/covid-19/safe-campus-initiative/charts-and-graphs/
+
+Data is from the safe campus study at UC Berkeley
 
 ```{r, include=F, echo=F}
 library(tidyverse)
@@ -33,13 +36,16 @@ sample_plot <- sample %>%
   select( gender_identity, count ) %>%
   drop_na() %>%
   group_by( gender_identity ) %>%
-  summarize( num = n() ) # sum up count
+  summarize( num = n() ) %>% # sum up count 
+  mutate( gender_identity = factor( gender_identity, 
+                                    levels = gender_identity[order(num)]))
 
 sample_plot$total <- sum( sample_plot$num )
 sample_plot$prop <- sample_plot$num / sample_plot$total
 sum( sample_plot$prop ) # verify proportion adds up to 1
 sample_plot$perc <- as.character( round( sample_plot$prop, 3 ) * 100 )
-sample_plot$lab <- paste( sample_plot$num, paste( " (", sample_plot$perc, "%", sep = ""), 
+sample_plot$lab <- paste( sample_plot$num, 
+                          paste( " (", sample_plot$perc, "%", sep = ""), 
                           sep = "", ") " )
 
 
