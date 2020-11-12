@@ -11,6 +11,7 @@ factoring by order, easy way
 calculating proportions
 scaling x and y axis
 functions to mass produce graphs
+saving plots
 
 data visualization is where all of the skills you've been building start to click together
 
@@ -56,7 +57,8 @@ ggplot(sample_plot, aes( x = gender_identity, y = prop ) ) +
   coord_flip() +
   geom_text( aes(x = gender_identity, y = prop, label = lab),
              size = 3.5, vjust = .5, hjust = -0.3) + 
-  ylim(0, 1)
+  ylim(0, 1) +
+  theme_minimal()
   
 ```
 
@@ -150,7 +152,9 @@ ggplot(symp_plot, aes(x = ts_daily, y = prop, fill = var.name)) +
   scale_y_continuous(limits = c(0, 0.03), labels = scales::percent) +
   labs(x = element_blank(), 
        y = element_blank(), 
-       title = "Students: Symptom Percent",
+       title = "Daily student reported symptoms",
+       subtitle = "by type of symptom",
+       caption = "for entire duration of the study",
        color = element_blank()) +
   theme_fivethirtyeight() +
   theme(plot.title = element_text(color = "#003262"),
@@ -163,5 +167,7 @@ ggplot(symp_plot, aes(x = ts_daily, y = prop, fill = var.name)) +
         axis.text.x = element_text(angle= 45, hjust = 1),
         axis.text.y = element_text()) +
   guides(colour = guide_legend(nrow = 3)) 
+
+#ggsave("plots/symp_plot.png")
 ```
 
