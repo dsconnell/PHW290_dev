@@ -24,9 +24,9 @@ bll_nyc <- read_csv("data/bll_nyc_per_1000.csv")
 
 For this question we will use the same [NYC data on elevated blood lead levels (BLL)](https://data.cityofnewyork.us/Health/Children-Under-6-yrs-with-Elevated-Blood-Lead-Leve/tnry-kwh5) from the previous problem set [New York City] that tested children under 6 years old for elevated blood lead levels (BLL). 
 
-Create a formattable table (example below) that shows the elevated blood lead levels per 1000 tested across 2013-2016. If the BLL increases from the previous year, turn the text red. If the BLL decreases from the previous year, turn the text green. To accomplish this color changing, you may want to create three indicator variables that checkk the value between years (e.g. use if_else). If you've have used conditional formatting on excel/google sheets, the concept is the same, but with R. 
+Create a formattable table (example below) that shows the elevated blood lead levels per 1000 tested across 2013-2016. If the BLL increases from the previous year, turn the text red. If the BLL decreases from the previous year, turn the text green. To accomplish this color changing, you may want to create three indicator variables that check the value between years (e.g. use if_else). If you've have used conditional formatting on excel/google sheets, the concept is the same, but with R. 
 
-Note: If you are using if_else (hint hint) and checking by the year, you will likely need to use the [left quote, actute, backtip](https://www.computerhope.com/jargon/b/backquot.htm#:~:text=Alternatively%20known%20as%20acute%2C%20backtick,keyboard%20key%20as%20the%20tilde.), etc to reference the variable. 
+Note: If you are using if_else (hint hint) and checking by the year, you will likely need to use the [left quote, actute, backtip](https://www.computerhope.com/jargon/b/backquot.htm#:~:text=Alternatively%20known%20as%20acute%2C%20backtick,keyboard%20key%20as%20the%20tilde.), to reference the variable. 
 
 We have also provided you a function that you can use within your formattable table to reference this indicator variable to help reduce the code. However, you do not have to use this, and feel free to change the hex colors. 
 
@@ -85,7 +85,7 @@ df_suicide <- read_csv("data/Suicide Mortality by State.csv")
 
 
 df_suicide <- read_csv("data/Suicide Mortality by State.csv") %>%
-  filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "WI", "DC", "PA", "FL", "AZ"))
+  filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "WI", "GA", "PA", "FL", "AZ"))
 
 plot_ly(df_suicide, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines') %>%
   layout(title = "Suicide Rates by State Over Time",
