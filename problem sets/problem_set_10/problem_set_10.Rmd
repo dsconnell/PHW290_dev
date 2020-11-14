@@ -5,31 +5,36 @@ date: "11/13/2020"
 output: html_document
 ---
 
-Due date:Monday, November 23rd
+Due date: Monday, November 23rd
 
-To submit, please email your html file to Lawrence (lytello@berkeley.edu). 
+*To submit, please email your html file to Lawrence (lytello@berkeley.edu).*
 
 table/graphs from last week and further update htem using DT, formattable, plotly
 
 ```{r, include=F}
 library(tidyverse)
 library(formattable)
-library(plotly)
 ```
 
 ```{r, include=F}
-data <- "data/Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv"
-bll_nyc <- read_csv(data) %>% drop_na()
-colnames(bll_nyc) <- c("borough_id", "time_period", 
-                       "bll_5", "bll_10", "bll_15", "total_tested")
+bll_nyc <- read_csv("data/bll_nyc_per_1000.csv")
 ```
-
 
 ### Question 1
 
-```{r}
-bll_nyc <- read_csv("data/bll_nyc_per_1000.csv")
+For this question we will use the same [NYC data on elevated blood lead levels (BLL)](https://data.cityofnewyork.us/Health/Children-Under-6-yrs-with-Elevated-Blood-Lead-Leve/tnry-kwh5) from the previous problem set [New York City] that tested children under 6 years old for elevated blood lead levels (BLL). 
 
+Create a formattable table (example below) that shows the elevated blood lead levels per 1000 tested across 2013-2016. If the BLL increases from the previous year, turn the text red. If the BLL decreases from the previous year, turn the text green. To accomplish this color changing, you may want to create three indicator variables that checkk the value between years (e.g. use if_else). If you've have used conditional formatting on excel/google sheets, the concept is the same, but with R. 
+
+Note: If you are using if_else (hint hint) and checking by the year, you will likely need to use the [left quote, actute, backtip](https://www.computerhope.com/jargon/b/backquot.htm#:~:text=Alternatively%20known%20as%20acute%2C%20backtick,keyboard%20key%20as%20the%20tilde.), etc to reference the variable. 
+
+We have also provided you a function that you can use within your formattable table to reference this indicator variable to help reduce the code. However, you do not have to use this, and feel free to change the hex colors. 
+
+```{r, include=F, eval=F}
+knitr::include_graphics('data/question_1_table.png')
+```
+
+```{r}
 # pivot from long to wide
 bll_nyc_wide <- bll_nyc %>%
   pivot_wider(names_from = time_period, values_from = bll_5plus_1k) %>%
@@ -52,19 +57,43 @@ formattable(bll_nyc_wide,
                            '2016' = formatter("span", style = ~ style(color = up_down(x_16)))))
 
 ```
+\newpage
 
 ### Question 2
 
+For this question, we will use suicide rates data that comes from [the CDC](https://www.cdc.gov/nchs/pressroom/sosmap/suicide-mortality/suicide.htm). 
+
+Select (any) 10 states to visualize suicide rates over time using plotly. 
+
+Here's my graph as a reference. 
+
+```{r, include=F, eval=F}
+knitr::include_graphics('data/question_2_graph.png')
+```
+
+```{r, include=F}
+# issues with formattable and plotly together since the "style" option overlap
+# https://stackoverflow.com/questions/39319427/using-formattable-and-plotly-simultaneously
+# therefore, load afterwards to avoid knitting issues
+
+library(plotly) 
+df_suicide <- read_csv("data/Suicide Mortality by State.csv")
+```
+
+
 ```{r}
-df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
+
+
+df_suicide <- read_csv("data/Suicide Mortality by State.csv") %>%
   filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "WI", "DC", "PA", "FL", "AZ"))
 
-plot_ly(df_mhealth, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines') %>%
+plot_ly(df_suicide, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines') %>%
   layout(title = "Suicide Rates by State Over Time",
          yaxis = list(title = "Suicide Rate per 100,000")) %>%
   highlight(on = "plotly_hover")
 ```
 
+\newpage
 
 ### Challenge
 
@@ -79,21 +108,25 @@ Some key search terms that may help:
 * html bold
 * html subtitle
 
-Below is the shell of the map to get you started.
+Below is the shell of the map to get you started, as well as an example with hovering over California.
+
+```{r, include=F, eval=F}
+knitr::include_graphics('data/challenge_choropleth.png')
+```
 
 ```{r}
 # data pulled from CDC website described above 
-df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
+df_suicide <- read_csv("data/Suicide Mortality by State.csv") %>%
   filter(YEAR == 2018)
 
-plot_ly(df_mhealth,
+plot_ly(df_suicide,
         type="choropleth",
         locationmode = "USA-states") %>%
   layout(geo=list(scope="usa")) 
 ```
 
 ```{r}
-plot_ly(df_mhealth,
+plot_ly(df_suicide,
         type="choropleth", 
         locations = ~STATE,
         locationmode = "USA-states", 

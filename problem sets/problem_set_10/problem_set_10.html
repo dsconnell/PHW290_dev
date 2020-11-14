@@ -2261,8 +2261,210 @@ summary {
 </div>
 
 
+<p>Due date:Monday, November 23rd</p>
+<p>To submit, please email your html file to Lawrence (<a href="mailto:lytello@berkeley.edu" class="email">lytello@berkeley.edu</a>).</p>
 <p>table/graphs from last week and further update htem using DT, formattable, plotly</p>
-<pre class="r"><code>df_mhealth &lt;- read_csv(&quot;data/Suicide Mortality by State.csv&quot;) %&gt;%
+<div id="question-1" class="section level3">
+<h3>Question 1</h3>
+<p>For this question we will use the same <a href="https://data.cityofnewyork.us/Health/Children-Under-6-yrs-with-Elevated-Blood-Lead-Leve/tnry-kwh5">NYC data on elevated blood lead levels (BLL)</a> from the previous problem set [New York City] that tested children under 6 years old for elevated blood lead levels (BLL).</p>
+<p>Create a formattable table (example below) that shows the elevated blood lead levels per 1000 tested across 2013-2016. If the BLL increases from the previous year, turn the text red. If the BLL decreases from the previous year, turn the text green. To accomplish this color changing, you may want to create three indicator variables that checkk the value between years (e.g. use if_else). If you’ve have used conditional formatting on excel/google sheets, the concept is the same, but with R.</p>
+<p>Note: If you are using if_else (hint hint) and checking by the year, you will likely need to use the <a href="https://www.computerhope.com/jargon/b/backquot.htm#:~:text=Alternatively%20known%20as%20acute%2C%20backtick,keyboard%20key%20as%20the%20tilde.">left quote, actute, backtip</a>, etc to reference the variable.</p>
+<p>We have also provided you a function that you can use within your formattable table to reference this indicator variable to help reduce the code. However, you do not have to use this, and feel free to change the hex colors.</p>
+<pre class="r"><code># pivot from long to wide
+bll_nyc_wide &lt;- bll_nyc %&gt;%
+  pivot_wider(names_from = time_period, values_from = bll_5plus_1k) %&gt;%
+  mutate(x_14 = if_else(`2014` &gt; `2013`, 1, 0),
+         x_15 = if_else(`2015` &gt; `2014`, 1, 0),
+         x_16 = if_else(`2016` &gt; `2015`, 1, 0))
+
+up_down = function(indicator) {
+  return(ifelse( indicator == 1, &quot;#fd626e&quot;, &quot;#03d584&quot;))
+}
+
+formattable(bll_nyc_wide,
+            align = c(&quot;l&quot;, rep(&quot;r&quot;, NROW(bll_nyc_wide) - 1)), # make first column left aligned
+                      list(x_14 = FALSE,
+                           x_15 = FALSE,
+                           x_16 = FALSE,
+                           &#39;Borough&#39; = formatter(&quot;span&quot;, style = ~ style(color = &quot;grey&quot;, font.weight = &quot;bold&quot;)),
+                           &#39;2014&#39; = formatter(&quot;span&quot;, style = ~ style(color = up_down(x_14))),
+                           &#39;2015&#39; = formatter(&quot;span&quot;, style = ~ style(color = up_down(x_15))),
+                           &#39;2016&#39; = formatter(&quot;span&quot;, style = ~ style(color = up_down(x_16)))))</code></pre>
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:left;">
+Borough
+</th>
+<th style="text-align:right;">
+2013
+</th>
+<th style="text-align:right;">
+2014
+</th>
+<th style="text-align:right;">
+2015
+</th>
+<th style="text-align:right;">
+2016
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">Bronx </span>
+</td>
+<td style="text-align:right;">
+24.2
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">22.6</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">19.2</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">18.9</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">Brooklyn </span>
+</td>
+<td style="text-align:right;">
+34.8
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">32.0</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">27.8</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">27.1</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">Manhattan </span>
+</td>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">16.4</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">12.7</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">10.0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">Queens </span>
+</td>
+<td style="text-align:right;">
+21.7
+</td>
+<td style="text-align:right;">
+<span style="color: #fd626e">22.6</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">19.1</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">17.4</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">Staten Island</span>
+</td>
+<td style="text-align:right;">
+20.4
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">19.9</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #03d584">14.6</span>
+</td>
+<td style="text-align:right;">
+<span style="color: #fd626e">18.3</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="question-2" class="section level3">
+<h3>Question 2</h3>
+<p>For this question, we will use suicide rates data that comes from <a href="https://www.cdc.gov/nchs/pressroom/sosmap/suicide-mortality/suicide.htm">the CDC</a>.</p>
+<p>Select 10 states to visualize suicide rates over time using plotly.</p>
+<p>Here’s my graph as a reference.</p>
+<pre class="r"><code>library(plotly)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:formattable&#39;:
+## 
+##     style</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>df_suicide &lt;- read_csv(&quot;data/Suicide Mortality by State.csv&quot;) %&gt;%
+  filter(STATE %in% c(&quot;CA&quot;, &quot;NY&quot;, &quot;WY&quot;, &quot;MI&quot;, &quot;HI&quot;, &quot;WI&quot;, &quot;DC&quot;, &quot;PA&quot;, &quot;FL&quot;, &quot;AZ&quot;))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   YEAR = col_double(),
+##   STATE = col_character(),
+##   NAME = col_character(),
+##   RATE = col_double(),
+##   DEATHS = col_number(),
+##   URL = col_character()
+## )</code></pre>
+<pre class="r"><code>plot_ly(df_suicide, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = &#39;lines&#39;) %&gt;%
+  layout(title = &quot;Suicide Rates by State Over Time&quot;,
+         yaxis = list(title = &quot;Suicide Rate per 100,000&quot;)) %&gt;%
+  highlight(on = &quot;plotly_hover&quot;)</code></pre>
+<pre><code>## No trace type specified:
+##   Based on info supplied, a &#39;scatter&#39; trace seems appropriate.
+##   Read more about this trace type -&gt; https://plot.ly/r/reference/#scatter</code></pre>
+<pre><code>## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
+## Please use `arrange()` instead.
+## See vignette(&#39;programming&#39;) for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>## Warning in RColorBrewer::brewer.pal(N, &quot;Set2&quot;): n too large, allowed maximum for palette Set2 is 8
+## Returning the palette you asked for with that many colors
+
+## Warning in RColorBrewer::brewer.pal(N, &quot;Set2&quot;): n too large, allowed maximum for palette Set2 is 8
+## Returning the palette you asked for with that many colors</code></pre>
+<div id="htmlwidget-506324bd81220df0bc79" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-506324bd81220df0bc79">{"x":{"visdat":{"24ea233f3f8b":["function () ","plotlyVisDat"]},"cur_data":"24ea233f3f8b","attrs":{"24ea233f3f8b":{"x":{},"y":{},"mode":"lines","color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Suicide Rates by State Over Time","yaxis":{"domain":[0,1],"automargin":true,"title":"Suicide Rate per 100,000"},"xaxis":{"domain":[0,1],"automargin":true,"title":"YEAR"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"highlight":{"on":"plotly_hover","off":"plotly_doubleclick","persistent":false,"dynamic":false,"color":null,"selectize":false,"defaultValues":null,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"data":[{"x":[2018,2017,2016,2015,2014,2005],"y":[19.2,18.2,17.7,18.2,18,16.4],"mode":"lines","type":"scatter","name":"AZ","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[10.9,10.5,10.5,10.3,10.5,9.1],"mode":"lines","type":"scatter","name":"CA","marker":{"color":"rgba(239,150,106,1)","line":{"color":"rgba(239,150,106,1)"}},"textfont":{"color":"rgba(239,150,106,1)"},"error_y":{"color":"rgba(239,150,106,1)"},"error_x":{"color":"rgba(239,150,106,1)"},"line":{"color":"rgba(239,150,106,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[15.2,14,14,14.4,13.9,12.5],"mode":"lines","type":"scatter","name":"FL","marker":{"color":"rgba(178,156,177,1)","line":{"color":"rgba(178,156,177,1)"}},"textfont":{"color":"rgba(178,156,177,1)"},"error_y":{"color":"rgba(178,156,177,1)"},"error_x":{"color":"rgba(178,156,177,1)"},"line":{"color":"rgba(178,156,177,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[11.9,15.2,12.1,13.5,13.8,8.2],"mode":"lines","type":"scatter","name":"HI","marker":{"color":"rgba(201,148,198,1)","line":{"color":"rgba(201,148,198,1)"}},"textfont":{"color":"rgba(201,148,198,1)"},"error_y":{"color":"rgba(201,148,198,1)"},"error_x":{"color":"rgba(201,148,198,1)"},"line":{"color":"rgba(201,148,198,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[15,14.1,13.3,13.8,13.3,11],"mode":"lines","type":"scatter","name":"MI","marker":{"color":"rgba(205,180,144,1)","line":{"color":"rgba(205,180,144,1)"}},"textfont":{"color":"rgba(205,180,144,1)"},"error_y":{"color":"rgba(205,180,144,1)"},"error_x":{"color":"rgba(205,180,144,1)"},"line":{"color":"rgba(205,180,144,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[8.3,8.1,8.1,7.8,8.1,6],"mode":"lines","type":"scatter","name":"NY","marker":{"color":"rgba(202,217,72,1)","line":{"color":"rgba(202,217,72,1)"}},"textfont":{"color":"rgba(202,217,72,1)"},"error_y":{"color":"rgba(202,217,72,1)"},"error_x":{"color":"rgba(202,217,72,1)"},"line":{"color":"rgba(202,217,72,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[14.9,15,14.7,14,13.3,11.1],"mode":"lines","type":"scatter","name":"PA","marker":{"color":"rgba(250,212,80,1)","line":{"color":"rgba(250,212,80,1)"}},"textfont":{"color":"rgba(250,212,80,1)"},"error_y":{"color":"rgba(250,212,80,1)"},"error_x":{"color":"rgba(250,212,80,1)"},"line":{"color":"rgba(250,212,80,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[14.8,15.4,14.7,14.7,13.1,11.6],"mode":"lines","type":"scatter","name":"WI","marker":{"color":"rgba(223,194,152,1)","line":{"color":"rgba(223,194,152,1)"}},"textfont":{"color":"rgba(223,194,152,1)"},"error_y":{"color":"rgba(223,194,152,1)"},"error_x":{"color":"rgba(223,194,152,1)"},"line":{"color":"rgba(223,194,152,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2018,2017,2016,2015,2014,2005],"y":[25.2,26.9,25.2,28,20.6,17.3],"mode":"lines","type":"scatter","name":"WY","marker":{"color":"rgba(179,179,179,1)","line":{"color":"rgba(179,179,179,1)"}},"textfont":{"color":"rgba(179,179,179,1)"},"error_y":{"color":"rgba(179,179,179,1)"},"error_x":{"color":"rgba(179,179,179,1)"},"line":{"color":"rgba(179,179,179,1)"},"xaxis":"x","yaxis":"y","frame":null}],"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="challenge" class="section level3">
+<h3>Challenge</h3>
+<p>Create an <a href="https://plotly.com/r/choropleth-maps/">interactive (choropleth) map with plotly</a> similar to the one presented on the <a href="https://www.cdc.gov/nchs/pressroom/sosmap/suicide-mortality/suicide.htm">CDC website</a>. On the CDC map you can click each state and see the state name in bold, the death rate, and deaths. We can do much of this with plotly. As a challenge, use only the 2018 data to create an interactive US map colored by the suicide rates of that state. When you hover over the state, you should see the state name in bold, the death rate, and the number of deaths.</p>
+<p>Some key search terms that may help:</p>
+<ul>
+<li>choropleth</li>
+<li>hover text plotly r</li>
+<li>hover text bolt plotly r</li>
+<li>plotly and html</li>
+<li>html bold</li>
+<li>html subtitle</li>
+</ul>
+<p>Below is the shell of the map to get you started, as well as an example with hovering over California.</p>
+<pre class="r"><code># data pulled from CDC website described above 
+df_suicide &lt;- read_csv(&quot;data/Suicide Mortality by State.csv&quot;) %&gt;%
   filter(YEAR == 2018)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -2273,7 +2475,13 @@ summary {
 ##   DEATHS = col_number(),
 ##   URL = col_character()
 ## )</code></pre>
-<pre class="r"><code>plot_ly(df_mhealth,
+<pre class="r"><code>plot_ly(df_suicide,
+        type=&quot;choropleth&quot;,
+        locationmode = &quot;USA-states&quot;) %&gt;%
+  layout(geo=list(scope=&quot;usa&quot;)) </code></pre>
+<div id="htmlwidget-7edf4d0a84886ba73c9e" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7edf4d0a84886ba73c9e">{"x":{"visdat":{"24ea64d4481":["function () ","plotlyVisDat"]},"cur_data":"24ea64d4481","attrs":{"24ea64d4481":{"locationmode":"USA-states","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"choropleth"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"geo":{"scope":"usa"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"locationmode":"USA-states","type":"choropleth","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>plot_ly(df_suicide,
         type=&quot;choropleth&quot;, 
         locations = ~STATE,
         locationmode = &quot;USA-states&quot;, 
@@ -2282,21 +2490,16 @@ summary {
         hoverinfo = &#39;text&#39;,
         text = ~paste(&#39;&lt;/br&gt;&lt;b&gt;&#39;, NAME, &#39;&lt;/b&gt;&#39;,
                       &#39;&lt;/br&gt; Death Rate: &#39;, RATE,
-                      &#39;&lt;/br&gt; Deaths: &#39;, DEATHS,
-                      &#39;&lt;a href=&#39;, &#39;https://www.cdc.gov/&#39;, URL, &#39;&gt;&lt;/a&gt;&#39;)) %&gt;%
+                      &#39;&lt;/br&gt; Deaths: &#39;, DEATHS)) %&gt;%
   layout(geo=list(scope=&quot;usa&quot;),
          title = list(text = paste0(&#39;Suicide Mortality by State in 2018&#39;,
                                     &#39;&lt;br&gt;&#39;,
                                     &#39;&lt;sup&gt;&#39;,
                                     &#39;The number of deaths per 100,000 total population&#39;,
                                     &#39;&lt;/sup&gt;&#39;)))</code></pre>
-<pre><code>## Warning: `arrange_()` is deprecated as of dplyr 0.7.0.
-## Please use `arrange()` instead.
-## See vignette(&#39;programming&#39;) for more help
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
-<div id="htmlwidget-ef2ac69912810af4276e" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ef2ac69912810af4276e">{"x":{"visdat":{"19f945102dcf":["function () ","plotlyVisDat"]},"cur_data":"19f945102dcf","attrs":{"19f945102dcf":{"locations":{},"locationmode":"USA-states","z":{},"colorscale":"Viridis","hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"choropleth"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"geo":{"scope":"usa"},"title":{"text":"Suicide Mortality by State in 2018<br><sup>The number of deaths per 100,000 total population<\/sup>"},"scene":{"zaxis":{"title":"RATE"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"RATE","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"Viridis","showscale":true,"locations":["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"],"locationmode":"USA-states","z":[16.5,24.6,19.2,18.3,10.9,21.9,10.6,11.4,15.2,14.6,11.9,23.9,11.3,16,15.5,19.3,17.5,15.1,18.5,10.2,9.9,15,13.1,13.8,19.5,24.9,13.4,20.8,19.4,8.3,25,8.3,13.7,19.2,15.3,20,19,14.9,9.5,15.4,19.3,16.6,13.7,22.2,18.8,14,15.9,21.2,14.8,25.2],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["<\/br><b> Alabama <\/b> <\/br> Death Rate:  16.5 <\/br> Deaths:  823 <a href= https://www.cdc.gov/ /nchs/pressroom/states/alabama/al.htm ><\/a>","<\/br><b> Alaska <\/b> <\/br> Death Rate:  24.6 <\/br> Deaths:  184 <a href= https://www.cdc.gov/ /nchs/pressroom/states/alaska/ak.htm ><\/a>","<\/br><b> Arizona <\/b> <\/br> Death Rate:  19.2 <\/br> Deaths:  1438 <a href= https://www.cdc.gov/ /nchs/pressroom/states/arizona/az.htm ><\/a>","<\/br><b> Arkansas <\/b> <\/br> Death Rate:  18.3 <\/br> Deaths:  554 <a href= https://www.cdc.gov/ /nchs/pressroom/states/arkansas/ar.htm ><\/a>","<\/br><b> California <\/b> <\/br> Death Rate:  10.9 <\/br> Deaths:  4491 <a href= https://www.cdc.gov/ /nchs/pressroom/states/california/ca.htm ><\/a>","<\/br><b> Colorado <\/b> <\/br> Death Rate:  21.9 <\/br> Deaths:  1282 <a href= https://www.cdc.gov/ /nchs/pressroom/states/colorado/co.htm ><\/a>","<\/br><b> Connecticut <\/b> <\/br> Death Rate:  10.6 <\/br> Deaths:  419 <a href= https://www.cdc.gov/ /nchs/pressroom/states/connecticut/ct.htm ><\/a>","<\/br><b> Delaware <\/b> <\/br> Death Rate:  11.4 <\/br> Deaths:  113 <a href= https://www.cdc.gov/ /nchs/pressroom/states/delaware/de.htm ><\/a>","<\/br><b> Florida <\/b> <\/br> Death Rate:  15.2 <\/br> Deaths:  3567 <a href= https://www.cdc.gov/ /nchs/pressroom/states/florida/fl.htm ><\/a>","<\/br><b> Georgia <\/b> <\/br> Death Rate:  14.6 <\/br> Deaths:  1569 <a href= https://www.cdc.gov/ /nchs/pressroom/states/georgia/ga.htm ><\/a>","<\/br><b> Hawaii <\/b> <\/br> Death Rate:  11.9 <\/br> Deaths:  176 <a href= https://www.cdc.gov/ /nchs/pressroom/states/hawaii/hi.htm ><\/a>","<\/br><b> Idaho <\/b> <\/br> Death Rate:  23.9 <\/br> Deaths:  417 <a href= https://www.cdc.gov/ /nchs/pressroom/states/idaho/id.htm ><\/a>","<\/br><b> Illinois <\/b> <\/br> Death Rate:  11.3 <\/br> Deaths:  1488 <a href= https://www.cdc.gov/ /nchs/pressroom/states/illinois/il.htm ><\/a>","<\/br><b> Indiana <\/b> <\/br> Death Rate:  16 <\/br> Deaths:  1079 <a href= https://www.cdc.gov/ /nchs/pressroom/states/indiana/in.htm ><\/a>","<\/br><b> Iowa <\/b> <\/br> Death Rate:  15.5 <\/br> Deaths:  490 <a href= https://www.cdc.gov/ /nchs/pressroom/states/iowa/ia.htm ><\/a>","<\/br><b> Kansas <\/b> <\/br> Death Rate:  19.3 <\/br> Deaths:  556 <a href= https://www.cdc.gov/ /nchs/pressroom/states/kansas/ks.htm ><\/a>","<\/br><b> Kentucky <\/b> <\/br> Death Rate:  17.5 <\/br> Deaths:  800 <a href= https://www.cdc.gov/ /nchs/pressroom/states/kentucky/ky.htm ><\/a>","<\/br><b> Louisiana <\/b> <\/br> Death Rate:  15.1 <\/br> Deaths:  720 <a href= https://www.cdc.gov/ /nchs/pressroom/states/louisiana/la.htm ><\/a>","<\/br><b> Maine <\/b> <\/br> Death Rate:  18.5 <\/br> Deaths:  270 <a href= https://www.cdc.gov/ /nchs/pressroom/states/maine/me.htm ><\/a>","<\/br><b> Maryland <\/b> <\/br> Death Rate:  10.2 <\/br> Deaths:  650 <a href= https://www.cdc.gov/ /nchs/pressroom/states/maryland/md.htm ><\/a>","<\/br><b> Massachusetts <\/b> <\/br> Death Rate:  9.9 <\/br> Deaths:  740 <a href= https://www.cdc.gov/ /nchs/pressroom/states/massachusetts/ma.htm ><\/a>","<\/br><b> Michigan <\/b> <\/br> Death Rate:  15 <\/br> Deaths:  1548 <a href= https://www.cdc.gov/ /nchs/pressroom/states/michigan/mi.htm ><\/a>","<\/br><b> Minnesota <\/b> <\/br> Death Rate:  13.1 <\/br> Deaths:  739 <a href= https://www.cdc.gov/ /nchs/pressroom/states/minnesota/mn.htm ><\/a>","<\/br><b> Mississippi <\/b> <\/br> Death Rate:  13.8 <\/br> Deaths:  421 <a href= https://www.cdc.gov/ /nchs/pressroom/states/mississippi/ms.htm ><\/a>","<\/br><b> Missouri <\/b> <\/br> Death Rate:  19.5 <\/br> Deaths:  1230 <a href= https://www.cdc.gov/ /nchs/pressroom/states/missouri/mo.htm ><\/a>","<\/br><b> Montana <\/b> <\/br> Death Rate:  24.9 <\/br> Deaths:  265 <a href= https://www.cdc.gov/ /nchs/pressroom/states/montana/mt.htm ><\/a>","<\/br><b> Nebraska <\/b> <\/br> Death Rate:  13.4 <\/br> Deaths:  271 <a href= https://www.cdc.gov/ /nchs/pressroom/states/nebraska/ne.htm ><\/a>","<\/br><b> Nevada <\/b> <\/br> Death Rate:  20.8 <\/br> Deaths:  657 <a href= https://www.cdc.gov/ /nchs/pressroom/states/nevada/nv.htm ><\/a>","<\/br><b> New Hampshire <\/b> <\/br> Death Rate:  19.4 <\/br> Deaths:  279 <a href= https://www.cdc.gov/ /nchs/pressroom/states/newhampshire/nh.htm ><\/a>","<\/br><b> New Jersey <\/b> <\/br> Death Rate:  8.3 <\/br> Deaths:  778 <a href= https://www.cdc.gov/ /nchs/pressroom/states/newjersey/nj.htm ><\/a>","<\/br><b> New Mexico <\/b> <\/br> Death Rate:  25 <\/br> Deaths:  536 <a href= https://www.cdc.gov/ /nchs/pressroom/states/newmexico/nm.htm ><\/a>","<\/br><b> New York <\/b> <\/br> Death Rate:  8.3 <\/br> Deaths:  1723 <a href= https://www.cdc.gov/ /nchs/pressroom/states/newyork/ny.htm ><\/a>","<\/br><b> North Carolina <\/b> <\/br> Death Rate:  13.7 <\/br> Deaths:  1494 <a href= https://www.cdc.gov/ /nchs/pressroom/states/northcarolina/nc.htm ><\/a>","<\/br><b> North Dakota <\/b> <\/br> Death Rate:  19.2 <\/br> Deaths:  147 <a href= https://www.cdc.gov/ /nchs/pressroom/states/northdakota/nd.htm ><\/a>","<\/br><b> Ohio <\/b> <\/br> Death Rate:  15.3 <\/br> Deaths:  1838 <a href= https://www.cdc.gov/ /nchs/pressroom/states/ohio/oh.htm ><\/a>","<\/br><b> Oklahoma <\/b> <\/br> Death Rate:  20 <\/br> Deaths:  790 <a href= https://www.cdc.gov/ /nchs/pressroom/states/oklahoma/ok.htm ><\/a>","<\/br><b> Oregon <\/b> <\/br> Death Rate:  19 <\/br> Deaths:  844 <a href= https://www.cdc.gov/ /nchs/pressroom/states/oregon/or.htm ><\/a>","<\/br><b> Pennsylvania <\/b> <\/br> Death Rate:  14.9 <\/br> Deaths:  2014 <a href= https://www.cdc.gov/ /nchs/pressroom/states/pennsylvania/pa.htm ><\/a>","<\/br><b> Rhode Island <\/b> <\/br> Death Rate:  9.5 <\/br> Deaths:  106 <a href= https://www.cdc.gov/ /nchs/pressroom/states/rhodeisland/ri.htm ><\/a>","<\/br><b> South Carolina <\/b> <\/br> Death Rate:  15.4 <\/br> Deaths:  811 <a href= https://www.cdc.gov/ /nchs/pressroom/states/southcarolina/sc.htm ><\/a>","<\/br><b> South Dakota <\/b> <\/br> Death Rate:  19.3 <\/br> Deaths:  167 <a href= https://www.cdc.gov/ /nchs/pressroom/states/southdakota/sd.htm ><\/a>","<\/br><b> Tennessee <\/b> <\/br> Death Rate:  16.6 <\/br> Deaths:  1161 <a href= https://www.cdc.gov/ /nchs/pressroom/states/tennessee/tn.htm ><\/a>","<\/br><b> Texas <\/b> <\/br> Death Rate:  13.7 <\/br> Deaths:  3930 <a href= https://www.cdc.gov/ /nchs/pressroom/states/texas/tx.htm ><\/a>","<\/br><b> Utah <\/b> <\/br> Death Rate:  22.2 <\/br> Deaths:  665 <a href= https://www.cdc.gov/ /nchs/pressroom/states/utah/ut.htm ><\/a>","<\/br><b> Vermont <\/b> <\/br> Death Rate:  18.8 <\/br> Deaths:  125 <a href= https://www.cdc.gov/ /nchs/pressroom/states/vermont/vt.htm ><\/a>","<\/br><b> Virginia <\/b> <\/br> Death Rate:  14 <\/br> Deaths:  1243 <a href= https://www.cdc.gov/ /nchs/pressroom/states/virginia/va.htm ><\/a>","<\/br><b> Washington <\/b> <\/br> Death Rate:  15.9 <\/br> Deaths:  1252 <a href= https://www.cdc.gov/ /nchs/pressroom/states/washington/wa.htm ><\/a>","<\/br><b> West Virginia <\/b> <\/br> Death Rate:  21.2 <\/br> Deaths:  395 <a href= https://www.cdc.gov/ /nchs/pressroom/states/westvirginia/wv.htm ><\/a>","<\/br><b> Wisconsin <\/b> <\/br> Death Rate:  14.8 <\/br> Deaths:  888 <a href= https://www.cdc.gov/ /nchs/pressroom/states/wisconsin/wi.htm ><\/a>","<\/br><b> Wyoming <\/b> <\/br> Death Rate:  25.2 <\/br> Deaths:  147 <a href= https://www.cdc.gov/ /nchs/pressroom/states/wyoming/wy.htm ><\/a>"],"type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ed2e82eb2fdc8909185c" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed2e82eb2fdc8909185c">{"x":{"visdat":{"24ea44ecec16":["function () ","plotlyVisDat"]},"cur_data":"24ea44ecec16","attrs":{"24ea44ecec16":{"locations":{},"locationmode":"USA-states","z":{},"colorscale":"Viridis","hoverinfo":"text","text":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"choropleth"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"geo":{"scope":"usa"},"title":{"text":"Suicide Mortality by State in 2018<br><sup>The number of deaths per 100,000 total population<\/sup>"},"scene":{"zaxis":{"title":"RATE"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"RATE","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":"Viridis","showscale":true,"locations":["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"],"locationmode":"USA-states","z":[16.5,24.6,19.2,18.3,10.9,21.9,10.6,11.4,15.2,14.6,11.9,23.9,11.3,16,15.5,19.3,17.5,15.1,18.5,10.2,9.9,15,13.1,13.8,19.5,24.9,13.4,20.8,19.4,8.3,25,8.3,13.7,19.2,15.3,20,19,14.9,9.5,15.4,19.3,16.6,13.7,22.2,18.8,14,15.9,21.2,14.8,25.2],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"text":["<\/br><b> Alabama <\/b> <\/br> Death Rate:  16.5 <\/br> Deaths:  823","<\/br><b> Alaska <\/b> <\/br> Death Rate:  24.6 <\/br> Deaths:  184","<\/br><b> Arizona <\/b> <\/br> Death Rate:  19.2 <\/br> Deaths:  1438","<\/br><b> Arkansas <\/b> <\/br> Death Rate:  18.3 <\/br> Deaths:  554","<\/br><b> California <\/b> <\/br> Death Rate:  10.9 <\/br> Deaths:  4491","<\/br><b> Colorado <\/b> <\/br> Death Rate:  21.9 <\/br> Deaths:  1282","<\/br><b> Connecticut <\/b> <\/br> Death Rate:  10.6 <\/br> Deaths:  419","<\/br><b> Delaware <\/b> <\/br> Death Rate:  11.4 <\/br> Deaths:  113","<\/br><b> Florida <\/b> <\/br> Death Rate:  15.2 <\/br> Deaths:  3567","<\/br><b> Georgia <\/b> <\/br> Death Rate:  14.6 <\/br> Deaths:  1569","<\/br><b> Hawaii <\/b> <\/br> Death Rate:  11.9 <\/br> Deaths:  176","<\/br><b> Idaho <\/b> <\/br> Death Rate:  23.9 <\/br> Deaths:  417","<\/br><b> Illinois <\/b> <\/br> Death Rate:  11.3 <\/br> Deaths:  1488","<\/br><b> Indiana <\/b> <\/br> Death Rate:  16 <\/br> Deaths:  1079","<\/br><b> Iowa <\/b> <\/br> Death Rate:  15.5 <\/br> Deaths:  490","<\/br><b> Kansas <\/b> <\/br> Death Rate:  19.3 <\/br> Deaths:  556","<\/br><b> Kentucky <\/b> <\/br> Death Rate:  17.5 <\/br> Deaths:  800","<\/br><b> Louisiana <\/b> <\/br> Death Rate:  15.1 <\/br> Deaths:  720","<\/br><b> Maine <\/b> <\/br> Death Rate:  18.5 <\/br> Deaths:  270","<\/br><b> Maryland <\/b> <\/br> Death Rate:  10.2 <\/br> Deaths:  650","<\/br><b> Massachusetts <\/b> <\/br> Death Rate:  9.9 <\/br> Deaths:  740","<\/br><b> Michigan <\/b> <\/br> Death Rate:  15 <\/br> Deaths:  1548","<\/br><b> Minnesota <\/b> <\/br> Death Rate:  13.1 <\/br> Deaths:  739","<\/br><b> Mississippi <\/b> <\/br> Death Rate:  13.8 <\/br> Deaths:  421","<\/br><b> Missouri <\/b> <\/br> Death Rate:  19.5 <\/br> Deaths:  1230","<\/br><b> Montana <\/b> <\/br> Death Rate:  24.9 <\/br> Deaths:  265","<\/br><b> Nebraska <\/b> <\/br> Death Rate:  13.4 <\/br> Deaths:  271","<\/br><b> Nevada <\/b> <\/br> Death Rate:  20.8 <\/br> Deaths:  657","<\/br><b> New Hampshire <\/b> <\/br> Death Rate:  19.4 <\/br> Deaths:  279","<\/br><b> New Jersey <\/b> <\/br> Death Rate:  8.3 <\/br> Deaths:  778","<\/br><b> New Mexico <\/b> <\/br> Death Rate:  25 <\/br> Deaths:  536","<\/br><b> New York <\/b> <\/br> Death Rate:  8.3 <\/br> Deaths:  1723","<\/br><b> North Carolina <\/b> <\/br> Death Rate:  13.7 <\/br> Deaths:  1494","<\/br><b> North Dakota <\/b> <\/br> Death Rate:  19.2 <\/br> Deaths:  147","<\/br><b> Ohio <\/b> <\/br> Death Rate:  15.3 <\/br> Deaths:  1838","<\/br><b> Oklahoma <\/b> <\/br> Death Rate:  20 <\/br> Deaths:  790","<\/br><b> Oregon <\/b> <\/br> Death Rate:  19 <\/br> Deaths:  844","<\/br><b> Pennsylvania <\/b> <\/br> Death Rate:  14.9 <\/br> Deaths:  2014","<\/br><b> Rhode Island <\/b> <\/br> Death Rate:  9.5 <\/br> Deaths:  106","<\/br><b> South Carolina <\/b> <\/br> Death Rate:  15.4 <\/br> Deaths:  811","<\/br><b> South Dakota <\/b> <\/br> Death Rate:  19.3 <\/br> Deaths:  167","<\/br><b> Tennessee <\/b> <\/br> Death Rate:  16.6 <\/br> Deaths:  1161","<\/br><b> Texas <\/b> <\/br> Death Rate:  13.7 <\/br> Deaths:  3930","<\/br><b> Utah <\/b> <\/br> Death Rate:  22.2 <\/br> Deaths:  665","<\/br><b> Vermont <\/b> <\/br> Death Rate:  18.8 <\/br> Deaths:  125","<\/br><b> Virginia <\/b> <\/br> Death Rate:  14 <\/br> Deaths:  1243","<\/br><b> Washington <\/b> <\/br> Death Rate:  15.9 <\/br> Deaths:  1252","<\/br><b> West Virginia <\/b> <\/br> Death Rate:  21.2 <\/br> Deaths:  395","<\/br><b> Wisconsin <\/b> <\/br> Death Rate:  14.8 <\/br> Deaths:  888","<\/br><b> Wyoming <\/b> <\/br> Death Rate:  25.2 <\/br> Deaths:  147"],"type":"choropleth","marker":{"line":{"color":"rgba(31,119,180,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
 
 
 
