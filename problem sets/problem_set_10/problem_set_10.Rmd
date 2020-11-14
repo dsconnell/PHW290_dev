@@ -1,0 +1,67 @@
+---
+title: "problem_set_10_solutions"
+author: "Lawrence Y. Tello"
+date: "11/13/2020"
+output: html_document
+---
+
+Due date:
+
+To submit, please email your html file to Lawrence (lytello@berkeley.edu). 
+
+table/graphs from last week and further update htem using DT, formattable, plotly
+
+```{r, include=F}
+library(tidyverse)
+library(plotly)
+```
+
+
+### Challenge
+
+Create an [interactive (choropleth) map with plotly](https://plotly.com/r/choropleth-maps/) similar to the one presented on the [CDC website](https://www.cdc.gov/nchs/pressroom/sosmap/suicide-mortality/suicide.htm). On the CDC map you can click each state and see the state name in bold, the death rate, and deaths. We can do much of this with plotly. As a challenge, use only the 2018 data to create an interactive US map colored by the suicide rates of that state. When you hover over the state, you should see the state name in bold, the death rate, and the number of deaths. 
+
+Some key search terms that may help: 
+
+* choropleth
+* hover text plotly r
+* hover text bolt plotly r
+* plotly and html
+* html bold
+* html subtitle
+
+Below is the shell of the map to get you started.
+
+```{r}
+# data pulled from CDC website described above 
+df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
+  filter(YEAR == 2018)
+
+plot_ly(df_mhealth,
+        type="choropleth",
+        locationmode = "USA-states") %>%
+  layout(geo=list(scope="usa"))
+```
+
+```{r}
+df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
+  filter(YEAR == 2018)
+
+plot_ly(df_mhealth,
+        type="choropleth", 
+        locations = ~STATE,
+        locationmode = "USA-states", 
+        z = ~RATE,
+        colorscale='Viridis',
+        hoverinfo = 'text',
+        text = ~paste('</br><b>', NAME, '</b>',
+                      '</br> Death Rate: ', RATE,
+                      '</br> Deaths: ', DEATHS)) %>%
+  layout(geo=list(scope="usa"),
+         title = list(text = paste0('Suicide Mortality by State in 2018',
+                                    '<br>',
+                                    '<sup>',
+                                    'The number of deaths per 100,000 total population',
+                                    '</sup>')))
+```
+

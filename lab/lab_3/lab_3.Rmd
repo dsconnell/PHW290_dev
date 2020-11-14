@@ -18,9 +18,11 @@ data visualization is where all of the skills you've been building start to clic
 0 = no symptom
 1 = symptom
 
+https://ourworldindata.org/
 https://www.r-graph-gallery.com/index.html
 https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r/
 https://publichealth.berkeley.edu/covid-19/safe-campus-initiative/charts-and-graphs/
+https://tmtheme-editor.herokuapp.com/#!/editor/theme/Monokai
 
 Data is from the safe campus study at UC Berkeley
 
