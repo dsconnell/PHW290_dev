@@ -5,7 +5,7 @@ date: "11/13/2020"
 output: html_document
 ---
 
-Due date:
+Due date:Monday, November 23rd
 
 To submit, please email your html file to Lawrence (lytello@berkeley.edu). 
 
@@ -13,7 +13,56 @@ table/graphs from last week and further update htem using DT, formattable, plotl
 
 ```{r, include=F}
 library(tidyverse)
+library(formattable)
 library(plotly)
+```
+
+```{r, include=F}
+data <- "data/Children_Under_6_yrs_with_Elevated_Blood_Lead_Levels__BLL_.csv"
+bll_nyc <- read_csv(data) %>% drop_na()
+colnames(bll_nyc) <- c("borough_id", "time_period", 
+                       "bll_5", "bll_10", "bll_15", "total_tested")
+```
+
+
+### Question 1
+
+```{r}
+bll_nyc <- read_csv("data/bll_nyc_per_1000.csv")
+
+# pivot from long to wide
+bll_nyc_wide <- bll_nyc %>%
+  pivot_wider(names_from = time_period, values_from = bll_5plus_1k) %>%
+  mutate(x_14 = if_else(`2014` > `2013`, 1, 0),
+         x_15 = if_else(`2015` > `2014`, 1, 0),
+         x_16 = if_else(`2016` > `2015`, 1, 0))
+
+up_down = function(indicator) {
+  return(ifelse( indicator == 1, "#fd626e", "#03d584"))
+}
+
+formattable(bll_nyc_wide,
+            align = c("l", rep("r", NROW(bll_nyc_wide) - 1)), # make first column left aligned
+                      list(x_14 = FALSE,
+                           x_15 = FALSE,
+                           x_16 = FALSE,
+                           'Borough' = formatter("span", style = ~ style(color = "grey", font.weight = "bold")),
+                           '2014' = formatter("span", style = ~ style(color = up_down(x_14))),
+                           '2015' = formatter("span", style = ~ style(color = up_down(x_15))),
+                           '2016' = formatter("span", style = ~ style(color = up_down(x_16)))))
+
+```
+
+### Question 2
+
+```{r}
+df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
+  filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "WI", "DC", "PA", "FL", "AZ"))
+
+plot_ly(df_mhealth, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines') %>%
+  layout(title = "Suicide Rates by State Over Time",
+         yaxis = list(title = "Suicide Rate per 100,000")) %>%
+  highlight(on = "plotly_hover")
 ```
 
 
@@ -40,13 +89,10 @@ df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
 plot_ly(df_mhealth,
         type="choropleth",
         locationmode = "USA-states") %>%
-  layout(geo=list(scope="usa"))
+  layout(geo=list(scope="usa")) 
 ```
 
 ```{r}
-df_mhealth <- read_csv("data/Suicide Mortality by State.csv") %>%
-  filter(YEAR == 2018)
-
 plot_ly(df_mhealth,
         type="choropleth", 
         locations = ~STATE,
