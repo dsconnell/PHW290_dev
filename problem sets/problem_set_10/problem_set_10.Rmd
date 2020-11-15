@@ -14,6 +14,7 @@ table/graphs from last week and further update htem using DT, formattable, plotl
 ```{r, include=F}
 library(tidyverse)
 library(formattable)
+library(DT)
 ```
 
 ```{r, include=F}
@@ -35,6 +36,10 @@ knitr::include_graphics('data/question_1_table.png')
 ```
 
 ```{r}
+# in the event that plotly was run below, detach plotly
+# the option 'style' conflicts when both libraries are loaded
+#detach("package:plotly", unload=TRUE)
+
 # pivot from long to wide
 bll_nyc_wide <- bll_nyc %>%
   pivot_wider(names_from = time_period, values_from = bll_5plus_1k) %>%
@@ -61,22 +66,38 @@ formattable(bll_nyc_wide,
 
 ### Question 2
 
-For this question, we will use suicide rates data that comes from [the CDC](https://www.cdc.gov/nchs/pressroom/sosmap/suicide-mortality/suicide.htm). 
-
-Select (any) 10 states to visualize suicide rates over time using plotly. 
-
-Here's my graph as a reference. 
+Using the same New York City Blood Elevated Lead Levels data from Question 1, create a table with the DT library. Below is an example of the table to replicate. Look up the callback argument to make sure the table, when loaded, starts on the second page.
 
 ```{r, include=F, eval=F}
-knitr::include_graphics('data/question_2_graph.png')
+knitr::include_graphics('data/question_2_table.png')
+```
+
+```{r}
+datatable(bll_nyc, 
+          rownames = FALSE,
+          colnames = c('Borough', 'Year', 'BLL > 5'),
+          caption = "New York City: Elevated Blood Lead Levels 2013-2016 by Borough",
+          callback = JS('table.page("next").draw(false);'))
+```
+
+\newpage
+
+### Question 3
+
+For this question, we will use suicide rates data that comes from [the CDC](https://www.cdc.gov/nchs/pressroom/sosmap/suicide-mortality/suicide.htm). 
+
+Replicate the graph below. 
+
+```{r, include=F, eval=F}
+knitr::include_graphics('data/question_3_graph.png')
 ```
 
 ```{r, include=F}
 # issues with formattable and plotly together since the "style" option overlap
 # https://stackoverflow.com/questions/39319427/using-formattable-and-plotly-simultaneously
-# therefore, load afterwards to avoid knitting issues
+# detach("package:formattable", unload=TRUE)
+library(plotly)
 
-library(plotly) 
 df_suicide <- read_csv("data/Suicide Mortality by State.csv")
 ```
 
@@ -85,12 +106,13 @@ df_suicide <- read_csv("data/Suicide Mortality by State.csv")
 
 
 df_suicide <- read_csv("data/Suicide Mortality by State.csv") %>%
-  filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "WI", "GA", "PA", "FL", "AZ"))
-
-plot_ly(df_suicide, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines') %>%
+  filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "FL", "AZ"))
+ 
+plot_ly(df_suicide, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines',
+        linetype = ~STATE) %>%
   layout(title = "Suicide Rates by State Over Time",
-         yaxis = list(title = "Suicide Rate per 100,000")) %>%
-  highlight(on = "plotly_hover")
+         yaxis = list(title = "Suicide Rate per 100,000"),
+         xaxis = list(title = ""))  
 ```
 
 \newpage
