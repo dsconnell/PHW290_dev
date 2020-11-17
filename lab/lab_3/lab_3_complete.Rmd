@@ -3,7 +3,6 @@ title: "Lab 3 complete"
 author: "Lawrence Y. Tello"
 date: "11/11/2020"
 output: pdf_document
-urlcolor: green
 ---
 
 Welcome to Lab 3 !!!
@@ -22,7 +21,7 @@ If you're working on your Desktop and want to change up your RStudio Theme, [che
 knitr::include_graphics('data/hbr_graph.png')
 ```
 
-\newpage
+\newpage 
 
 Today's goals:
 
@@ -66,7 +65,39 @@ The [ggthemes packages has some nice options](https://yutannihilation.github.io/
 ```{r}
 gen_plot <- read_csv("data/sample_plot.csv")
 
+plot <- gen_plot %>%
+  mutate( count = 1 ) %>% 
+  select( gender_identity, count ) %>%
+  drop_na() %>%
+  group_by(gender_identity) %>%
+  summarize( num = n() ) 
 
+plot$total <- sum( plot$num )
+plot$prop <- plot$num / plot$total
+sum ( plot$prop ) 
+
+plot <- plot %>%
+  mutate( gender_identity = factor ( gender_identity, 
+                                     levels = gender_identity[ order( num ) ] ))
+
+plot$perc <- as.character( round ( plot$prop, 3 ) * 100 )
+plot$lab <- paste( plot$num,
+                   paste( " (", plot$perc, "%", sep = "" ),
+                   sep = "", ") " )
+
+ggplot(plot, aes( x = gender_identity, y = prop ) ) + 
+  geom_bar( stat = "identity", width = 0.3 ) +
+  coord_flip() +
+  ylim( 0 , 1 ) +
+  geom_text( aes( x = gender_identity, y = prop, label = perc ),
+             size = 3.5, vjust = .5, hjust = -.3 ) +
+  labs(x = "gender identity", 
+       y = "proportion",
+       title = "Gender Identity Proportion",
+       subtitle = "Within the fictional dataset") +
+  theme_few()
+
+# ggsave("plots/sample_plot.png")
 ```
 
 \newpage
@@ -81,7 +112,23 @@ For the remainder of the lab, we will use data from the [UC Berkeley Safe Campus
 ```{r}
 df_covid <- read_csv("data/daily_symptoms.csv") %>% mutate(ts_daily = mdy(ts_daily))
 
+symp_1 <- df_covid %>%
+  mutate( Blocked_runny_nose = ifelse( Blocked_runny_nose < 0, NA, Blocked_runny_nose )) %>%
+  filter(!is.na( Blocked_runny_nose )) %>%
+  select( ts_daily, Blocked_runny_nose ) %>%
+  group_by( ts_daily ) %>%
+  summarize( num = sum(Blocked_runny_nose),
+             total = n(),
+             prop = num / total ) # proportion per day
 
+ggplot( symp_1, aes( x = ts_daily, y = prop )) +
+  geom_col() + 
+  scale_x_date( date_labels = "%b/%d", date_breaks = "14 days" ) +
+  scale_y_continuous( limits = c(0, 0.03), labels = scales::percent) +
+  labs(x = element_blank(),
+       y = element_blank(),
+       title = "Students: Blocked runny nose") +
+  theme_fivethirtyeight()
 ```
 
 \newpage
@@ -137,7 +184,7 @@ symptoms_covid(df_covid, Cough) %>%
 
 \newpage
 
-```{r, echo=F}
+```{r, message=F}
 temp_a <- symptoms_covid(df_covid, Blocked_runny_nose)
 temp_b <- symptoms_covid(df_covid, Cough)
 temp_c <- symptoms_covid(df_covid, Fatigue)
@@ -180,4 +227,3 @@ ggplot(symp_plot, aes(x = ts_daily, y = prop, fill = var.name)) +
         axis.text.y = element_text()) +
   guides(colour = guide_legend(nrow = 3)) 
 ```
-
