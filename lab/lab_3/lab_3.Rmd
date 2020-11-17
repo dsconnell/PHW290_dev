@@ -26,6 +26,10 @@ knitr::include_graphics('data/hbr_graph.png')
 
 Today's goals:
 
+Part 0: 
+
+What questions do you have? 
+
 Part 1:
 
 * rotating graphs
