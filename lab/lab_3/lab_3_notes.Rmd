@@ -137,7 +137,7 @@ ggplot(plot, aes( x = gender_identity, y = prop ) ) +
   geom_bar( stat = "identity", width = 0.3 ) +
   coord_flip() +
   ylim( 0 , 1 ) +
-  geom_text( aes( x = gender_identity, y = prop, label = perc ),
+  geom_text( aes( x = gender_identity, y = prop, label = lab ),
              size = 3.5, vjust = .5, hjust = -.3 ) +
   labs(x = "gender_identity", 
        y = "proportion",
@@ -145,7 +145,7 @@ ggplot(plot, aes( x = gender_identity, y = prop ) ) +
        subtitle = "Within the fictional dataset") +
   theme_solarized()
 
-ggsave("plots/sample_plot.png")
+#ggsave("plots/sample_plot.png")
 ```
 
 ### Part 2:

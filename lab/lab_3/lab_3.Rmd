@@ -47,7 +47,7 @@ Part 2:
 Part 3:
 
 * using functions to "automate" graph creation
-* detailed modifying of graph element
+* detailed modifying of graph elements
 
 \newpage 
 
