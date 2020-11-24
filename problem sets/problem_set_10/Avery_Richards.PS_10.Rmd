@@ -1,13 +1,13 @@
 ---
-title: "problem_set_10_solutions"
-author: "Lawrence Y. Tello"
-date: "11/13/2020"
+title: "Problem Set #10"
+author: "Avery Richards"
+date: "11/23/2020"
 output: html_document
 ---
 
 Due date: Monday, November 23rd
 
-*To submit, please email your html file to Lawrence (lytello@berkeley.edu).*
+**To submit, please email your html file to Lawrence (lytello@berkeley.edu).**
 
 ```{r, include=F}
 library(tidyverse)
@@ -38,26 +38,31 @@ knitr::include_graphics('data/question_1_table.png')
 # the option 'style' conflicts when both libraries are loaded
 #detach("package:plotly", unload=TRUE)
 
-# pivot from long to wide
-bll_nyc_wide <- bll_nyc %>%
-  pivot_wider(names_from = time_period, values_from = bll_5plus_1k) %>%
-  mutate(x_14 = if_else(`2014` > `2013`, 1, 0),
-         x_15 = if_else(`2015` > `2014`, 1, 0),
-         x_16 = if_else(`2016` > `2015`, 1, 0))
-
 up_down = function(indicator) {
-  return(ifelse( indicator == 1, "#fd626e", "#03d584"))
+  return(ifelse( indicator == 1, "#fd626e", "#03d584")) # worsened, red, green
 }
 
-formattable(bll_nyc_wide,
-            align = c("l", rep("r", NROW(bll_nyc_wide) - 1)), # make first column left aligned
-                      list(x_14 = FALSE,
-                           x_15 = FALSE,
-                           x_16 = FALSE,
-                           'Borough' = formatter("span", style = ~ style(color = "grey", font.weight = "bold")),
-                           '2014' = formatter("span", style = ~ style(color = up_down(x_14))),
-                           '2015' = formatter("span", style = ~ style(color = up_down(x_15))),
-                           '2016' = formatter("span", style = ~ style(color = up_down(x_16)))))
+# pivot table wider. 
+bll_pvtd <-
+  bll_nyc %>% 
+  pivot_wider(names_from = time_period, values_from = bll_5plus_1k)
+
+## Formattable function:
+formattable(bll_pvtd,
+# align columns as specified, remove row names. 
+    align=c("l",rep("c",NCOL(bll_nyc)-1)),
+# Format text as specified. 
+    list(`Borough`=formatter("span",style= ~style(color="grey",font.weight="bold")),
+# apply conditional arguments on increase / decrease of values. 
+         `2014` = formatter("span", 
+               style= ~ style(color=ifelse(`2014`>=`2013`,"red","green"))),
+        `2015` = formatter("span", 
+               style= ~ style(color=ifelse(`2015`>=`2014`,"red","green"))),
+        `2016` = formatter("span", 
+               style= ~ style(color=ifelse(`2016`>=`2015`,"red","green")))
+)
+# Toggle paretheses vertically to preserve sanity.           
+)
 
 ```
 \newpage
@@ -71,11 +76,17 @@ knitr::include_graphics('data/question_2_table.png')
 ```
 
 ```{r}
-datatable(bll_nyc, 
-          rownames = FALSE,
-          colnames = c('Borough', 'Year', 'BLL > 5'),
-          caption = "New York City: Elevated Blood Lead Levels 2013-2016 by Borough",
-          callback = JS('table.page("next").draw(false);'))
+
+# Format table as specified
+datatable(bll_nyc,
+  options = 
+# Page length
+    list(pageLength=10),
+# Caption and column names.
+      caption = "New York City: Elevated Blood Lead Levels 2013-2016 by Borough",
+      colnames=c("Borough","Year","BLL > 5"),
+          )
+
 ```
 
 \newpage
@@ -102,15 +113,28 @@ df_suicide <- read_csv("data/Suicide Mortality by State.csv")
 
 ```{r}
 
+library(ggthemes)
 
-df_suicide <- read_csv("data/Suicide Mortality by State.csv") %>%
-  filter(STATE %in% c("CA", "NY", "WY", "MI", "HI", "FL", "AZ"))
- 
-plot_ly(df_suicide, x = ~ YEAR, y = ~ RATE, color = ~ STATE, mode = 'lines',
-        linetype = ~STATE) %>%
-  layout(title = "Suicide Rates by State Over Time",
-         yaxis = list(title = "Suicide Rate per 100,000"),
-         xaxis = list(title = ""))  
+
+# Organize dataframe to fit chart specifications. 
+sc_plot <- 
+  df_suicide %>% 
+  select(-c("URL", "NAME", "DEATHS")) %>% 
+  filter(STATE == "AZ" | STATE == "CA" | STATE == "FL" | 
+         STATE == "HI" | STATE == "MI" | STATE == "NY" | 
+         STATE == "WY" ) %>% 
+  mutate(STATE = as.factor(STATE)) 
+
+# Plot chart as specified
+ggplot(sc_plot, aes(x = YEAR, y = RATE, group = STATE)) + 
+  geom_line(aes(color = STATE, linetype = STATE)) +
+   labs(x="Year",y="Suicide Rate per 100,000", 
+  title = "Suicide Rates by State Over Time") +
+theme_minimal() 
+
+
+
+
 ```
 
 \newpage
@@ -143,24 +167,34 @@ plot_ly(df_suicide,
         type="choropleth",
         locationmode = "USA-states") %>%
   layout(geo=list(scope="usa")) 
+
+
 ```
 
+\newpage
+
 ```{r}
-plot_ly(df_suicide,
-        type="choropleth", 
-        locations = ~STATE,
-        locationmode = "USA-states", 
-        z = ~RATE,
-        colorscale='Viridis',
-        hoverinfo = 'text',
-        text = ~paste('</br><b>', NAME, '</b>', # bold state name
-                      '</br> Death Rate: ', RATE, # line break and add rate
-                      '</br> Deaths: ', DEATHS)) %>% # line break and add rate
-  layout(geo=list(scope="usa"),
-         title = list(text = paste0('Suicide Mortality by State in 2018',
-                                    '<br>', # line break
-                                    '<sup>', # subtitle
-                                    'The number of deaths per 100,000 total population',
-                                    '</sup>')))
+
+# Allocate hover attributes.
+df_suicide$hover <- with(df_suicide, paste(STATE, '<br>', "Rate", RATE))
+
+# Specify map details. 
+map_deet <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white'))
+
+# Plot map. 
+plot_geo(df_suicide, locationmode = 'USA-states') %>% 
+add_trace(z = ~RATE, 
+          text = ~hover, 
+          locations = ~STATE,
+          color = ~RATE, colors = 'Oranges') %>% 
+  colorbar(title = "Suicides per 100,000") %>% 
+   layout(title = "Suicide Rates, per state: 2018",
+    geo = map_deet)
+  
+
 ```
 

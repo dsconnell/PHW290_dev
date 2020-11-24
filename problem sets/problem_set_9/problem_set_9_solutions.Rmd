@@ -68,7 +68,7 @@ kable(bll_nyc_table,
       col.names=c("Borough", "Year", "BLL >5 µg/dL", "BLL >10 µg/dL", "BLL >15 µg/dL"),  
       align='lccc', 
       caption="BLL Rates per 1,000 tested in New York City, 2015-2016",
-      format.args=list(big.mark=","))
+      format.args=list(big.mark=",")) 
 ```
 
 \newpage
