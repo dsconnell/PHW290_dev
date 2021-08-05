@@ -49,7 +49,6 @@ Create five variables with the following type of data types:
   2. numeric
   3. integer
   4. logical
-  5. complex
   
 ```{r question_2}
 # your code here
