@@ -176,4 +176,11 @@ With your new data frame, find the following values:
 ```
 
 
+TODO: Add questions about basics like logic, calling a function, searching documentation, data type confusion 
+```{r}
+
+```
+
+
+
 You did it! Please knit to a pdf, download, and submit to gradescope. 
