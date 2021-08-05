@@ -1,0 +1,22 @@
+---
+title: "unused_problem_set_questions"
+author: "David Connell"
+date: "8/5/2021"
+output: pdf_document
+---
+
+### Question 5
+
+For this question use the reprex function discussed in lecture for each of the variable assignments.
+
+Create four variables to represent the 2x2 table in Question 2. We suggest using a, b, c, and d to match the 2x2 format.
+
+Using these variables, calculate the odds ratio again and assign it to a new variable.
+
+```{r question_5}
+# your code here
+```
+
+
+
+
