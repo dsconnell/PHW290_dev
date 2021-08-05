@@ -20,3 +20,34 @@ Using these variables, calculate the odds ratio again and assign it to a new var
 
 
 
+
+
+\newpage
+
+###  Question 9
+
+Missing data, ugh! Missing data are ubiquitous part of social, behavioral, and health sciences. R can help us find where missing data is present. For this question, please read the help documentation of this useful tool.
+
+```{r is.na}
+# pull up help documentation by putting a question mark before the function name
+?is.na()
+```
+
+Use is.na() to find the missing data in the data frame created in Question 7. List this observation's available information and which column is NA.
+
+```{r question_9}
+# your code here
+```
+
+\newpage
+
+### Challenge
+
+Create a function that lets you add two numbers together. For example, if I had two arguments, 1 and 2, the output should result in 3. You can use the ?function help documentation and/or google. 
+
+```{r challenge}
+# your code here
+```
+
+
+
