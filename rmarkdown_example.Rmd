@@ -68,3 +68,9 @@ df <- tibble(
 
 ### jump to me
 
+
+```{r}
+# example of code running off the page
+library(ggplot2)
+ggplot(data = ChickWeight, aes(x = Time, y = weight, color = Diet, group = Chick)) + geom_line() + ggtitle("Growth curve for individual chicks")
+```

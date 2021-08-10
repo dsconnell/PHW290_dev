@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
-author: "Lawrence Y. Tello"
-date: "8/15/2020"
+author: "Lawrence Y. Tello and David Connell"
+date: "8/9/2021"
 output: pdf_document
 ---
 
@@ -11,15 +11,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # R Markdown Introduction
 
-Welcome to PHW290: R for Public Health!
+Welcome to PHW251: R for Public Health!
 
-We're excited that you're here and look forward to a semester with you and R. The current file you are looking at is called a "RMarkdown", which has a .Rmd extension. We will use this type of R file for the semester due to its easy readability and capacity for creating *neat* PDF, HTML, and MS Word files. 
+We're excited that you're here and look forward to a semester with you and R. The current file you are looking at is called an "R Markdown" or file, which has the extension ".Rmd". We will use this type of R file for the semester because of its readability and capacity for creating *neat* PDFs for you to turn in. 
   
 \newpage
 
 ### RMarkdown Basics
 
-Below is a R chunk, which is where you type your code. You can run code line by line by holding down Ctrl/Command + Enter. If you want to run the entire chunk, you can click the green arrow on the right-hand side of the chunk. Try both of these methods for the code below!
+Below is a R chunk, which is where you type your code. You can run a single line of code by holding down Ctrl (on Windows) or Command (on Mac) and hitting the Enter/Return key. If you want to run the entire chunk, you can click the green arrow on the right-hand side of the chunk. Try both of these methods for the code below!
 
 ```{r}
 print("hello world")
@@ -27,17 +27,16 @@ print("hello world")
 
 ```{r}
 # this is a comment
-# anything following a hash/number/pound sign within a R chunk is a comment. 
-# comments are not evaluated
+# anything following a hash/pound sign within a R chunk is a comment. 
+# comments are not evaluated when you run the code chunk
 # for example, the following code will not run:
 
 # print("hello world")
 ```
 
-```{r}
-# example of code running off the page
-library(ggplot2)
-ggplot(data = ChickWeight, aes(x = Time, y = weight, color = Diet, group = Chick)) + geom_line() + ggtitle("Growth curve for individual chicks")
-```
+Keyboard shortcut to knit: 
+Alt + Shift + K (Windows)
+Command + Shift + K (Mac)
 
-Knitting shortcut: Alt + Shift + K
+
+
