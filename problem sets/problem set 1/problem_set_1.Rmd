@@ -5,7 +5,7 @@ date: "date here"
 output: pdf_document
 ---
 
-* Due date: September 7 at 11:59 PM (PST)
+* Due date: September 6 at 11:59 PM (PST)
 * Submission process: Please submit your assignment directly to Gradescope. You can do this by knitting your file and downloading the PDF to your computer. Then navigate to Gradescope.com or via the link on BCourses to submit your assignment. 
 
 Helpful hints:
@@ -17,15 +17,7 @@ Helpful hints:
 --------------------------------------------------------------------------------
 \newpage 
 
-First, try pressing Alt + Shift + K. You should see that your file has knitted into a pdf. You can also knit by pressing the knit button above next to the magnifying glass.
-
-Let's load the reprex library.
-
-```{r library}
-# note: to install packages for the first time you run this function
-# install.packages("reprex")
-library(reprex)
-```
+First, try knitting by pressing Alt + Shift + K (Windows) or Command + Shift + K (Mac) or by clicking the "Knit" icon above the Source pane. You should see that your file has knitted into a pdf.
 
 ### Question 1
 
@@ -183,4 +175,4 @@ TODO: Add questions about basics like logic, calling a function, searching docum
 
 
 
-You did it! Please knit to a pdf, download, and submit to gradescope. 
+You did it! Please knit to a pdf, download, and submit to Gradescope. 
