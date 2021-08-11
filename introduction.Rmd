@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 author: "Lawrence Y. Tello and David Connell"
-date: "8/9/2021"
+date: "8/11/2021"
 output: pdf_document
 ---
 
@@ -26,12 +26,21 @@ print("hello world")
 ```
 
 ```{r}
+1+2
+answer <- 1+2
+```
+
+
+```{r}
 # this is a comment
 # anything following a hash/pound sign within a R chunk is a comment. 
 # comments are not evaluated when you run the code chunk
-# for example, the following code will not run:
+# for example, the following code will not be evaluated:
 
-# print("hello world")
+# 1+2
+
+# but this code will:
+1/2
 ```
 
 Keyboard shortcut to knit: 
