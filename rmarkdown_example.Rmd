@@ -1,7 +1,7 @@
 ---
 title: "Rmarkdown Example"
 author: "NAME HERE"
-date: "10/5/2020"
+date: "8/10/2021"
 output: pdf_document
 ---
 
@@ -42,7 +42,7 @@ b <- "example 2"
 b
 ```
 
-```{r a, eval=FALSE}
+```{r chunk c, eval=FALSE}
 c <- "example 3"
 c
 ```
@@ -72,5 +72,13 @@ df <- tibble(
 ```{r}
 # example of code running off the page
 library(ggplot2)
-ggplot(data = ChickWeight, aes(x = Time, y = weight, color = Diet, group = Chick)) + geom_line() + ggtitle("Growth curve for individual chicks")
+
+ggplot(data = ChickWeight, aes(x = Time, 
+                               y = weight, 
+                               color = Diet, group = Chick)) + geom_line() +
+  ggtitle("Growth curve for individual chicks")
 ```
+
+
+
+
